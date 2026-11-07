@@ -1,0 +1,38 @@
+ARCHIVO RECUPERADO · 006-A
+NOTAS INTERNAS
+
+
+Registro de reuniones y desacuerdos
+Fragmentos recuperados de las notas internas del equipo.
+
+REUNIÓN DE DESARROLLO — FRAGMENTO 01
+
+Tema: Cambios en la estructura del proyecto.
+
+Desarrollador frontend:
+
+«No podemos seguir modificando la estructura cada vez que algo no funciona. Cada cambio termina afectando las interfaces y tenemos que rehacer parte del trabajo».
+
+Desarrollador backend:
+
+«El sistema necesita ajustes. No podemos mantener decisiones técnicas solamente porque ya se haya trabajado sobre ellas».
+
+Observación: No se encontró un acuerdo definitivo sobre los cambios propuestos.
+
+NOTA PERSONAL — FRAGMENTO 02
+
+«Últimamente siento que cualquier reunión termina igual. Intento mantener las cosas funcionando, pero cada decisión se convierte en una discusión. Antes al menos podíamos trabajar sin tener que justificarlo todo».
+
+REGISTRO DE SEGUIMIENTO — FRAGMENTO 03
+- Se registraron retrasos en la integración de algunos componentes.
+- Varias tareas tuvieron que repetirse debido a cambios técnicos.
+- Las reuniones de coordinación comenzaron a ser menos productivas.
+- La comunicación entre los dos desarrolladores disminuyó.
+
+OBSERVACIÓN FINAL
+
+El proyecto continuaba en desarrollo, pero los registros muestran dificultades crecientes para coordinar las distintas áreas de trabajo.
+
+No se encontró un documento que estableciera claramente las causas de la ruptura definitiva del equipo.
+
+Estado del archivo: recuperación parcial. No se conserva la totalidad de las reuniones.

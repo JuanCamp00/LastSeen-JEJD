@@ -1,0 +1,25 @@
+ARCHIVO RECUPERADO · 005-A
+REGISTRO INTERNO
+
+
+Registro de colaboración creativa
+Fragmentos recuperados de la documentación del desarrollo.
+
+PROYECTO: Secuela del videojuego original.
+
+ÁREAS INVOLUCRADAS:
+- Desarrollo frontend: interfaces e implementación visual.
+- Dirección artística: personajes, ilustraciones, música y recursos gráficos.
+NOTA DE SEGUIMIENTO
+
+Ambos integrantes trabajaban estrechamente durante las etapas de diseño e implementación. Gran parte de las decisiones visuales se realizaban conjuntamente y sus aportaciones aparecían frecuentemente relacionadas en los registros de versiones.
+
+FRAGMENTO DE UNA NOTA PERSONAL
+
+«A veces siento que estamos mezclando demasiado las cosas. Me gusta trabajar contigo, pero últimamente no sé cómo separar lo que pasa entre nosotros de lo que está pasando con el proyecto».
+
+OBSERVACIÓN
+
+Se encontraron numerosos archivos creados y modificados por ambos integrantes durante el mismo periodo.
+
+El documento no contiene información sobre el motivo por el que dejaron de trabajar juntos.

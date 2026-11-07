@@ -1,0 +1,32 @@
+ARCHIVO RECUPERADO · 002-A
+TRANSCRIPCIÓN
+
+
+Entrevista al equipo de desarrollo
+Fragmento de una entrevista promocional anterior a la cancelación.
+
+ENTREVISTADOR:
+
+¿Cómo hacen para resolver los desacuerdos cuando tienen opiniones diferentes sobre el desarrollo?
+
+DESARROLLADOR BACKEND:
+
+Bueno, es normal que existan diferencias. Al final alguien tiene que tomar las decisiones. No todos tenemos la misma visión del proyecto y, si intentamos que todos opinen sobre absolutamente todo, terminaríamos retrasando el trabajo.
+
+ENTREVISTADOR:
+
+¿Entonces suelen tener una persona que toma la decisión definitiva?
+
+DESARROLLADOR BACKEND:
+
+Digamos que alguien tiene que hacerse responsable de que las cosas se hagan correctamente.
+
+ENTREVISTADOR:
+
+¿Y los demás están de acuerdo con esa dinámica?
+
+DESARROLLADOR BACKEND:
+
+Hasta ahora nos ha funcionado bastante bien.
+
+Nota de archivo: el entrevistador cambió de tema poco después. No se conserva el fragmento completo del encuentro.
