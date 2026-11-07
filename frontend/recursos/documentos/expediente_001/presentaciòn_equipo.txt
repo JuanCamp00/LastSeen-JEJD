@@ -1,0 +1,22 @@
+ARCHIVO RECUPERADO · EXPEDIENTE 001
+DOCUMENTO
+
+
+PRESENTACIÓN DEL EQUIPO
+Secuela de un videojuego independiente de decisiones narrativas
+
+EQUIPO DE DESARROLLO
+
+El proyecto cuenta con tres integrantes responsables de las distintas áreas de producción.
+
+01. Desarrollo Frontend
+
+Responsable de las interfaces, interacción visual y presentación de los elementos del videojuego.
+
+02. Desarrollo Backend
+
+Responsable de la lógica interna, los sistemas y el funcionamiento de los procesos del videojuego.
+
+03. Dirección Artística
+
+Responsable del diseño de personajes, ilustraciones, música y recursos visuales.

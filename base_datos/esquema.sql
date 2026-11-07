@@ -174,3 +174,29 @@ CREATE TABLE IF NOT EXISTS resultado_ranking (
         FOREIGN KEY (id_partida)
         REFERENCES partida(id_partida)
 );
+
+
+
+CREATE UNIQUE INDEX IF NOT EXISTS uq_opcion_id_acertijo
+ON opcion_acertijo (id_opcion, id_acertijo);
+
+
+-- 4. Reemplazar la relación simple de INTENTO
+-- por una relación que también valide el acertijo.
+
+ALTER TABLE intento
+DROP CONSTRAINT IF EXISTS fk_intento_opcion;
+
+ALTER TABLE intento
+DROP CONSTRAINT IF EXISTS fk_intento_opcion_acertijo;
+
+ALTER TABLE intento
+ADD CONSTRAINT fk_intento_opcion_acertijo
+FOREIGN KEY (id_opcion_seleccionada, id_acertijo)
+REFERENCES opcion_acertijo (id_opcion, id_acertijo);
+
+CREATE UNIQUE INDEX IF NOT EXISTS uq_pista_acertijo_orden
+ON pista (id_acertijo, orden);
+
+CREATE UNIQUE INDEX IF NOT EXISTS uq_opcion_acertijo_orden
+ON opcion_acertijo (id_acertijo, orden);
