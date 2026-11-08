@@ -1,0 +1,248 @@
+/* =====================================================
+   LAST SEEN · PANTALLA 03 / INICIO
+   Solo afecta al panel principal, no al login ni al caso.
+===================================================== */
+.pagina-inicio {
+    background: radial-gradient(circle at 94% 96%, rgba(105, 18, 31, .16), transparent 29%), #060C13;
+    color: #E5EDF5;
+}
+.panel-inicio {
+    width: min(100%, 1600px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px 24px 32px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.panel-inicio .tarjeta {
+    background: #0A1520;
+    border: 1px solid #425568;
+    border-radius: 11px;
+}
+.inicio-barra-superior {
+    min-height: 80px;
+    display: grid;
+    grid-template-columns: minmax(260px, 345px) minmax(580px, 1fr) minmax(170px, 255px);
+    align-items: center;
+    gap: 16px;
+    padding: 10px 26px;
+    background: #0A1520;
+    border: 1px solid #425568;
+    border-radius: 11px;
+    border-bottom-color: #50677E;
+}
+.identidad-juego {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 18px;
+    border-left: 4px solid #B42D40;
+    text-decoration: none;
+}
+.identidad-nombre {
+    color: #E5EDF5;
+    font: 700 27px/1.15 'Orbitron', sans-serif;
+    letter-spacing: .04em;
+    white-space: nowrap;
+}
+.identidad-descripcion { color: #96A9BC; font-size: 10px; letter-spacing: 1px; }
+.menu-superior { display: flex; align-items: stretch; justify-content: flex-start; gap: 14px; }
+.menu-opcion {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 0 19px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 7px 7px 0 0;
+    background: transparent;
+    color: #A1B2C4;
+    text-decoration: none;
+    white-space: nowrap;
+    font: 500 14px 'IBM Plex Mono', monospace;
+}
+.menu-opcion.activa { color: #E1C4A0; border-bottom-color: #D6B795; background: #332A22; }
+.menu-opcion:disabled { opacity: .77; cursor: not-allowed; }
+.menu-opcion:not(:disabled):focus-visible, .identidad-juego:focus-visible { outline: 2px solid #D6B795; outline-offset: 3px; }
+.perfil-investigador {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    min-width: 0;
+    font-size: 13px;
+    white-space: nowrap;
+}
+#nombre-perfil { max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+.inicio-cuerpo {
+    display: grid;
+    grid-template-columns: 218px minmax(0, 1fr) 364px;
+    gap: 16px;
+    margin-top: 22px;
+}
+/* Navegación izquierda */
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    min-height: 744px;
+    padding: 24px 14px;
+}
+.microtitulo { color: #D6B795; font-size: 11px; line-height: 1.6; letter-spacing: 1.3px; }
+.menu-lateral > .microtitulo { margin: 2px 8px 16px; }
+.menu-enlaces { padding: 11px 0; border-top: 1px solid #354656; }
+.lateral-opcion {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 13px;
+    margin: 5px 0 9px;
+    background: transparent;
+    border: 0;
+    border-left: 3px solid transparent;
+    border-radius: 6px;
+    text-align: left;
+    color: #E5EDF5;
+    text-decoration: none;
+    white-space: nowrap;
+    font: 500 13px 'IBM Plex Mono', monospace;
+}
+.lateral-opcion span { width: 20px; color: #96A9BC; font-size: 23px; line-height: 1; }
+.lateral-opcion.activa { background: #332A22; color: #E1C4A0; border-left-color: #D6B795; }
+.lateral-opcion:not(:disabled) { cursor: pointer; }
+.lateral-opcion:disabled { cursor: not-allowed; opacity: .75; }
+.lateral-opcion:not(:disabled):hover { background: #26313B; }
+.lateral-opcion:focus-visible { outline: 2px solid #D6B795; outline-offset: 2px; }
+.lateral-expediente { border-top: 1px solid #354656; margin: auto 8px 0; padding-top: 24px; }
+.lateral-expediente .microtitulo { display: block; color: #96A9BC; font-size: 10px; }
+.lateral-estado { display: block; margin-top: 16px; font-size: 11px; color: #D6B795; }
+.sello-archivo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 54px;
+    padding: 18px 14px;
+    border: 1px solid #425568;
+    border-radius: 5px;
+    background: #101C27;
+}
+.sello-archivo span { color: #96A9BC; font-size: 10px; letter-spacing: 1.2px; }
+.sello-archivo strong { color: #B42D40; font: 700 16px 'Orbitron', sans-serif; letter-spacing: 0; }
+/* Columna central */
+.contenido-principal { display: flex; flex-direction: column; min-width: 0; gap: 16px; }
+.portada-caso { min-height: 474px; padding: 22px 34px 26px; overflow: hidden; border-top: 5px solid #42372B !important; }
+.portada-clasificacion { padding: 4px 0 19px; border-bottom: 1px solid #354656; }
+.portada-interior { display: grid; grid-template-columns: 39% minmax(0, 1fr); gap: 18px; align-items: center; margin-top: 24px; }
+.portada-textos h1 { color: #E5EDF5; font: 700 clamp(46px, 4.3vw, 67px)/1.05 'Orbitron', sans-serif; letter-spacing: 2px; }
+.portada-pregunta { margin-top: 22px; color: #D6B795; font-size: 19px; font-weight: 500; line-height: 1.45; }
+.tablero-evidencias { position: relative; min-height: 260px; border: 1px solid #425568; border-radius: 8px; background: #111D29; overflow: hidden; }
+.tablero-evidencias::before { content: ''; position: absolute; inset: 0 0 auto; height: 5px; background: #44372B; }
+.nota { position: absolute; background: #C7B298; border-radius: 2px; box-shadow: 0 3px 5px #060C1370; z-index: 2; }
+.nota::before { content: ''; position: absolute; top: -5px; left: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: #B42D40; }
+.nota span { display: block; height: 2px; background: #786F63; margin-left: 10%; margin-top: 21%; width: 77%; }
+.nota span + span { margin-top: 10%; width: 60%; }
+.nota-uno { width: 27%; height: 78px; left: 7%; top: 16%; }
+.nota-dos { width: 22%; height: 94px; left: 43%; top: 12%; }
+.nota-tres { width: 24%; height: 100px; left: 73%; top: 27%; }
+.nota-cuatro { width: 32%; height: 75px; left: 27%; top: 64%; }
+.hilo { position: absolute; height: 2px; background: #B42D40; z-index: 3; transform-origin: left center; opacity: .85; }
+.hilo-uno { width: 30%; left: 28%; top: 28%; transform: rotate(12deg); }
+.hilo-dos { width: 31%; left: 59%; top: 45%; transform: rotate(-13deg); }
+.hilo-tres { width: 30%; left: 43%; top: 69%; transform: rotate(14deg); }
+.portada-acciones { display: flex; align-items: center; gap: 16px; margin-top: 26px; }
+.boton-investigacion {
+    flex: 0 0 52%; min-height: 64px; padding: 12px 16px;
+    color: #FFF5F5; border: 1px solid #B42D40; border-radius: 7px; background: #681722;
+    font: 500 clamp(12px, 1.15vw, 18px) 'IBM Plex Mono', monospace;
+    letter-spacing: .5px; white-space: nowrap;
+}
+.boton-investigacion:disabled { cursor: not-allowed; opacity: .9; }
+.boton-investigacion span { padding-left: 5px; }
+.portada-acciones p { color: #96A9BC; font-size: 12px; line-height: 1.5; }
+.resumen-inferior { display: grid; grid-template-columns: 1fr 1.1fr; gap: 16px; }
+.partidas-recientes, .notas-caso { min-height: 252px; padding: 22px 24px; }
+.titulo-tarjeta { padding-bottom: 16px; border-bottom: 1px solid #354656; color: #D6B795; font: 500 19px 'IBM Plex Mono', monospace; }
+.partidas-recientes > p, .notas-caso > p { margin-top: 22px; font-size: 14px; line-height: 1.5; }
+.partidas-recientes > .texto-tenue, .notas-caso > .texto-tenue { margin-top: 5px; color: #96A9BC; }
+.notas-caso > .texto-tenue { margin-top: 20px; }
+.boton-secundario { display: block; margin-top: 27px; padding: 13px 20px; background: #332A22; border: 1px solid #D6B795; border-radius: 6px; color: #DCC4A4; font: 500 15px 'IBM Plex Mono', monospace; }
+.boton-secundario:disabled { opacity: .9; cursor: not-allowed; }
+/* Columna de progreso */
+.columna-derecha { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.progreso { min-height: 275px; padding: 21px 22px; }
+.progreso .titulo-tarjeta, .actividad-reciente .titulo-tarjeta { font-size: 17px; }
+.progreso dl { padding-top: 12px; }
+.progreso dl > div { display: flex; align-items: center; justify-content: space-between; min-height: 45px; gap: 7px; }
+.progreso dt { color: #96A9BC; font-size: 12px; }
+.progreso dd { color: #E5EDF5; font-size: 21px; font-weight: 500; }
+.confianza-artista { display: flex; align-items: center; justify-content: space-between; gap: 13px; padding-top: 17px; border-top: 1px solid #354656; }
+.confianza-artista label { color: #D6B795; font-size: 10px; letter-spacing: .5px; white-space: nowrap; }
+.confianza-artista progress { appearance: none; -webkit-appearance: none; width: 95px; height: 6px; border: 0; border-radius: 6px; background: #425568; }
+.confianza-artista progress::-webkit-progress-bar { background: #425568; border-radius: 6px; }
+.confianza-artista progress::-webkit-progress-value { background: #B42D40; border-radius: 6px; }
+.confianza-artista progress::-moz-progress-bar { background: #B42D40; border-radius: 6px; }
+.actividad-reciente { min-height: 182px; padding: 20px 22px; }
+.actividad-reciente p { margin-top: 32px; text-align: center; color: #96A9BC; font-size: 13px; }
+.actividad-reciente small { display: block; margin-top: 18px; text-align: center; color: #718599; font-size: 10px; }
+@media(max-width: 1300px) {
+    .inicio-barra-superior { grid-template-columns: 230px 1fr 180px; }
+    .identidad-nombre { font-size: 23px; }
+    .menu-opcion { padding: 0 10px; font-size: 12px; }
+    .inicio-cuerpo { grid-template-columns: 190px minmax(0, 1fr) 290px; gap: 12px; }
+    .portada-caso { padding: 20px; }
+    .portada-textos h1 { font-size: clamp(37px, 4vw, 60px); }
+    .portada-acciones { flex-wrap: wrap; }
+    .boton-investigacion { flex: 1 1 100%; }
+    .confianza-artista { flex-wrap: wrap; }
+    .titulo-tarjeta { font-size: 15px; }
+}
+@media(max-width: 990px) {
+    .panel-inicio { padding: 16px; }
+    .inicio-barra-superior { grid-template-columns: 1fr auto; }
+    .menu-superior { display: none; }
+    .inicio-cuerpo { grid-template-columns: 170px minmax(0, 1fr); }
+    .columna-derecha { grid-column: 2; display: grid; grid-template-columns: 1fr 1fr; }
+    .menu-lateral { grid-row: span 2; }
+    .portada-caso { min-height: 455px; }
+}
+@media(max-width: 720px) {
+    .panel-inicio { padding: 12px; }
+    .inicio-barra-superior { padding: 14px; }
+    .identidad-nombre { font-size: 20px; }
+    .identidad-descripcion { font-size: 8px; }
+    .perfil-investigador { font-size: 11px; }
+    .inicio-cuerpo { display: block; }
+    .menu-lateral { min-height: 0; padding: 10px 14px; margin-bottom: 14px; }
+    .menu-lateral > .microtitulo, .lateral-expediente { display: none; }
+    .menu-enlaces { border-top: 0; display: flex; flex-wrap: wrap; padding: 0; gap: 4px; }
+    .lateral-opcion { width: auto; min-height: 44px; margin: 0; padding: 8px 10px; font-size: 11px; }
+    .lateral-opcion span { font-size: 16px; }
+    .portada-interior { grid-template-columns: 1fr; }
+    .portada-textos h1 { font-size: 46px; }
+    .tablero-evidencias { min-height: 215px; }
+    .portada-acciones { margin-top: 18px; }
+    .resumen-inferior, .columna-derecha { display: grid; grid-template-columns: 1fr; margin-top: 14px; }
+    .columna-derecha { gap: 14px; }
+}
+
+/* Navegación hacia la investigación */
+
+.boton-investigacion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.boton-investigacion:hover {
+    background-color: #84212C;
+    box-shadow: 0 0 20px rgba(184, 53, 69, 0.2);
+}
+
+.boton-investigacion:focus-visible {
+    outline: 2px solid #D6B795;
+    outline-offset: 4px;
+}

@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Last Seen | Introducción al caso</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="./css/base.css">
+
+    <!-- Estilos específicos de la introducción -->
+    <link rel="stylesheet" href="./css/introduccion.css">
+
+    <!-- JavaScript -->
+    <script src="./introduccion.js" defer></script>
+</head>
+
+<body>
+
+    <main class="pantalla-introduccion">
+        <section class="ventana-caso">
+
+            <!-- Barra superior -->
+            <div class="ventana-superior">
+
+                <div class="ventana-id">
+                    <span class="icono-carpeta">🗀</span>
+                    <span>LAST SEEN · EXPEDIENTE 001</span>
+                </div>
+
+                <div class="ventana-controles">
+                    <span>—</span>
+                    <span>□</span>
+                    <span>✕</span>
+                </div>
+
+            </div>
+
+            <!-- Encabezado principal -->
+            <div class="cabecera-caso">
+
+                <div class="icono-documento">📄</div>
+
+                <div class="titulo-contenedor">
+                    <h1>HISTORIA DEL CASO</h1>
+                </div>
+
+                <div class="separador-cabecera"></div>
+
+                <button
+                    id="boton-abrir-caso"
+                    class="boton-abrir-caso"
+                    type="button"
+                >
+                    <span class="icono-boton">🗀</span>
+                    <span>ABRIR CASO</span>
+                    <span class="flecha-boton">→</span>
+                </button>
+
+            </div>
+
+            <!-- Documento del caso -->
+            <section class="panel-documento">
+
+                <p class="etiqueta-documento">
+                    ARCHIVO RECUPERADO / 001
+                </p>
+
+                <p class="saludo-investigador">
+                    Investigador:
+                    <span id="nombre-investigador"></span>
+                </p>
+
+                <!-- Contenido provisional de la historia -->
+                <div class="contenido-historia">
+
+                    <div class="linea-texto corta"></div>
+                    <div class="linea-texto larga"></div>
+                    <div class="linea-texto media"></div>
+                    <div class="linea-texto larga"></div>
+                    <div class="linea-texto corta"></div>
+                    <div class="linea-texto larga"></div>
+                    <div class="linea-texto media"></div>
+
+                </div>
+
+                <p class="estado-documento">
+                    DOCUMENTO EN PREPARACIÓN
+                </p>
+
+            </section>
+
+        </section>
+    </main>
+
+</body>
+</html>

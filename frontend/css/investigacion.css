@@ -1,0 +1,257 @@
+/* =====================================================
+   LAST SEEN · PANTALLA 04 / INVESTIGACIÓN
+   CSS independiente: no modifica login, introducción,
+   ni inicio. Depende de ./base.css.
+===================================================== */
+.pagina-investigacion {
+    --inv-bg: #071019;
+    --inv-panel: #0c1720;
+    --inv-wood: #17232b;
+    --inv-wood-light: #233039;
+    --inv-line: #52616d;
+    --inv-ink: #e1e9ed;
+    --inv-muted: #91a2ae;
+    --inv-sepia: #d1b491;
+    --inv-paper: #d8c5a8;
+    --inv-paper-line: #c1ae91;
+    --inv-red: #b83545;
+    --inv-red-deep: #61212a;
+    background: radial-gradient(circle at 95% 10%, rgba(105, 32, 43, .1), transparent 34%), var(--inv-bg);
+    color: var(--inv-ink);
+    min-height: 100vh;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.investigacion-app {
+    width: min(100%, 1600px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 18px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Cabecera */
+.investigacion-topbar,
+.tarjeta-investigacion {
+    border: 1px solid var(--inv-line);
+    border-radius: 10px;
+    background: var(--inv-panel);
+}
+.investigacion-topbar {
+    min-height: 75px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(330px, 1.45fr) minmax(210px, .82fr) minmax(260px, 1.1fr) minmax(170px, .7fr);
+    column-gap: 22px;
+    padding: 12px 25px;
+}
+.investigacion-marca { display: flex; align-items: center; gap: 33px; padding-left: 16px; border-left: 4px solid var(--inv-red); min-height: 45px; white-space: nowrap; }
+.marca-titulo { text-decoration: none; font: 700 26px/1.1 'Orbitron', sans-serif; letter-spacing: .035em; color: var(--inv-ink); }
+.marca-seccion { color: var(--inv-muted); font-size: 11px; letter-spacing: 1px; }
+.chip-expediente { background: #1a2a35; color: var(--inv-sepia); padding: 14px 19px; border-radius: 6px; letter-spacing: 1.4px; white-space: nowrap; font-size: 14px; }
+.avance-general > span { color: var(--inv-muted); font-size: 11px; }
+.avance-general-fila { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.avance-general-fila strong { min-width: 53px; font-size: 17px; font-weight: 600; white-space: nowrap; }
+.nombre-activo { display: flex; align-items: center; gap: 12px; justify-content: flex-end; font-size: 13px; min-width: 0; }
+.nombre-activo span:last-child { max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Progress nativo, apariencia sin datos ficticios */
+.pagina-investigacion progress {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #485a68;
+    border: 0;
+    border-radius: 999px;
+    height: 9px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+.pagina-investigacion progress::-webkit-progress-bar { background: #485a68; border-radius: 999px; }
+.pagina-investigacion progress::-webkit-progress-value { background: var(--inv-sepia); border-radius: 999px; }
+.pagina-investigacion progress::-moz-progress-bar { background: var(--inv-sepia); border-radius: 999px; }
+
+/* Tres columnas principales */
+.investigacion-cuerpo {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 279px minmax(0, 1fr) 343px;
+    gap: 14px;
+}
+.microtitulo-investigacion { font-size: 12px; letter-spacing: 1.4px; font-weight: 500; color: var(--inv-sepia); }
+
+/* Archivador lateral */
+.indice-evidencias { min-height: 671px; padding: 24px 13px 20px; display: flex; flex-direction: column; }
+.indice-evidencias > h2 { margin: 0 10px 21px; padding-bottom: 20px; border-bottom: 1px solid rgba(82, 97, 109, .7); }
+.expediente-seleccionado { display: flex; flex-direction: column; gap: 14px; background: var(--inv-wood-light); border-left: 3px solid var(--inv-sepia); border-radius: 5px; padding: 18px 13px 16px; margin-bottom: 14px; }
+.expediente-seleccionado strong { color: var(--inv-paper); font-size: 15px; font-weight: 500; }
+.expediente-seleccionado span { color: var(--inv-muted); font-size: 13px; }
+.archivos-indice { display: flex; flex-direction: column; gap: 13px; }
+.archivo-indice {
+    display: flex; align-items: center; gap: 14px; text-align: left;
+    width: 100%; min-height: 53px; border: 1px solid transparent; border-radius: 5px;
+    background: transparent; color: var(--inv-muted); padding: 10px 12px;
+    font: 500 13px 'IBM Plex Mono', monospace; cursor: pointer;
+    transition: background .16s ease, color .16s ease;
+}
+.archivo-indice > span { width: 21px; font-size: 20px; flex: 0 0 auto; }
+.archivo-indice:not(:disabled):hover { background: #1a2b36; color: var(--inv-ink); }
+.archivo-indice.seleccionado { background: #1a2a34; color: var(--inv-ink); }
+.archivo-indice:disabled { cursor: not-allowed; opacity: .52; }
+.indice-pie { margin-top: auto; border-top: 1px solid rgba(82, 97, 109, .7); padding: 20px 10px 0; }
+.indice-pie h3 { margin-bottom: 23px; }
+.archivo-bloqueado { color: #617480; font-size: 12px; margin-bottom: 30px; }
+.indice-pie small { color: #ad8d68; font-size: 11px; }
+
+/* Mesa principal */
+.mesa-evidencias { min-height: 671px; padding: 0 28px 18px; background: var(--inv-wood); position: relative; overflow: hidden; }
+.mesa-evidencias::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 88px, rgba(110, 151, 163, .035) 89px, transparent 90px);
+}
+.mesa-evidencias > * { position: relative; }
+.mesa-encabezado { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(82, 97, 109, .75); }
+.estado-analisis { color: var(--inv-red); font-size: 11px; white-space: nowrap; }
+.estado-analisis > span { font-size: 16px; }
+.mesa-contenido { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(210px, 1fr); gap: 30px; margin: 28px 12px 0; }
+
+/* Hoja editada con HTML, no fotografía rasterizada */
+.hoja-comunicado {
+    min-height: 365px; background: var(--inv-paper); color: #39322c;
+    padding: 32px 32px 17px; border-left: 12px solid rgba(154, 125, 92, .4);
+    box-shadow: 0 7px 12px rgba(0,0,0,.17); border-radius: 2px;
+    position: relative; display: flex; flex-direction: column;
+}
+.hoja-comunicado::before { content: ''; background: var(--inv-red); width: 15px; height: 15px; border-radius: 50%; position: absolute; left: 50%; top: -7px; box-shadow: 0 2px 0 rgba(0,0,0,.18); }
+.hoja-cabecera { display: flex; align-items: center; justify-content: space-between; padding-bottom: 13px; border-bottom: 1px solid rgba(73, 59, 50, .5); gap: 9px; }
+.hoja-cabecera > span:first-child { font-size: 11px; font-weight: 600; letter-spacing: .6px; }
+.sello-recuperado { color: #fff4e8; background: var(--inv-red-deep); padding: 9px 10px; border-radius: 1px; font-size: 10px; white-space: nowrap; }
+.hoja-comunicado h2 { font: 700 22px/1.35 'IBM Plex Mono', monospace; margin: 22px 0 16px; }
+.texto-documento { font-size: 14px; line-height: 1.7; max-width: 49ch; }
+.texto-documento p + p { margin-top: 15px; }
+.anotacion-hoja { margin-top: auto; border-top: 1px solid rgba(73, 59, 50, .5); padding-top: 15px; color: #6f2732; font-size: 12px; font-weight: 600; }
+.pie-hoja { font-size: 10px; color: #57483c; margin-top: 19px; }
+
+/* Adjuntos: fotografía simbólica y nota */
+.elementos-adjuntos { display: flex; flex-direction: column; gap: 18px; }
+.fotografia-estudio { background: #c1ae91; border: 1px solid #b5a082; padding: 12px; min-height: 224px; position: relative; color: #3a342f; }
+.fotografia-estudio::before, .nota-papel::before { content: ''; background: var(--inv-red); border-radius: 50%; position: absolute; top: -7px; left: calc(50% - 7px); width: 14px; height: 14px; z-index: 1; }
+.imagen-estudio { height: 156px; background: #15222b; position: relative; overflow: hidden; border: 8px solid #1b2d38; }
+.ventana-foto { position: absolute; top: 17px; left: 12px; width: 70px; height: 94px; background: repeating-linear-gradient(0deg, #2e4350 0, #2e4350 22px, #15222b 24px, #15222b 27px); }
+.monitor-foto { position: absolute; top: 24px; right: 37px; width: 80px; height: 80px; border: 7px solid #334754; background: #10171d; border-radius: 2px; }
+.monitor-foto::before { content: ''; position: absolute; top: 20px; left: 13px; width: 36px; height: 2px; background: #879ba6; opacity: .7; }
+.mesa-foto { position: absolute; bottom: 19px; right: 0; width: 122px; height: 9px; background: #5d4537; }
+.silla-foto { position: absolute; right: 37px; bottom: 0; width: 29px; height: 27px; background: #523e32; }
+.fotografia-estudio figcaption { padding: 15px 5px 2px; font-size: 10px; }
+.nota-papel { position: relative; min-height: 105px; background: #c1ae91; padding: 17px 13px 10px; color: #3a342f; }
+.nota-papel h3 { font-size: 10px; margin-bottom: 15px; }
+.nota-papel p { font-size: 11px; line-height: 1.5; }
+.nota-papel p:last-child { color: #652833; }
+
+/* Sección acertijo */
+.zona-acertijo { border-top: 1px solid rgba(82, 97, 109, .7); margin-top: 29px; padding-top: 20px; }
+.zona-acertijo h2 { font: 700 clamp(18px, 1.65vw, 26px)/1.25 'Orbitron', sans-serif; margin: 14px 0 12px; letter-spacing: .01em; }
+.zona-acertijo > p:not(.microtitulo-investigacion) { color: var(--inv-muted); font-size: 13px; line-height: 1.5; }
+.boton-examinar { min-width: 340px; margin-top: 21px; background: var(--inv-red-deep); color: var(--inv-ink); border: 1px solid var(--inv-red); border-radius: 6px; padding: 14px 23px; font: 500 15px 'IBM Plex Mono', monospace; cursor: pointer; letter-spacing: .5px; }
+.boton-examinar:hover { background: #7a2732; }
+.boton-examinar > span { margin-left: 12px; }
+.mensaje-investigacion { margin-top: 10px; min-height: 0; }
+.mensaje-investigacion:empty { display: none; }
+
+/* Estado a la derecha */
+.estado-investigacion { min-height: 671px; padding: 24px 21px; }
+.estado-investigacion section + section { border-top: 1px solid rgba(82, 97, 109, .7); margin-top: 26px; padding-top: 24px; }
+.estado-investigacion .microtitulo-investigacion { margin-bottom: 23px; }
+.objetivos-panel { border-bottom: 1px solid rgba(82, 97, 109, .7); padding-bottom: 22px; }
+.lista-objetivos { list-style: none; display: flex; flex-direction: column; gap: 26px; }
+.lista-objetivos li { display: flex; align-items: center; gap: 12px; font-size: 13px; line-height: 1.35; }
+.casilla-objetivo { border: 1px solid var(--inv-muted); border-radius: 3px; width: 19px; height: 19px; display: grid; place-items: center; flex: 0 0 auto; }
+.objetivo-completado .casilla-objetivo { border-color: var(--inv-sepia); background: var(--inv-sepia); color: #342c24; }
+.objetivo-completado .casilla-objetivo::after { content: '✓'; font: bold 14px/1 sans-serif; }
+.objetivo-completado > span:last-child { color: var(--inv-sepia); }
+.estado-investigacion .objetivos-panel + .progreso-panel { border-top: none; margin-top: 0; padding-top: 24px; }
+.contador-progreso { font-weight: 500; font-size: 16px; margin-bottom: 12px; }
+.confianza-panel > p { color: var(--inv-muted); font-size: 12px; margin: -5px 0 21px; }
+.confianza-panel progress::-webkit-progress-value { background: var(--inv-sepia); }
+.testimonio-bloqueado { background: #1a2a35; border: 1px solid var(--inv-line); border-radius: 5px; margin-top: 24px; padding: 17px 14px; }
+.testimonio-bloqueado strong { color: var(--inv-sepia); font-size: 11px; font-weight: 500; }
+.testimonio-bloqueado p { color: var(--inv-muted); font-size: 11px; line-height: 1.6; margin-top: 14px; }
+
+/* Barra de pestañas */
+.pestanas-investigacion { min-height: 90px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; padding: 13px; }
+.pestanas-investigacion button { background: transparent; border: 1px solid transparent; border-radius: 6px; font: 500 13px 'IBM Plex Mono', monospace; color: var(--inv-muted); cursor: pointer; letter-spacing: .3px; white-space: nowrap; }
+.pestanas-investigacion button:not(:disabled):hover { background: #1b2c38; }
+.pestanas-investigacion .pestana-activa { color: var(--inv-sepia); background: var(--inv-wood-light); border-color: #a88967; }
+.pestanas-investigacion button:disabled { cursor: not-allowed; opacity: .53; }
+
+/* Visor ampliado de documentos */
+.dialogo-prueba { width: min(600px, calc(100vw - 30px)); max-height: min(80vh, 780px); padding: 30px; overflow-y: auto; border-radius: 10px; border: 1px solid var(--inv-sepia); background: #15212b; color: var(--inv-ink); box-shadow: 0 24px 80px rgba(0,0,0,.6); margin: auto; }
+.dialogo-prueba::backdrop { background: rgba(0,4,8,.76); }
+.dialogo-cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; border-bottom: 1px solid var(--inv-line); padding-bottom: 15px; }
+.dialogo-prueba .microtitulo-investigacion { line-height: 1.5; }
+.cerrar-dialogo { border: 1px solid var(--inv-line); border-radius: 5px; padding: 8px 11px; color: var(--inv-ink); background: #24333d; font-size: 16px; cursor: pointer; }
+.dialogo-prueba h2 { font: 700 22px/1.35 'Orbitron', sans-serif; margin: 27px 0 21px; }
+.dialogo-descripcion { font-size: 15px; line-height: 1.8; color: var(--inv-ink); }
+.dialogo-observacion { margin-top: 25px; border-left: 3px solid var(--inv-red); padding: 14px 16px; color: var(--inv-sepia); background: rgba(97, 33, 42, .24); line-height: 1.7; font-size: 13px; }
+.dialogo-pie { border-top: 1px solid var(--inv-line); margin-top: 27px; padding-top: 16px; color: var(--inv-muted); font-size: 11px; line-height: 1.6; }
+
+/* Accesibilidad */
+.pagina-investigacion button:focus-visible,
+.pagina-investigacion a:focus-visible,
+.dialogo-prueba button:focus-visible { outline: 2px solid var(--inv-sepia); outline-offset: 3px; }
+
+@media (max-width: 1400px) {
+    .investigacion-cuerpo { grid-template-columns: 245px minmax(0,1fr) 300px; }
+    .investigacion-topbar { grid-template-columns: minmax(260px,1fr) 190px 230px 150px; gap: 14px; }
+    .marca-seccion { display: none; }
+    .mesa-contenido { grid-template-columns: minmax(0,1.7fr) minmax(190px,1fr); gap: 15px; margin-left: 4px; margin-right: 4px; }
+    .hoja-comunicado { padding: 27px 23px 15px; }
+}
+@media (max-width: 1120px) {
+    .investigacion-topbar { grid-template-columns: 1fr 220px; row-gap: 10px; }
+    .avance-general { grid-column: 1 / 2; }
+    .nombre-activo { grid-column: 2 / 3; }
+    .investigacion-cuerpo { grid-template-columns: 245px minmax(0,1fr); }
+    .estado-investigacion { grid-column: 1 / -1; min-height: auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .estado-investigacion section + section, .estado-investigacion .objetivos-panel + .progreso-panel { border: none; margin: 0; padding: 0; }
+    .objetivos-panel { border-bottom: 0; padding-bottom: 0; }
+    .lista-objetivos { gap: 17px; }
+    .mesa-contenido { grid-template-columns: 1fr; }
+    .elementos-adjuntos { flex-direction: row; }
+    .fotografia-estudio, .nota-papel { flex: 1; }
+    .hoja-comunicado { min-height: 340px; }
+}
+@media (max-width: 760px) {
+    .investigacion-app { padding: 12px; }
+    .investigacion-topbar { grid-template-columns: 1fr; }
+    .chip-expediente { width: fit-content; }
+    .avance-general, .nombre-activo { grid-column: auto; }
+    .nombre-activo { justify-content: flex-start; }
+    .investigacion-cuerpo { display: flex; flex-direction: column; }
+    .indice-evidencias, .mesa-evidencias, .estado-investigacion { min-height: unset; }
+    .indice-evidencias { padding: 18px; }
+    .indice-pie { margin-top: 28px; }
+    .mesa-evidencias { padding: 0 17px 21px; }
+    .mesa-encabezado { flex-wrap: wrap; gap: 10px; padding: 15px 0; }
+    .mesa-contenido { margin: 18px 0 0; }
+    .hoja-comunicado { min-height: 365px; }
+    .estado-investigacion { display: block; padding: 22px; }
+    .estado-investigacion section + section, .estado-investigacion .objetivos-panel + .progreso-panel { padding-top: 24px; margin-top: 22px; border-top: 1px solid var(--inv-line); }
+    .pestanas-investigacion { grid-template-columns: repeat(2,minmax(0,1fr)); min-height: unset; }
+    .pestanas-investigacion button { min-height: 50px; font-size: 12px; }
+}
+@media (max-width: 460px) {
+    .marca-titulo { font-size: 22px; }
+    .elementos-adjuntos { flex-direction: column; }
+    .hoja-comunicado { padding: 25px 15px 14px; }
+    .hoja-comunicado h2 { font-size: 19px; }
+    .hoja-cabecera { flex-wrap: wrap; }
+    .boton-examinar { min-width: 0; width: 100%; font-size: 12px; }
+    .zona-acertijo h2 { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .archivo-indice { transition: none; }
+}
