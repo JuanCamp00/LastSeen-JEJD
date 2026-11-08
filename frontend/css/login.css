@@ -1,0 +1,241 @@
+/* 01 - LOGIN */
+.pantalla-login {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px clamp(28px, 8.5vw, 136px);
+}
+
+.panel-login {
+    width: 100%;
+    max-width: 714px;
+    min-height: 634px;
+    padding: 42px 56px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.4);
+}
+
+.numero-expediente {
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--borde);
+    color: var(--texto-secundario);
+    font-size: 13px;
+    letter-spacing: 1.3px;
+}
+
+.marca-juego {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 23px;
+}
+
+.marca-juego h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 51px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    color: var(--texto-principal);
+}
+
+.corchete {
+    font-family: var(--fuente-titulo);
+    font-size: 55px;
+    color: var(--rojo);
+}
+
+.lema {
+    margin-top: 14px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: var(--texto-secundario);
+}
+
+.lema span { color: var(--rojo); }
+
+.encabezado {
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.introduccion {
+    margin-top: 26px;
+    margin-bottom: 30px;
+}
+
+.introduccion h2 {
+    margin-bottom: 19px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.introduccion p {
+    max-width: 460px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+}
+
+.grupo-campo { margin-bottom: 16px; }
+
+.etiqueta-oculta {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.campo-investigador {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    height: 60px;
+    padding: 0 18px;
+    background: #050A10;
+    border: 1px solid #7A91A8;
+    border-radius: 10px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.icono-usuario {
+    font-size: 24px;
+    color: var(--texto-secundario);
+}
+
+.campo-investigador input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    color: var(--texto-principal);
+}
+
+.campo-investigador input::placeholder { color: var(--texto-tenue); }
+
+.campo-investigador:focus-within {
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 2px rgba(217, 35, 63, 0.15);
+}
+
+.mensaje-error {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #F17882;
+}
+
+.mensaje-error[hidden] { display: none; }
+.campo-investigador.error { border-color: var(--rojo); }
+
+.boton-expediente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    width: 100%;
+    height: 70px;
+    padding: 0 24px;
+    background: var(--rojo-boton);
+    color: #FFFFFF;
+    border: 1px solid #C52E3D;
+    border-radius: 10px;
+    font-family: var(--fuente-texto);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.boton-expediente:hover {
+    background: var(--rojo-hover);
+    box-shadow: 0 0 20px rgba(217, 35, 63, 0.2);
+    transform: translateY(-2px);
+}
+
+.boton-expediente:active { transform: translateY(0); }
+
+.boton-expediente:focus-visible {
+    outline: 2px solid var(--texto-principal);
+    outline-offset: 4px;
+}
+
+.flecha { font-size: 30px; font-weight: 400; }
+
+.mensaje-confirmacion {
+    margin-top: 18px;
+    color: var(--texto-secundario);
+    font-family: var(--fuente-texto);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .pantalla-login { justify-content: center; }
+}
+
+@media (max-width: 650px) {
+    .pantalla-login { padding: 20px; }
+    .panel-login { min-height: auto; padding: 32px 24px; border-radius: 16px; }
+    .numero-expediente { font-size: 10px; }
+    .marca-juego h1 { font-size: clamp(21px, 6vw, 35px); letter-spacing: 1px; }
+    .corchete { font-size: 34px; }
+    .lema { font-size: 9px; letter-spacing: 1px; }
+    .introduccion h2 { font-size: 20px; }
+    .introduccion p { font-size: 14px; }
+    .campo-investigador input { font-size: 14px; }
+    .boton-expediente { font-size: 14px; letter-spacing: 1px; gap: 14px; height: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton-expediente, .campo-investigador { transition: none; }
+}
+/* =========================================
+   CORRECCIÓN DEL CAMPO DE INVESTIGADOR
+========================================= */
+
+/* Apariencia normal del campo */
+.campo-investigador input {
+    background-color: transparent;
+    color: #E5EDF5;
+    -webkit-text-fill-color: #E5EDF5;
+    caret-color: #E5EDF5;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Evitar el fondo blanco del autocompletado */
+.campo-investigador input:-webkit-autofill,
+.campo-investigador input:-webkit-autofill:hover,
+.campo-investigador input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #E5EDF5;
+    -webkit-box-shadow: 0 0 0 1000px #050A10 inset;
+    box-shadow: 0 0 0 1000px #050A10 inset;
+    caret-color: #E5EDF5;
+    transition: background-color 9999s ease-out;
+}
+
+/* Mantener el fondo oscuro cuando se selecciona */
+.campo-investigador input:focus {
+    background-color: transparent;
+    color: #E5EDF5;
+    outline: none;
+}

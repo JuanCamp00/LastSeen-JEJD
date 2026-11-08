@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Inicio del investigador</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/inicio.css">
+    <script src="./inicio.js" defer></script>
+</head>
+<body class="pagina-inicio">
+    <main class="panel-inicio" aria-label="Panel principal de Last Seen">
+        <!-- Barra superior -->
+        <header class="inicio-barra-superior">
+            <a class="identidad-juego" href="./inicio.html" aria-label="Last Seen, inicio">
+                <span class="identidad-nombre">LAST SEEN</span>
+                <span class="identidad-descripcion">ARCHIVO DE INVESTIGACIÓN</span>
+            </a>
+            <nav class="menu-superior" aria-label="Menú principal">
+                <a class="menu-opcion activa" href="./inicio.html" aria-current="page">⌂ <span>INICIO</span></a>
+                <button class="menu-opcion" type="button" disabled title="Se implementará próximamente">▤ <span>MIS PARTIDAS</span></button>
+                <button class="menu-opcion" type="button" disabled title="Se implementará próximamente">⚙ <span>CONFIGURACIÓN</span></button>
+            </nav>
+            <div class="perfil-investigador"><span aria-hidden="true">◉</span> <span id="nombre-perfil">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="inicio-cuerpo">
+            <!-- Navegación izquierda -->
+            <aside class="menu-lateral tarjeta">
+                <h2 class="microtitulo">NAVEGACIÓN</h2>
+                <nav aria-label="Navegación lateral" class="menu-enlaces">
+                    <a class="lateral-opcion activa" href="./inicio.html" aria-current="page"><span aria-hidden="true">⌂</span> INICIO</a>
+                    <button class="lateral-opcion" type="button" disabled><span aria-hidden="true">▤</span> MIS PARTIDAS</button>
+                    <button class="lateral-opcion" type="button" disabled><span aria-hidden="true">⚙</span> CONFIGURACIÓN</button>
+                    <button class="lateral-opcion" id="cerrar-sesion" type="button"><span aria-hidden="true">↪</span> CERRAR SESIÓN</button>
+                </nav>
+                <div class="lateral-expediente">
+                    <span class="microtitulo">EXPEDIENTE ACTUAL</span>
+                    <span class="lateral-estado">001 / SIN INICIAR</span>
+                    <div class="sello-archivo" aria-label="Archivo reservado">
+                        <span>ARCHIVO</span>
+                        <strong>RESERVADO</strong>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Sección central -->
+            <section class="contenido-principal">
+                <article class="portada-caso tarjeta" aria-labelledby="portada-titulo">
+                    <p class="microtitulo portada-clasificacion">ÚLTIMO REGISTRO · PROYECTO ABANDONADO</p>
+                    <div class="portada-interior">
+                        <div class="portada-textos">
+                            <h1 id="portada-titulo">LAST<br>SEEN</h1>
+                            <p class="portada-pregunta">¿PODRÁS RESOLVER<br>EL MISTERIO?</p>
+                        </div>
+                        <!-- Ilustración editable mediante HTML y CSS, sin imágenes externas -->
+                        <div class="tablero-evidencias" aria-label="Tablero con documentos y conexiones sobre el caso" role="img">
+                            <span class="hilo hilo-uno"></span>
+                            <span class="hilo hilo-dos"></span>
+                            <span class="hilo hilo-tres"></span>
+                            <div class="nota nota-uno"><span></span><span></span></div>
+                            <div class="nota nota-dos"><span></span><span></span></div>
+                            <div class="nota nota-tres"><span></span><span></span></div>
+                            <div class="nota nota-cuatro"><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="portada-acciones">
+                        
+                <a href="./investigacion.html" class="boton-investigacion">
+                        ▶ &nbsp; INICIAR INVESTIGACIÓN
+                    <span aria-hidden="true">→</span>
+                        </a>
+                        <p>Tres desarrolladores. Una cancelación.<br>Ninguna explicación.</p>
+                    </div>
+                </article>
+
+                <div class="resumen-inferior">
+                    <section class="partidas-recientes tarjeta" aria-labelledby="partidas-titulo">
+                        <h2 id="partidas-titulo" class="titulo-tarjeta">▤ &nbsp; PARTIDAS RECIENTES</h2>
+                        <p>No tienes partidas recientes.</p>
+                        <p class="texto-tenue">Comienza tu primera investigación.</p>
+                        <button class="boton-secundario" type="button" disabled title="Disponible cuando implementemos las partidas">＋ NUEVA PARTIDA →</button>
+                    </section>
+                    <section class="notas-caso tarjeta" aria-labelledby="notas-titulo">
+                        <h2 id="notas-titulo" class="titulo-tarjeta">▤ &nbsp; NOTAS DEL CASO</h2>
+                        <p>El videojuego que todos esperaban fue cancelado<br class="salto-amplio"> sin una explicación convincente.</p>
+                        <p class="texto-tenue">Tres nombres permanecen en los archivos.<br>Uno de ellos podría ocultar la verdad.</p>
+                    </section>
+                </div>
+            </section>
+
+            <!-- Panel derecho -->
+            <aside class="columna-derecha" aria-label="Resumen de la investigación">
+                <section class="progreso tarjeta" aria-labelledby="progreso-titulo">
+                    <h2 id="progreso-titulo" class="titulo-tarjeta">▥ &nbsp; TU PROGRESO</h2>
+                    <dl>
+                        <div><dt>PARTIDAS TERMINADAS</dt><dd>0</dd></div>
+                        <div><dt>ACERTIJOS RESUELTOS</dt><dd>0</dd></div>
+                        <div><dt>PISTAS ENCONTRADAS</dt><dd>0</dd></div>
+                    </dl>
+                    <div class="confianza-artista">
+                        <label for="barra-confianza">CONFIANZA DE LA ARTISTA</label>
+                        <progress id="barra-confianza" value="0" max="6">0 de 6 acertijos</progress>
+                    </div>
+                </section>
+                <section class="actividad-reciente tarjeta" aria-labelledby="actividad-titulo">
+                    <h2 id="actividad-titulo" class="titulo-tarjeta">◷ &nbsp; ÚLTIMA ACTIVIDAD</h2>
+                    <p>SIN ACTIVIDAD RECIENTE</p>
+                    <small>Los registros aún están en silencio.</small>
+                </section>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

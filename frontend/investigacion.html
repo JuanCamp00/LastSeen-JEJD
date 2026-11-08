@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Investigación activa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <script src="./investigacion.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Mesa de investigación de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 001</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="0" max="6" aria-label="Acertijos resueltos">0 de 6</progress>
+                    <strong>0 / 6</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice">
+                <h2 id="titulo-indice" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 001</strong>
+                    <span>LA CANCELACIÓN</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 001">
+                    <button type="button" class="archivo-indice seleccionado" data-documento="comunicado" aria-pressed="true"><span aria-hidden="true">▣</span> Comunicado oficial</button>
+                    <button type="button" class="archivo-indice" data-documento="captura" aria-pressed="false"><span aria-hidden="true">▧</span> Captura archivada</button>
+                    <button type="button" class="archivo-indice" data-documento="registro" aria-pressed="false"><span aria-hidden="true">◷</span> Registro de actividad</button>
+                    <button type="button" class="archivo-indice" data-documento="comunidad" aria-pressed="false"><span aria-hidden="true">▤</span> Notas de la comunidad</button>
+                    <button type="button" class="archivo-indice bloqueado" disabled title="Este archivo todavía está bloqueado"><span aria-hidden="true">◇</span> Archivo desconocido</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 002 — 006 / BLOQUEADOS</p>
+                    <small>RECUPERADOS &nbsp; 01 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 001</h1>
+                    <span class="estado-analisis"><span aria-hidden="true">●</span> ANÁLISIS PENDIENTE</span>
+                </div>
+
+                <div class="mesa-contenido">
+                    <article class="hoja-comunicado" aria-labelledby="documento-titulo">
+                        <div class="hoja-cabecera">
+                            <span id="documento-codigo">REGISTRO 001 / COMUNICADO</span>
+                            <span class="sello-recuperado">RECUPERADO</span>
+                        </div>
+                        <h2 id="documento-titulo">COMUNICADO OFICIAL</h2>
+                        <div class="texto-documento" aria-live="polite">
+                            <p id="documento-parrafo-1">El equipo anunció la cancelación de la secuela del videojuego independiente.</p>
+                            <p id="documento-parrafo-2">No se explicaron los motivos del cierre.</p>
+                        </div>
+                        <div class="anotacion-hoja" id="documento-anotacion">¿QUIÉN AUTORIZÓ EL COMUNICADO?</div>
+                        <div class="pie-hoja" id="documento-pie">ARCHIVO CONSERVADO · FUENTE PENDIENTE</div>
+                    </article>
+
+                    <div class="elementos-adjuntos">
+                        <figure class="fotografia-estudio">
+                            <div class="imagen-estudio" role="img" aria-label="Ilustración de una oficina vacía con una ventana y un ordenador antiguo">
+                                <span class="ventana-foto" aria-hidden="true"></span>
+                                <span class="monitor-foto" aria-hidden="true"></span>
+                                <span class="mesa-foto" aria-hidden="true"></span>
+                                <span class="silla-foto" aria-hidden="true"></span>
+                            </div>
+                            <figcaption>CAPTURA · ESTUDIO VACÍO</figcaption>
+                        </figure>
+                        <aside class="nota-papel" aria-label="Nota del investigador">
+                            <h3>NOTA DEL INVESTIGADOR</h3>
+                            <p>Faltan piezas del caso.</p>
+                            <p>¿Por dónde empezar?</p>
+                        </aside>
+                    </div>
+                </div>
+
+                <section class="zona-acertijo" aria-labelledby="titulo-acertijo">
+                    <p class="microtitulo-investigacion">ACERTIJO 01 / 06 — PROPUESTA NARRATIVA</p>
+                    <h2 id="titulo-acertijo">¿QUÉ OCULTA EL COMUNICADO?</h2>
+                    <p>Consulta los archivos y conecta las evidencias antes de responder.</p>
+                    <button id="examinar-pruebas" class="boton-examinar" type="button">EXAMINAR LAS PRUEBAS <span aria-hidden="true">→</span></button>
+                    <p id="mensaje-investigacion" class="mensaje-investigacion" role="status" aria-live="polite"></p>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos">
+                    <h2 id="titulo-objetivos" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li data-objetivo="comunicado"><span class="casilla-objetivo" aria-hidden="true"></span><span>Leer el comunicado</span></li>
+                        <li data-objetivo="captura"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar la captura</span></li>
+                        <li data-objetivo="registro"><span class="casilla-objetivo" aria-hidden="true"></span><span>Revisar los registros</span></li>
+                        <li data-objetivo="acertijo"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 01</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso">
+                    <h2 id="titulo-progreso" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">0 / 6 ACERTIJOS</p>
+                    <progress value="0" max="6" aria-label="Progreso del caso">0 de 6</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza">
+                    <h2 id="titulo-confianza" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>DISTANTE / AÚN NO CONFÍA</p>
+                    <progress value="0" max="6" aria-label="Confianza de la artista">0 de 6</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO BLOQUEADO</strong>
+                        <p>Resuelve acertijos para ganar su confianza y conocer su versión.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <nav class="pestanas-investigacion tarjeta-investigacion" aria-label="Secciones de la investigación">
+            <button type="button" class="pestana-activa" aria-current="page">▦ &nbsp; MESA</button>
+            <button type="button" id="ver-expedientes" title="Volver al expediente actual">▤ &nbsp; EXPEDIENTES</button>
+            <button type="button" id="ver-documentos" title="Examinar el documento seleccionado">▣ &nbsp; DOCUMENTOS</button>
+            <button type="button" disabled title="Se habilitará al desarrollar las pistas">◇ &nbsp; PISTAS</button>
+            <button type="button" disabled title="Se habilitará al desarrollar los archivos">▥ &nbsp; ARCHIVOS</button>
+            <button type="button" disabled title="Se habilitará al desarrollar los testimonios">◉ &nbsp; TESTIMONIOS</button>
+        </nav>
+    </main>
+
+    <!-- Vista ampliada accesible para examinar cada documento (prototipo). -->
+    <dialog id="dialogo-prueba" class="dialogo-prueba" aria-labelledby="dialogo-titulo">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">DOCUMENTO RECUPERADO / EXPEDIENTE 001</p>
+            <button type="button" id="cerrar-dialogo" class="cerrar-dialogo" aria-label="Cerrar documento">✕</button>
+        </div>
+        <h2 id="dialogo-titulo">COMUNICADO OFICIAL</h2>
+        <p id="dialogo-descripcion" class="dialogo-descripcion"></p>
+        <p id="dialogo-observacion" class="dialogo-observacion"></p>
+        <p class="dialogo-pie">Prototipo narrativo · Aún no se han implementado acertijos ni desbloqueos de base de datos.</p>
+    </dialog>
+</body>
+</html>

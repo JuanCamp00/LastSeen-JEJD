@@ -1,0 +1,29 @@
+/* =========================================
+   LAST SEEN - CONFIGURACIÓN GENERAL
+========================================= */
+:root {
+    --fondo: #060B11;
+    --panel: #08111B;
+    --texto-principal: #E5EDF5;
+    --texto-secundario: #A8B8C9;
+    --texto-tenue: #76889B;
+    --borde: #485C70;
+    --rojo: #D9233F;
+    --rojo-boton: #64151D;
+    --rojo-hover: #84212C;
+    --fuente-titulo: 'Orbitron', sans-serif;
+    --fuente-texto: 'IBM Plex Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--fondo);
+    color: var(--texto-principal);
+    font-family: var(--fuente-texto);
+}

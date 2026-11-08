@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Last Seen | Abrir expediente</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="./css/base.css">
+
+    <!-- Estilos específicos del login -->
+    <link rel="stylesheet" href="./css/login.css">
+
+    <!-- JavaScript -->
+    <script src="./interfaz.js" defer></script>
+</head>
+
+<body>
+    <main class="pantalla-login">
+
+        <section class="panel-login" aria-labelledby="titulo-juego">
+
+            <header class="encabezado">
+                <p class="numero-expediente">
+                    ◱ LAST SEEN · EXPEDIENTE 001
+                </p>
+
+                <div class="marca-juego">
+                    <span class="corchete">[</span>
+                    <h1 id="titulo-juego">LAST SEEN</h1>
+                    <span class="corchete">]</span>
+                </div>
+
+                <p class="lema">
+                    LA VERDAD ESTÁ EN LOS
+                    <span>REGISTROS</span>
+                </p>
+            </header>
+
+            <div class="introduccion">
+                <h2>Una investigación comienza aquí.</h2>
+
+                <p>
+                    Ingresa tu nombre de investigador
+                    para abrir el expediente.
+                </p>
+            </div>
+
+            <form id="formulario-login" novalidate>
+
+                <div class="grupo-campo">
+                    <label for="nombre-investigador" class="etiqueta-oculta">
+                        Nombre de investigador
+                    </label>
+
+                    <div class="campo-investigador">
+                        <span class="icono-usuario" aria-hidden="true">♙</span>
+
+                        <input
+                            type="text"
+                            id="nombre-investigador"
+                            name="nombre-investigador"
+                            placeholder="Nombre de investigador..."
+                            maxlength="50"
+                            autocomplete="nickname"
+                            required
+                            aria-describedby="mensaje-error"
+                        >
+                    </div>
+
+                    <p id="mensaje-error" class="mensaje-error" role="alert" hidden>
+                        Debes introducir un nombre para continuar.
+                    </p>
+                </div>
+
+                <button type="submit" class="boton-expediente">
+                    <span>ABRIR EXPEDIENTE</span>
+                    <span class="flecha" aria-hidden="true">→</span>
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+</body>
+</html>
