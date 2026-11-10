@@ -143,6 +143,44 @@ class AcertijoRepositorio {
         return resultado.rows[0];
     }
 
+
+    // =========================================
+    // ASOCIAR TODOS LOS ACERTIJOS A UNA PARTIDA
+    // =========================================
+
+    async asociarTodosALaPartida(idPartida) {
+
+        if (!Number.isInteger(idPartida) || idPartida <= 0) {
+            throw new TypeError(
+                'El identificador de la partida debe ser un entero positivo.'
+            );
+        }
+
+        const consulta = `
+            INSERT INTO partida_acertijo (
+                id_partida,
+                id_acertijo
+            )
+            SELECT
+                $1,
+                id_acertijo
+            FROM acertijo
+            ON CONFLICT (id_partida, id_acertijo) DO NOTHING
+            RETURNING
+                id_partida,
+                id_acertijo,
+                estado,
+                fecha_resolucion
+        `;
+
+        const resultado = await this.pool.query(
+            consulta,
+            [idPartida]
+        );
+
+        return resultado.rows;
+    }
+
 }
 
 
