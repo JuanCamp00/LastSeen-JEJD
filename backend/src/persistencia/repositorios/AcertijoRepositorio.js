@@ -113,26 +113,33 @@ class AcertijoRepositorio {
         }
 
         const consulta = `
-            UPDATE partida_acertijo
-            SET
-                estado = $3,
-                fecha_resolucion = CASE
-                    WHEN $3 = 'RESUELTO' THEN CURRENT_TIMESTAMP
-                    ELSE NULL
-                END
+           
+        UPDATE partida_acertijo
+        SET
+        estado = $3,
+        fecha_resolucion = CASE
+        WHEN $4 THEN CURRENT_TIMESTAMP
+        ELSE NULL
+         END
             WHERE id_partida = $1
-              AND id_acertijo = $2
+            AND id_acertijo = $2
             RETURNING
                 id_partida,
                 id_acertijo,
                 estado,
                 fecha_resolucion
+
         `;
 
-        const resultado = await this.pool.query(
-            consulta,
-            [idPartida, idAcertijo, estadoNormalizado]
-        );
+       const resultado = await this.pool.query(
+    consulta,
+    [
+        idPartida,
+        idAcertijo,
+        estadoNormalizado,
+        estadoNormalizado === 'RESUELTO'
+    ]
+);
 
         if (resultado.rowCount === 0) {
             throw new Error(
@@ -144,9 +151,9 @@ class AcertijoRepositorio {
     }
 
 
-    // =========================================
+   
     // ASOCIAR TODOS LOS ACERTIJOS A UNA PARTIDA
-    // =========================================
+   
 
     async asociarTodosALaPartida(idPartida) {
 
@@ -180,6 +187,72 @@ class AcertijoRepositorio {
 
         return resultado.rows;
     }
+
+    // OBTENER EL ID DE LA OPCION CORRECTA
+
+
+    async obtenerOpcionCorrecta(idAcertijo) {
+
+        if (!Number.isInteger(idAcertijo) || idAcertijo <= 0) {
+            throw new TypeError(
+                'El identificador del acertijo debe ser un entero positivo.'
+            );
+        }
+
+        const consulta = `
+            SELECT id_opcion
+            FROM opcion_acertijo
+            WHERE id_acertijo = $1
+              AND es_correcta = TRUE
+        `;
+
+        const resultado = await this.pool.query(
+            consulta,
+            [idAcertijo]
+        );
+
+        return resultado.rows[0] || null;
+    }
+
+
+    
+    // CONSULTAR EL ESTADO DE UN ACERTIJO
+    // DENTRO DE UNA PARTIDA
+    
+
+    async buscarEstadoEnPartida(idPartida, idAcertijo) {
+
+        if (!Number.isInteger(idPartida) || idPartida <= 0) {
+            throw new TypeError(
+                'El identificador de la partida debe ser positivo.'
+            );
+        }
+
+        if (!Number.isInteger(idAcertijo) || idAcertijo <= 0) {
+            throw new TypeError(
+                'El identificador del acertijo debe ser positivo.'
+            );
+        }
+
+        const consulta = `
+            SELECT
+                id_partida,
+                id_acertijo,
+                estado,
+                fecha_resolucion
+            FROM partida_acertijo
+            WHERE id_partida = $1
+              AND id_acertijo = $2
+        `;
+
+        const resultado = await this.pool.query(
+            consulta,
+            [idPartida, idAcertijo]
+        );
+
+        return resultado.rows[0] || null;
+    }
+
 
 }
 

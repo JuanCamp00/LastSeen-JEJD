@@ -31,7 +31,9 @@ const PistaRepositorio = require(
     '../persistencia/repositorios/PistaRepositorio'
 );
 
-
+const IntentoRepositorio = require(
+    '../persistencia/repositorios/IntentoRepositorio'
+);
 
 // SERVICIOS
 
@@ -39,6 +41,8 @@ const PistaRepositorio = require(
 const UsuarioServicio = require('./servicios/UsuarioServicio');
 
 const PartidaServicio = require('./servicios/PartidaServicio');
+
+const AcertijoServicio = require('./servicios/AcertijoServicio');
 
 
 
@@ -65,10 +69,21 @@ function configurarServicios() {
         PistaRepositorio
     });
 
+    // Crear el servicio de acertijos
+    const acertijoServicio = new AcertijoServicio({
+        poolConexion: pool,
+        AcertijoRepositorio,
+        IntentoRepositorio,
+        ProgresoRepositorio,
+        ContenidoRepositorio,
+        PistaRepositorio
+});
+
     // Devolver los servicios configurados
     return {
         usuarioServicio,
-        partidaServicio
+        partidaServicio,
+        acertijoServicio
     };
 }
 
