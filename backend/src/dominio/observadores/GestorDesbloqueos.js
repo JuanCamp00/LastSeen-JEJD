@@ -118,6 +118,7 @@ class GestorDesbloqueos extends Observador {
                     siguienteAcertijo.id_acertijo
                 );
         }
+        
 
 
         // 5. Devolver un resumen de los desbloqueos.
@@ -132,6 +133,8 @@ class GestorDesbloqueos extends Observador {
                 : null
         };
     }
+
+    
 
 }
 

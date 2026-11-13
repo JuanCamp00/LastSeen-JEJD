@@ -70,14 +70,15 @@ function configurarServicios() {
     });
 
     // Crear el servicio de acertijos
-    const acertijoServicio = new AcertijoServicio({
-        poolConexion: pool,
-        AcertijoRepositorio,
-        IntentoRepositorio,
-        ProgresoRepositorio,
-        ContenidoRepositorio,
-        PistaRepositorio
-});
+            const acertijoServicio = new AcertijoServicio({
+            poolConexion: pool,
+            PartidaRepositorio,
+            AcertijoRepositorio,
+            IntentoRepositorio,
+            ProgresoRepositorio,
+            ContenidoRepositorio,
+            PistaRepositorio
+        });
 
     // Devolver los servicios configurados
     return {

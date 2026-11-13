@@ -13,6 +13,7 @@ class AcertijoServicio {
 
     constructor({
         poolConexion,
+        PartidaRepositorio,
         AcertijoRepositorio,
         IntentoRepositorio,
         ProgresoRepositorio,
@@ -25,6 +26,7 @@ class AcertijoServicio {
         }
 
         const repositorios = {
+            PartidaRepositorio,
             AcertijoRepositorio,
             IntentoRepositorio,
             ProgresoRepositorio,
@@ -41,6 +43,7 @@ class AcertijoServicio {
         }
 
         this.pool = poolConexion;
+        this.PartidaRepositorio = PartidaRepositorio;
         this.AcertijoRepositorio = AcertijoRepositorio;
         this.IntentoRepositorio = IntentoRepositorio;
         this.ProgresoRepositorio = ProgresoRepositorio;
@@ -54,11 +57,11 @@ class AcertijoServicio {
    
 
     async resolverAcertijo({
-        idPartida,
-        idAcertijo,
-        respuestaTexto = null,
-        idOpcionSeleccionada = null
-    } = {}) {
+    idPartida,
+    idAcertijo,
+    respuestaTexto = null,
+    idOpcionSeleccionada = null
+} = {}) {
 
         if (!Number.isInteger(idPartida) || idPartida <= 0) {
             throw new TypeError(
@@ -72,6 +75,11 @@ class AcertijoServicio {
             );
         }
 
+        let siguienteAcertijoId = null;
+        let partidaFinalizada = null;
+
+        
+
         const cliente = await this.pool.connect();
 
         let transaccionIniciada = false;
@@ -84,10 +92,13 @@ class AcertijoServicio {
             await cliente.query('BEGIN');
             transaccionIniciada = true;
 
+         
 
          
             // 2. CREAR REPOSITORIOS CON EL CLIENTE
-        
+            
+            const partidaRepositorio =
+            new this.PartidaRepositorio(cliente);
 
             const acertijoRepositorio =
                 new this.AcertijoRepositorio(cliente);
@@ -173,6 +184,7 @@ class AcertijoServicio {
             let respuestaCorrecta;
             let opcionSeleccionadaFinal = null;
             let respuestaTextoFinal = null;
+            
 
             const tieneTexto =
                 typeof respuestaTexto === 'string' &&
@@ -316,23 +328,21 @@ class AcertijoServicio {
             const acertijos =
                 await acertijoRepositorio.obtenerAcertijos();
 
-            const siguienteAcertijo = acertijos.find(
+                    const siguienteAcertijo = acertijos.find(
                 acertijo => acertijo.orden === datosAcertijo.orden + 1
             );
 
-            const siguienteAcertijoId = siguienteAcertijo
+            siguienteAcertijoId = siguienteAcertijo
                 ? siguienteAcertijo.id_acertijo
                 : null;
-
 
             
             // 12. ACTUALIZAR EL PROGRESO
        
-            const nuevoProgreso =
-                await progresoRepositorio.guardar({
-                    idPartida,
-                    idAcertijoActual: siguienteAcertijoId
-                });
+            const nuevoProgreso = await progresoRepositorio.guardar({
+            idPartida,
+            idAcertijoActual: siguienteAcertijoId
+            });
 
 
             // 13. APLICAR EL PATRÓN OBSERVER
@@ -372,10 +382,48 @@ class AcertijoServicio {
                 );
 
 
-            // 15. CONFIRMAR TRANSACCIÓN
-           
-            await cliente.query('COMMIT');
-            transaccionIniciada = false;
+                // FINALIZAR LA PARTIDA SI NO HAY
+                // MÁS ACERTIJOS
+
+                if (siguienteAcertijoId === null) {
+
+                    const partidaActual =
+                        await partidaRepositorio.buscarPorId(idPartida);
+
+                    if (!partidaActual) {
+                        throw new Error(
+                            'No se encontró la partida que se debe finalizar.'
+                        );
+                    }
+
+                    const fechaInicio = new Date(partidaActual.fecha_inicio);
+
+                    if (Number.isNaN(fechaInicio.getTime())) {
+                        throw new Error(
+                            'La fecha de inicio de la partida no es válida.'
+                        );
+                    }
+
+                    const tiempoTotalSegundos = Math.max(
+                        0,
+                        Math.floor(
+                            (Date.now() - fechaInicio.getTime()) / 1000
+                        )
+                    );
+
+                    partidaFinalizada =
+                        await partidaRepositorio.finalizar(
+                            idPartida,
+                            tiempoTotalSegundos
+                        );
+                }
+
+
+           // 15. CONFIRMAR TRANSACCIÓN
+
+        await cliente.query('COMMIT');
+        transaccionIniciada = false;
+            
 
 
        
@@ -383,7 +431,6 @@ class AcertijoServicio {
            
 
             return {
-
                 correcto: true,
                 intento,
 
@@ -393,14 +440,18 @@ class AcertijoServicio {
 
                 siguienteAcertijoId,
 
+                partidaFinalizada,
+
+                juegoFinalizado: siguienteAcertijoId === null,
+
                 contenidosDisponibles,
 
                 pistasDisponibles,
 
-                mensaje: '¡Acertijo resuelto! Has desbloqueado nuevas evidencias.'
-
+                mensaje: partidaFinalizada
+                    ? '¡Felicidades! Has completado todos los expedientes.'
+                    : '¡Acertijo resuelto! Has desbloqueado nuevas evidencias.'
             };
-
 
         } catch (error) {
 
