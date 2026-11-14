@@ -1,3 +1,9 @@
+const Partida = require('../../dominio/entidades/Partida');
+const Progreso = require('../../dominio/entidades/Progreso');
+const EstadoPartida =
+    require('../../dominio/enumeraciones/EstadoPartida');
+   const ErrorAplicacion =
+    require('../../infraestructura/errores/ErrorAplicacion');
 
 class PartidaServicio {
 
@@ -11,8 +17,14 @@ class PartidaServicio {
         PistaRepositorio
     }) {
 
-        if (!poolConexion || typeof poolConexion.connect !== 'function') {
-            throw new Error('Se requiere un pool de conexiones de PostgreSQL.');
+                if (!poolConexion || typeof poolConexion.connect !== 'function') {
+            throw new ErrorAplicacion(
+                'Se requiere un pool de conexiones de PostgreSQL.',
+                {
+                    statusCode: 500,
+                    code: 'POOL_POSTGRESQL_NO_CONFIGURADO'
+                }
+            );
         }
 
         const repositorios = {
@@ -24,13 +36,17 @@ class PartidaServicio {
             PistaRepositorio
         };
 
-        for (const [nombre, Repositorio] of Object.entries(repositorios)) {
-            if (typeof Repositorio !== 'function') {
-                throw new Error(
-                    `No se proporcionó correctamente ${nombre}.`
-                );
+                for (const [nombre, Repositorio] of Object.entries(repositorios)) {
+                if (typeof Repositorio !== 'function') {
+                    throw new ErrorAplicacion(
+                        `No se proporcionó correctamente ${nombre}.`,
+                        {
+                            statusCode: 500,
+                            code: 'REPOSITORIO_NO_CONFIGURADO'
+                        }
+                    );
+                }
             }
-        }
 
         this.pool = poolConexion;
         this.UsuarioRepositorio = UsuarioRepositorio;
@@ -42,9 +58,9 @@ class PartidaServicio {
     }
 
 
-   
+
     // 1. INICIAR UNA NUEVA PARTIDA
-    
+
     async iniciarPartida(idUsuario) {
 
         if (!Number.isInteger(idUsuario) || idUsuario <= 0) {
@@ -88,30 +104,45 @@ class PartidaServicio {
             const usuario =
                 await usuarioRepositorio.buscarPorId(idUsuario);
 
-            if (!usuario) {
-                throw new Error(
-                    'No se puede iniciar una partida: el usuario no existe.'
-                );
-            }
+                if (!usuario) {
+            throw new ErrorAplicacion(
+                'No se puede iniciar una partida: el usuario no existe.',
+                {
+                    statusCode: 404,
+                    code: 'USUARIO_NO_ENCONTRADO'
+                }
+            );
+        }
 
 
             // 2. Obtener los acertijos disponibles
             const acertijos =
                 await acertijoRepositorio.obtenerAcertijos();
 
-            if (acertijos.length === 0) {
-                throw new Error(
-                    'No hay acertijos registrados para iniciar la partida.'
-                );
-            }
+                        if (acertijos.length === 0) {
+                    throw new ErrorAplicacion(
+                        'No hay acertijos registrados para iniciar la partida.',
+                        {
+                            statusCode: 500,
+                            code: 'ACERTIJOS_NO_CONFIGURADOS'
+                        }
+                    );
+                }
 
             const primerAcertijo = acertijos[0];
 
 
-            // 3. Crear la partida
-            const partida = await partidaRepositorio.guardar({
+
+            // 3. Crear y validar la entidad de dominio
+            const nuevaPartida = new Partida({
                 idUsuario,
-                estado: 'EN_CURSO'
+                estado: EstadoPartida.EN_CURSO
+            });
+
+            // 4. Guardar la partida en PostgreSQL
+            const partida = await partidaRepositorio.guardar({
+                idUsuario: nuevaPartida.idUsuario,
+                estado: nuevaPartida.estado
             });
 
 
@@ -121,18 +152,29 @@ class PartidaServicio {
                     partida.id_partida
                 );
 
-            if (acertijosAsociados.length !== acertijos.length) {
-                throw new Error(
-                    'No se pudieron asociar todos los acertijos a la partida.'
-                );
-            }
+                        if (acertijosAsociados.length !== acertijos.length) {
+                    throw new ErrorAplicacion(
+                        'No se pudieron asociar todos los acertijos a la partida.',
+                        {
+                            statusCode: 500,
+                            code: 'ASOCIACION_ACERTIJOS_INCOMPLETA'
+                        }
+                    );
+                }
 
 
             // 5. Registrar el progreso inicial
-            const progreso = await progresoRepositorio.guardar({
-                idPartida: partida.id_partida,
-                idAcertijoActual: primerAcertijo.id_acertijo
-            });
+            // Construir y validar la entidad de dominio
+                const progresoInicial = new Progreso({
+                    idPartida: partida.id_partida,
+                    idAcertijoActual: primerAcertijo.id_acertijo
+                });
+
+                // Guardar el progreso inicial
+                const progreso = await progresoRepositorio.guardar({
+                    idPartida: progresoInicial.idPartida,
+                    idAcertijoActual: progresoInicial.idAcertijoActual
+                });
 
 
             // 6. Registrar los contenidos disponibles desde el inicio

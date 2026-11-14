@@ -1,12 +1,19 @@
+const ErrorAplicacion =
+    require('../../infraestructura/errores/ErrorAplicacion');
+
 class IntentoServicio {
 
     constructor(intentoRepositorio) {
 
         if (!intentoRepositorio) {
-            throw new Error(
-                'Se requiere un repositorio de intentos.'
-            );
+    throw new ErrorAplicacion(
+        'Se requiere un repositorio de intentos.',
+        {
+            statusCode: 500,
+            code: 'REPOSITORIO_INTENTOS_NO_CONFIGURADO'
         }
+    );
+}
 
         this.intentoRepositorio = intentoRepositorio;
     }
@@ -37,9 +44,15 @@ class IntentoServicio {
         const intento =
             await this.intentoRepositorio.buscarPorId(idIntento);
 
-        if (!intento) {
-            throw new Error('No se encontró el intento solicitado.');
+       if (!intento) {
+    throw new ErrorAplicacion(
+        'No se encontró el intento solicitado.',
+        {
+            statusCode: 404,
+            code: 'INTENTO_NO_ENCONTRADO'
         }
+    );
+}
 
         return intento;
     }

@@ -95,10 +95,10 @@ async obtenerPorId(req, res, next) {
             );
 
         // Directorio raíz del frontend
-        const directorioFrontend = path.resolve(
-            __dirname,
-            '../../../../frontend'
-        );
+                    const directorioFrontend = path.resolve(
+                __dirname,
+                '../../../../frontend'
+            );
 
         // Convertir la ruta registrada en PostgreSQL
         // en una ruta relativa al frontend

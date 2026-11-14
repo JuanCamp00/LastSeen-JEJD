@@ -1,3 +1,10 @@
+// Intermediarios de manejo de errores
+const rutaNoEncontrada =
+    require('../presentacion/intermediarios/rutaNoEncontrada');
+
+const manejoErrores =
+    require('../presentacion/intermediarios/manejoErrores');
+
 // Importar Express
 const express = require('express');
 
@@ -139,6 +146,10 @@ app.get('/api/salud', (req, res) => {
         mensaje: 'La API de Last Seen está funcionando.'
     });
 });
+// Gestionar rutas inexistentes
+app.use(rutaNoEncontrada);
 
+// Gestionar errores generales
+app.use(manejoErrores);
 // Exportar la aplicación
 module.exports = app;

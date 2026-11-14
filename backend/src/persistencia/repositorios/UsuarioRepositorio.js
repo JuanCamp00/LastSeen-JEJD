@@ -3,6 +3,8 @@ const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
 
+const ErrorAplicacion = require('../../infraestructura/errores/ErrorAplicacion');
+
 class UsuarioRepositorio {
 
     constructor(poolConexion = pool) {
@@ -35,9 +37,9 @@ class UsuarioRepositorio {
         const nombreNormalizado = nombreUsuario.trim();
 
         if (nombreNormalizado.length > 40) {
-            throw new Error(
-                'El nombre del usuario no puede superar los 40 caracteres.'
-            );
+            throw new TypeError(
+    'El nombre del usuario no puede superar los 40 caracteres.'
+);
         }
 
         const consulta = `
@@ -62,11 +64,15 @@ class UsuarioRepositorio {
         } catch (error) {
 
             // Código PostgreSQL 23505: violación de UNIQUE
-            if (error.code === '23505') {
-                throw new Error(
-                    'El nombre de usuario ya está registrado.'
-                );
-            }
+                if (error.code === '23505') {
+            throw new ErrorAplicacion(
+                'El nombre de usuario ya está registrado.',
+                {
+                    statusCode: 409,
+                    code: 'USUARIO_DUPLICADO'
+                }
+            );
+        }
 
             throw error;
         }

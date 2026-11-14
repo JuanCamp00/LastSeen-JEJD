@@ -82,8 +82,22 @@ CREATE TABLE IF NOT EXISTS intento (
         FOREIGN KEY (id_opcion_seleccionada)
         REFERENCES opcion_acertijo(id_opcion),
 
-    CONSTRAINT chk_resultado_intento
-        CHECK (resultado IN ('CORRECTO', 'INCORRECTO'))
+  CONSTRAINT chk_resultado_intento
+    CHECK (resultado IN ('CORRECTO', 'INCORRECTO')),
+
+CONSTRAINT chk_intento_modalidad_respuesta
+    CHECK (
+        (
+            respuesta_texto IS NOT NULL
+            AND BTRIM(respuesta_texto) <> ''
+            AND id_opcion_seleccionada IS NULL
+        )
+        OR
+        (
+            respuesta_texto IS NULL
+            AND id_opcion_seleccionada IS NOT NULL
+        )
+    )
 );
 
 CREATE TABLE IF NOT EXISTS pista (

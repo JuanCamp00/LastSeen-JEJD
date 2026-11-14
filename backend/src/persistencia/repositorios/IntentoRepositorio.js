@@ -3,15 +3,18 @@ const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
 
+const ErrorAplicacion = require('../../infraestructura/errores/ErrorAplicacion');
+
 class IntentoRepositorio {
+
 
     constructor(poolConexion = pool) {
         this.pool = poolConexion;
     }
 
-    
+
     // 1. REGISTRAR UN INTENTO
-   
+
     async guardar(intento) {
 
         if (!intento || typeof intento !== 'object') {
@@ -28,19 +31,34 @@ class IntentoRepositorio {
 
         // Validar identificadores
         if (!Number.isInteger(idPartida) || idPartida <= 0) {
-            throw new TypeError(
-                'El identificador de la partida debe ser un entero positivo.'
+            throw new ErrorAplicacion(
+                'El identificador de la partida no es válido.',
+                {
+                    statusCode: 400,
+                    code: 'PARTIDA_NO_VALIDA'
+                }
             );
         }
 
         if (!Number.isInteger(idAcertijo) || idAcertijo <= 0) {
-            throw new TypeError(
-                'El identificador del acertijo debe ser un entero positivo.'
+            throw new ErrorAplicacion(
+                'El identificador del acertijo no es válido.',
+                {
+                    statusCode: 400,
+                    code: 'ACERTIJO_NO_VALIDO'
+                }
             );
         }
 
-        // Validar resultado
-        const resultadoNormalizado = String(resultado).toUpperCase();
+
+                // Validar resultado
+        if (typeof resultado !== 'string' || resultado.trim().length === 0) {
+            throw new TypeError(
+                'El resultado del intento debe ser un texto válido.'
+            );
+        }
+
+        const resultadoNormalizado = resultado.trim().toUpperCase();
 
         const resultadosPermitidos = [
             'CORRECTO',
@@ -48,7 +66,31 @@ class IntentoRepositorio {
         ];
 
         if (!resultadosPermitidos.includes(resultadoNormalizado)) {
-            throw new Error('El resultado del intento no es válido.');
+            throw new TypeError(
+                'El resultado del intento no es válido.'
+            );
+        }
+
+        // Validar modalidad de respuesta
+        if (
+            respuestaTexto !== null &&
+            typeof respuestaTexto !== 'string'
+        ) {
+            throw new TypeError(
+                'La respuesta de texto debe ser una cadena o NULL.'
+            );
+        }
+
+        if (
+            idOpcionSeleccionada !== null &&
+            (
+                !Number.isInteger(idOpcionSeleccionada) ||
+                idOpcionSeleccionada <= 0
+            )
+        ) {
+            throw new TypeError(
+                'El identificador de la opción debe ser positivo o NULL.'
+            );
         }
 
         // Comprobar que solo se envíe una modalidad de respuesta
@@ -61,10 +103,12 @@ class IntentoRepositorio {
             idOpcionSeleccionada > 0;
 
         if (tieneTexto === tieneOpcion) {
-            throw new Error(
+            throw new TypeError(
                 'El intento debe contener una respuesta de texto o una opción seleccionada, pero no ambas.'
             );
         }
+
+
 
         const respuestaTextoFinal = tieneTexto
             ? respuestaTexto.trim()
@@ -118,9 +162,9 @@ class IntentoRepositorio {
     }
 
 
-    
+
     // 2. BUSCAR UN INTENTO POR SU ID
-    
+
 
     async buscarPorId(idIntento) {
 
@@ -152,9 +196,9 @@ class IntentoRepositorio {
     }
 
 
-    
+
     // 3. BUSCAR INTENTOS DE UNA PARTIDA
-   
+
 
     async buscarPorPartida(idPartida) {
 
@@ -188,7 +232,7 @@ class IntentoRepositorio {
 
 
     // 4. BUSCAR INTENTOS DE UN ACERTIJO
-    
+
 
     async buscarPorAcertijo(idAcertijo) {
 

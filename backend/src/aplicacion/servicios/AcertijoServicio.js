@@ -1,12 +1,17 @@
 
 const Acertijo = require('../../dominio/entidades/Acertijo');
-
+const Intento = require('../../dominio/entidades/Intento');
 const ValidacionTexto = require('../../dominio/estrategias/ValidacionTexto');
 const ValidacionSeleccion = require('../../dominio/estrategias/ValidacionSeleccion');
+const Progreso = require('../../dominio/entidades/Progreso');
 
 const AcertijoPendiente = require('../../dominio/estados/AcertijoPendiente');
 
 const GestorDesbloqueos = require('../../dominio/observadores/GestorDesbloqueos');
+
+const ErrorAplicacion = require('../../infraestructura/errores/ErrorAplicacion');
+
+
 
 
 class AcertijoServicio {
@@ -22,7 +27,13 @@ class AcertijoServicio {
     }) {
 
         if (!poolConexion || typeof poolConexion.connect !== 'function') {
-            throw new Error('Se requiere un pool de conexiones PostgreSQL.');
+            throw new ErrorAplicacion(
+    'se requiere un pool de conexión a la base de datos.',
+    {
+        statusCode: 500,
+        code: 'POOL_CONEXION_NO_PROPORCIONADO'
+    }
+);
         }
 
         const repositorios = {
@@ -36,8 +47,14 @@ class AcertijoServicio {
 
         for (const [nombre, Repositorio] of Object.entries(repositorios)) {
             if (typeof Repositorio !== 'function') {
-                throw new Error(
-                    `No se proporcionó correctamente ${nombre}.`
+                throw new ErrorAplicacion(
+                    `No se proporcionó correctamente ${nombre}.`,
+
+                       {
+        statusCode: 500,
+        code: 'REPOSITORIO_NO_PROPORCIONADO'
+    }
+
                 );
             }
         }
@@ -56,9 +73,13 @@ class AcertijoServicio {
 async obtenerAcertijoActual(idPartida) {
 
     if (!Number.isInteger(idPartida) || idPartida <= 0) {
-        throw new TypeError(
-            'El identificador de la partida no es válido.'
-        );
+          throw new ErrorAplicacion(
+    'El identificador de la partida no es válido.',
+    {
+        statusCode: 400,
+        code: 'PARTIDA_NO_VALIDA'
+    }
+);
     }
 
     // Crear los repositorios
@@ -76,7 +97,13 @@ async obtenerAcertijoActual(idPartida) {
         await partidaRepositorio.buscarPorId(idPartida);
 
     if (!partida) {
-        throw new Error('No se encontró la partida.');
+        throw new ErrorAplicacion(
+    'No se encontró la partida.',
+    {
+        statusCode: 404,
+        code: 'PARTIDA_NO_ENCONTRADA'
+    }
+);
     }
 
     // Consultar el progreso
@@ -84,18 +111,26 @@ async obtenerAcertijoActual(idPartida) {
         await progresoRepositorio.buscarPorPartida(idPartida);
 
     if (!progreso) {
-        throw new Error(
-            'La partida no tiene un progreso registrado.'
-        );
+        throw new ErrorAplicacion(
+    'El progreso de la partida no se encontró.',
+    {
+        statusCode: 409,
+        code: 'PROGRESO_NO_DISPONIBLE'
+    }
+);
     }
 
     // Comprobar si la investigación terminó
     if (progreso.id_acertijo_actual === null) {
 
         if (partida.estado !== 'FINALIZADA') {
-            throw new Error(
-                'La partida tiene un progreso inconsistente.'
-            );
+           throw new ErrorAplicacion(
+    'El progreso de la partida es inconsistente.',
+    {
+        statusCode: 500,
+        code: 'PROGRESO_INCONSISTENTE'
+    }
+);
         }
 
         return {
@@ -108,9 +143,13 @@ async obtenerAcertijoActual(idPartida) {
     }
 
     if (partida.estado !== 'EN_CURSO') {
-        throw new Error(
-            'La partida no está disponible para continuar.'
-        );
+        throw new ErrorAplicacion(
+    'La partida no está en curso.',
+    {
+        statusCode: 409,
+        code: 'PARTIDA_NO_DISPONIBLE'
+    }
+);
     }
 
     // Buscar el acertijo actual
@@ -120,9 +159,13 @@ async obtenerAcertijoActual(idPartida) {
         );
 
     if (!acertijo) {
-        throw new Error(
-            'No se encontró el acertijo actual.'
-        );
+        throw new ErrorAplicacion(
+    'El acertijo actual no se encontró.',
+    {
+        statusCode: 500,
+        code: 'ACERTIJO_ACTUAL_NO_ENCONTRADO'
+    }
+);
     }
 
     // Comprobar que esté asociado a esta partida
@@ -133,15 +176,23 @@ async obtenerAcertijoActual(idPartida) {
         );
 
     if (!estadoAcertijo) {
-        throw new Error(
-            'El acertijo no está asociado a esta partida.'
-        );
+        throw new ErrorAplicacion(
+    'acertijo no está asociado a esta partida.',
+    {
+        statusCode: 500,
+        code: 'ACERTIJO_NO_ASOCIADO_A_PARTIDA'
+    }
+);
     }
 
     if (estadoAcertijo.estado !== 'PENDIENTE') {
-        throw new Error(
-            'El acertijo actual no está pendiente.'
-        );
+        throw new ErrorAplicacion(
+    'acertijo no está pendiente de resolución en esta partida.',
+    {
+        statusCode: 409,
+        code: 'ACERTIJO_NOPENDIENTE'
+    }
+);
     }
 
     // Obtener opciones únicamente si es de selección
@@ -170,9 +221,9 @@ async obtenerAcertijoActual(idPartida) {
 }
 
 
-    
+
     // RESOLVER UN ACERTIJO
-   
+
 
     async resolverAcertijo({
     idPartida,
@@ -196,7 +247,7 @@ async obtenerAcertijoActual(idPartida) {
         let siguienteAcertijoId = null;
         let partidaFinalizada = null;
 
-        
+
 
         const cliente = await this.pool.connect();
 
@@ -205,16 +256,16 @@ async obtenerAcertijoActual(idPartida) {
         try {
 
             // 1. INICIAR TRANSACCIÓN
-         
+
 
             await cliente.query('BEGIN');
             transaccionIniciada = true;
 
-         
 
-         
+
+
             // 2. CREAR REPOSITORIOS CON EL CLIENTE
-            
+
             const partidaRepositorio =
             new this.PartidaRepositorio(cliente);
 
@@ -234,28 +285,36 @@ async obtenerAcertijoActual(idPartida) {
                 new this.PistaRepositorio(cliente);
 
 
-        
+
             // 3. COMPROBAR EL PROGRESO DE LA PARTIDA
-         
+
 
             const progreso =
                 await progresoRepositorio.buscarPorPartida(idPartida);
 
             if (!progreso) {
-                throw new Error(
-                    'La partida no tiene un progreso registrado.'
-                );
+                throw new ErrorAplicacion(
+    'El progreso de la partida no se encontró.',
+    {
+        statusCode: 404,
+        code: 'PROGRESO_NO_DISPONIBLE'
+    }
+);
             }
 
             if (progreso.id_acertijo_actual !== idAcertijo) {
-                throw new Error(
-                    'Este acertijo no corresponde al progreso actual de la partida.'
-                );
+               throw new ErrorAplicacion(
+    'El acertijo actual no se encontró.',
+    {
+        statusCode: 404,
+        code: 'ACERTIJO_NO_ENCONTRADO'
+    }
+);
             }
 
 
             // 4. COMPROBAR EL ESTADO DEL ACERTIJO
-         
+
             const estadoActual =
                 await acertijoRepositorio.buscarEstadoEnPartida(
                     idPartida,
@@ -263,46 +322,62 @@ async obtenerAcertijoActual(idPartida) {
                 );
 
             if (!estadoActual) {
-                throw new Error(
-                    'El acertijo no está asociado a esta partida.'
-                );
+                throw new ErrorAplicacion(
+    'El estado del acertijo no se encontró.',
+    {
+        statusCode: 404,
+        code: 'ESTADO_ACERTIJO_NO_ENCONTRADO'
+    }
+);
             }
 
             if (estadoActual.estado === 'RESUELTO') {
-                throw new Error(
-                    'Este acertijo ya fue resuelto.'
-                );
+                throw new ErrorAplicacion(
+    'El acertijo ya fue resuelto.',
+    {
+        statusCode: 500,
+        code: 'ACERTIJO_YA_RESUELTO'
+    }
+);
             }
 
             if (estadoActual.estado !== 'PENDIENTE') {
-                throw new Error(
-                    'El estado actual del acertijo no es válido.'
-                );
+                throw new ErrorAplicacion(
+    'El estado actual del acertijo no es válido.',
+    {
+        statusCode: 404,
+        code: 'ESTADO_ACERTIJO_INVALIDO'
+    }
+);
             }
 
 
-    
+
             // 5. OBTENER LA INFORMACIÓN DEL ACERTIJO
-      
+
 
             const datosAcertijo =
                 await acertijoRepositorio.buscarPorId(idAcertijo);
 
             if (!datosAcertijo) {
-                throw new Error(
-                    'No se encontró el acertijo solicitado.'
-                );
+               throw new ErrorAplicacion(
+    'El acertijo no se encontró.',
+    {
+        statusCode: 404,
+        code: 'ACERTIJO_NO_ENCONTRADO'
+    }
+);
             }
 
 
             // 6. SELECCIONAR LA ESTRATEGIA
-        
+
 
             let estrategia;
             let respuestaCorrecta;
             let opcionSeleccionadaFinal = null;
             let respuestaTextoFinal = null;
-            
+
 
             const tieneTexto =
                 typeof respuestaTexto === 'string' &&
@@ -315,11 +390,15 @@ async obtenerAcertijoActual(idPartida) {
 
             if (datosAcertijo.tipo_validacion === 'TEXTO') {
 
-                if (tieneOpcion || !tieneTexto) {
-                    throw new Error(
-                        'Este acertijo requiere una respuesta de texto.'
-                    );
-                }
+                        if (tieneOpcion || !tieneTexto) {
+                throw new ErrorAplicacion(
+                    'Este acertijo requiere una respuesta de texto.',
+                    {
+                        statusCode: 400,
+                        code: 'RESPUESTA_INVALIDA'
+                    }
+                );
+            }
 
                 estrategia = new ValidacionTexto();
 
@@ -332,12 +411,15 @@ async obtenerAcertijoActual(idPartida) {
                 datosAcertijo.tipo_validacion === 'SELECCION'
             ) {
 
-                if (tieneTexto || !tieneOpcion) {
-                    throw new Error(
-                        'Este acertijo requiere seleccionar una opción.'
+                                if (tieneTexto || !tieneOpcion) {
+                    throw new ErrorAplicacion(
+                        'Este acertijo requiere seleccionar una opción.',
+                        {
+                            statusCode: 400,
+                            code: 'RESPUESTA_INVALIDA'
+                        }
                     );
                 }
-
                 estrategia = new ValidacionSeleccion();
 
                 const opciones =
@@ -350,9 +432,13 @@ async obtenerAcertijoActual(idPartida) {
                 );
 
                 if (!opcionValida) {
-                    throw new Error(
-                        'La opción seleccionada no pertenece a este acertijo.'
-                    );
+                    throw new ErrorAplicacion(
+    'La opción seleccionada no pertenece a este acertijo.',
+    {
+        statusCode: 400,
+        code: 'OPCION_NO_VALIDA'
+    }
+);
                 }
 
                 const opcionCorrecta =
@@ -361,9 +447,13 @@ async obtenerAcertijoActual(idPartida) {
                     );
 
                 if (!opcionCorrecta) {
-                    throw new Error(
-                        'El acertijo no tiene una opción correcta configurada.'
-                    );
+                  throw new ErrorAplicacion(
+    'El acertijo no tiene una opción correcta configurada.',
+    {
+        statusCode: 400,
+        code: 'OPCION_CORRECTA_NO_ENCONTRADA'
+    }
+);
                 }
 
                 respuestaCorrecta = opcionCorrecta.id_opcion;
@@ -371,15 +461,19 @@ async obtenerAcertijoActual(idPartida) {
 
             } else {
 
-                throw new Error(
-                    'El tipo de validación del acertijo no es válido.'
-                );
+                throw new ErrorAplicacion(
+    'El tipo de validación del acertijo no es válido.',
+    {
+        statusCode: 400,
+        code: 'TIPO_VALIDACION_INVALIDO'
+    }
+);
 
             }
 
 
             // 7. VALIDAR LA RESPUESTA
-          
+
 
             const esCorrecta = estrategia.validar(
                 datosAcertijo.tipo_validacion === 'TEXTO'
@@ -393,25 +487,39 @@ async obtenerAcertijoActual(idPartida) {
                 : 'INCORRECTO';
 
 
-      
-            // 8. REGISTRAR EL INTENTO
-         
-
-            const intento = await intentoRepositorio.guardar({
-
-                idPartida,
-                idAcertijo,
-                respuestaTexto: respuestaTextoFinal,
-                idOpcionSeleccionada: opcionSeleccionadaFinal,
-                resultado
-
-            });
 
 
-         
+
+
+
+                    // 8. VALIDAR Y CONSTRUIR LA ENTIDAD INTENTO
+
+                    const intentoValidado = new Intento({
+
+                        idPartida,
+                        idAcertijo,
+                        respuestaTexto: respuestaTextoFinal,
+                        idOpcionSeleccionada: opcionSeleccionadaFinal,
+                        resultado
+
+                    });
+
+                    // Registrar el intento en PostgreSQL
+
+                    const intento = await intentoRepositorio.guardar({
+
+                        idPartida: intentoValidado.idPartida,
+                        idAcertijo: intentoValidado.idAcertijo,
+                        respuestaTexto: intentoValidado.respuestaTexto,
+                        idOpcionSeleccionada: intentoValidado.idOpcionSeleccionada,
+                        resultado: intentoValidado.resultado
+
+                    });
+
+
             // 9. SI ES INCORRECTA, CONSERVAR
             // EL ESTADO Y EL PROGRESO
-     
+
 
             if (!esCorrecta) {
 
@@ -427,7 +535,7 @@ async obtenerAcertijoActual(idPartida) {
 
 
             // 10. APLICAR EL PATRÓN STATE
-          
+
 
             const estadoPendiente = new AcertijoPendiente();
 
@@ -441,7 +549,7 @@ async obtenerAcertijoActual(idPartida) {
                 );
 
             // 11. CALCULAR EL SIGUIENTE ACERTIJO
-        
+
 
             const acertijos =
                 await acertijoRepositorio.obtenerAcertijos();
@@ -454,17 +562,24 @@ async obtenerAcertijoActual(idPartida) {
                 ? siguienteAcertijo.id_acertijo
                 : null;
 
-            
+
             // 12. ACTUALIZAR EL PROGRESO
-       
-            const nuevoProgreso = await progresoRepositorio.guardar({
-            idPartida,
-            idAcertijoActual: siguienteAcertijoId
-            });
+
+           // Construir y validar la entidad de dominio
+                const progresoValidado = new Progreso({
+                    idPartida,
+                    idAcertijoActual: siguienteAcertijoId
+                });
+
+                // Actualizar el progreso de la investigación
+                const nuevoProgreso = await progresoRepositorio.guardar({
+                    idPartida: progresoValidado.idPartida,
+                    idAcertijoActual: progresoValidado.idAcertijoActual
+                });
 
 
             // 13. APLICAR EL PATRÓN OBSERVER
-           
+
             const acertijo = new Acertijo({
                 idAcertijo: datosAcertijo.id_acertijo,
                 pregunta: datosAcertijo.pregunta,
@@ -487,10 +602,10 @@ async obtenerAcertijoActual(idPartida) {
             await acertijo.notificarResolucion(idPartida);
 
 
-        
+
             // 14. CONSULTAR LOS CONTENIDOS Y PISTAS
             // DISPONIBLES DESPUÉS DEL DESBLOQUEO
-          
+
             const contenidosDisponibles =
                 await contenidoRepositorio.obtenerPorPartida(idPartida);
 
@@ -509,17 +624,25 @@ async obtenerAcertijoActual(idPartida) {
                         await partidaRepositorio.buscarPorId(idPartida);
 
                     if (!partidaActual) {
-                        throw new Error(
-                            'No se encontró la partida que se debe finalizar.'
-                        );
+                       throw new ErrorAplicacion(
+    'La partida no fue encontrada.',
+    {
+        statusCode: 404,
+        code: 'PARTIDA_NO_ENCONTRADA'
+    }
+);
                     }
 
                     const fechaInicio = new Date(partidaActual.fecha_inicio);
 
                     if (Number.isNaN(fechaInicio.getTime())) {
-                        throw new Error(
-                            'La fecha de inicio de la partida no es válida.'
-                        );
+                        throw new ErrorAplicacion(
+    'La fecha de inicio de la partida no es válida.',
+    {
+        statusCode: 500,
+        code: 'FECHA_INICIO_INVALIDA'
+    }
+);
                     }
 
                     const tiempoTotalSegundos = Math.max(
@@ -541,12 +664,12 @@ async obtenerAcertijoActual(idPartida) {
 
         await cliente.query('COMMIT');
         transaccionIniciada = false;
-            
 
 
-       
+
+
             // 16. DEVOLVER EL RESULTADO
-           
+
 
             return {
                 correcto: true,
