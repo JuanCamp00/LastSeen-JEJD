@@ -51,6 +51,124 @@ class AcertijoServicio {
         this.PistaRepositorio = PistaRepositorio;
     }
 
+    // CONSULTAR EL ACERTIJO ACTUAL DE UNA PARTIDA
+
+async obtenerAcertijoActual(idPartida) {
+
+    if (!Number.isInteger(idPartida) || idPartida <= 0) {
+        throw new TypeError(
+            'El identificador de la partida no es válido.'
+        );
+    }
+
+    // Crear los repositorios
+    const partidaRepositorio =
+        new this.PartidaRepositorio(this.pool);
+
+    const progresoRepositorio =
+        new this.ProgresoRepositorio(this.pool);
+
+    const acertijoRepositorio =
+        new this.AcertijoRepositorio(this.pool);
+
+    // Comprobar que la partida exista
+    const partida =
+        await partidaRepositorio.buscarPorId(idPartida);
+
+    if (!partida) {
+        throw new Error('No se encontró la partida.');
+    }
+
+    // Consultar el progreso
+    const progreso =
+        await progresoRepositorio.buscarPorPartida(idPartida);
+
+    if (!progreso) {
+        throw new Error(
+            'La partida no tiene un progreso registrado.'
+        );
+    }
+
+    // Comprobar si la investigación terminó
+    if (progreso.id_acertijo_actual === null) {
+
+        if (partida.estado !== 'FINALIZADA') {
+            throw new Error(
+                'La partida tiene un progreso inconsistente.'
+            );
+        }
+
+        return {
+            juegoFinalizado: true,
+            partida,
+            progreso,
+            acertijo: null,
+            opciones: []
+        };
+    }
+
+    if (partida.estado !== 'EN_CURSO') {
+        throw new Error(
+            'La partida no está disponible para continuar.'
+        );
+    }
+
+    // Buscar el acertijo actual
+    const acertijo =
+        await acertijoRepositorio.buscarPorId(
+            progreso.id_acertijo_actual
+        );
+
+    if (!acertijo) {
+        throw new Error(
+            'No se encontró el acertijo actual.'
+        );
+    }
+
+    // Comprobar que esté asociado a esta partida
+    const estadoAcertijo =
+        await acertijoRepositorio.buscarEstadoEnPartida(
+            idPartida,
+            acertijo.id_acertijo
+        );
+
+    if (!estadoAcertijo) {
+        throw new Error(
+            'El acertijo no está asociado a esta partida.'
+        );
+    }
+
+    if (estadoAcertijo.estado !== 'PENDIENTE') {
+        throw new Error(
+            'El acertijo actual no está pendiente.'
+        );
+    }
+
+    // Obtener opciones únicamente si es de selección
+    const opciones =
+        acertijo.tipo_validacion === 'SELECCION'
+            ? await acertijoRepositorio.obtenerOpcionesPorAcertijo(
+                acertijo.id_acertijo
+            )
+            : [];
+
+    // No revelar la respuesta correcta al frontend
+    const acertijoPublico = { ...acertijo };
+
+    delete acertijoPublico.respuesta_correcta_texto;
+
+    return {
+        juegoFinalizado: false,
+        partida,
+        progreso,
+        acertijo: {
+            ...acertijoPublico,
+            estado: estadoAcertijo.estado
+        },
+        opciones
+    };
+}
+
 
     
     // RESOLVER UN ACERTIJO
