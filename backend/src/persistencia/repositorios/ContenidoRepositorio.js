@@ -3,6 +3,8 @@ const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
 
+
+
 class ContenidoRepositorio {
 
     constructor(poolConexion = pool) {

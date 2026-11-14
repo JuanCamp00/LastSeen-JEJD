@@ -1,26 +1,46 @@
-
 const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
 
+const ErrorAplicacion =
+    require('../../infraestructura/errores/ErrorAplicacion');
+
 class ProgresoRepositorio {
 
     constructor(poolConexion = pool) {
+
+        if (!poolConexion || typeof poolConexion.query !== 'function') {
+            throw new ErrorAplicacion(
+                'Se requiere un pool o cliente válido de PostgreSQL.',
+                {
+                    statusCode: 500,
+                    code: 'POOL_POSTGRESQL_NO_CONFIGURADO'
+                }
+            );
+        }
+
         this.pool = poolConexion;
     }
 
+
     // 1. GUARDAR O ACTUALIZAR EL PROGRESO
-    
 
     async guardar(progreso) {
 
-        if (!progreso || typeof progreso !== 'object') {
+        if (
+            !progreso ||
+            typeof progreso !== 'object' ||
+            Array.isArray(progreso)
+        ) {
             throw new TypeError(
                 'Se necesita la información del progreso.'
             );
         }
 
-        const { idPartida, idAcertijoActual } = progreso;
+        const {
+            idPartida,
+            idAcertijoActual
+        } = progreso;
 
         if (!Number.isInteger(idPartida) || idPartida <= 0) {
             throw new TypeError(
@@ -30,8 +50,10 @@ class ProgresoRepositorio {
 
         if (
             idAcertijoActual !== null &&
-            (!Number.isInteger(idAcertijoActual) ||
-             idAcertijoActual <= 0)
+            (
+                !Number.isInteger(idAcertijoActual) ||
+                idAcertijoActual <= 0
+            )
         ) {
             throw new TypeError(
                 'El identificador del acertijo debe ser positivo o NULL.'
@@ -67,9 +89,7 @@ class ProgresoRepositorio {
     }
 
 
-    
     // 2. BUSCAR EL PROGRESO DE UNA PARTIDA
-    
 
     async buscarPorPartida(idPartida) {
 

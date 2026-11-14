@@ -2,6 +2,7 @@
 const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
+const ErrorAplicacion = require('../../infraestructura/errores/ErrorAplicacion');
 
 class AcertijoRepositorio {
 
@@ -104,13 +105,17 @@ class AcertijoRepositorio {
             );
         }
 
-        const estadoNormalizado = String(estado).toUpperCase();
+            if (typeof estado !== 'string' || estado.trim().length === 0) {
+            throw new TypeError('El estado del acertijo debe ser un texto válido.');
+            }
 
-        const estadosPermitidos = ['PENDIENTE', 'RESUELTO'];
+            const estadoNormalizado = estado.trim().toUpperCase();
 
-        if (!estadosPermitidos.includes(estadoNormalizado)) {
-            throw new Error('El estado del acertijo no es válido.');
-        }
+            const estadosPermitidos = ['PENDIENTE', 'RESUELTO'];
+
+            if (!estadosPermitidos.includes(estadoNormalizado)) {
+                throw new TypeError('El estado del acertijo no es válido.');
+            }
 
         const consulta = `
            
@@ -142,10 +147,14 @@ class AcertijoRepositorio {
 );
 
         if (resultado.rowCount === 0) {
-            throw new Error(
-                'No se encontró el acertijo asociado a esa partida.'
-            );
+            throw new ErrorAplicacion(
+                 'No se encontró el acertijo asociado a esa partida.',
+        {
+            statusCode: 404,
+            code: 'ACERTIJO_NO_ASOCIADO_A_PARTIDA'
         }
+    );
+}
 
         return resultado.rows[0];
     }

@@ -1,12 +1,43 @@
+const Pista = require('../../dominio/entidades/Pista');
+
+const ErrorAplicacion =
+    require('../../infraestructura/errores/ErrorAplicacion');
+
 class PistaServicio {
 
-    constructor(pistaRepositorio) {
 
-        if (!pistaRepositorio) {
-            throw new Error(
-                'Se requiere un repositorio de pistas.'
-            );
-        }
+    // Validar y convertir una fila en una entidad Pista
+_mapearPista(fila) {
+
+    const pista = new Pista({
+        idPista: fila.id_pista,
+        idAcertijo: fila.id_acertijo,
+        contenido: fila.contenido,
+        orden: fila.orden,
+        disponibleDesdeInicio: fila.disponible_desde_inicio
+    });
+
+    // Conservar los campos originales que utiliza el frontend
+    return {
+        ...fila,
+        id_pista: pista.idPista,
+        id_acertijo: pista.idAcertijo,
+        contenido: pista.contenido,
+        orden: pista.orden,
+        disponible_desde_inicio: pista.disponibleDesdeInicio
+    };
+}
+
+                constructor(pistaRepositorio) {
+            if (!pistaRepositorio) {
+                throw new ErrorAplicacion(
+                    'Se requiere un repositorio de pistas.',
+                    {
+                        statusCode: 500,
+                        code: 'REPOSITORIO_PISTAS_NO_CONFIGURADO'
+                    }
+                );
+            }
 
         this.pistaRepositorio = pistaRepositorio;
     }
@@ -19,9 +50,12 @@ class PistaServicio {
                 'El identificador de la partida no es válido.'
             );
         }
+            const pistas =
+                await this.pistaRepositorio.obtenerDisponiblesPorPartida(
+                    idPartida
+                );
 
-        return await this.pistaRepositorio
-            .obtenerDisponiblesPorPartida(idPartida);
+            return pistas.map(fila => this._mapearPista(fila));
     }
 
     // Guardar una pista en la investigación
@@ -54,8 +88,12 @@ class PistaServicio {
             );
         }
 
-        return await this.pistaRepositorio
-            .obtenerGuardadasPorPartida(idPartida);
+                const pistas =
+            await this.pistaRepositorio.obtenerGuardadasPorPartida(
+                idPartida
+            );
+
+        return pistas.map(fila => this._mapearPista(fila));
     }
 }
 

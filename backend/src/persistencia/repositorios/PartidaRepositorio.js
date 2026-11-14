@@ -3,6 +3,8 @@ const {
     pool
 } = require('../../infraestructura/conexion/conexionPostgreSQL');
 
+const ErrorAplicacion = require('../../infraestructura/errores/ErrorAplicacion');
+
 class PartidaRepositorio {
 
     constructor(poolConexion = pool) {
@@ -41,7 +43,9 @@ class PartidaRepositorio {
         ];
 
         if (!estadosPermitidos.includes(estado)) {
-            throw new Error('El estado de la partida no es válido.');
+                throw new TypeError(
+                    'El estado de la partida no es válido.'
+    );
         }
 
         const consulta = `
@@ -177,8 +181,12 @@ class PartidaRepositorio {
         );
 
         if (resultado.rowCount === 0) {
-            throw new Error(
-                'No se encontró una partida activa con ese identificador.'
+            throw new ErrorAplicacion(
+                'No se encontró una partida activa con ese identificador.',
+                {
+                    statusCode: 409,
+                    code: 'PARTIDA_NO_ACTIVA'
+                }
             );
         }
 

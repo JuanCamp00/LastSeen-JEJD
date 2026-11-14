@@ -55,11 +55,12 @@ class PistaRepositorio {
         }
 
         const consulta = `
-            SELECT
+                    SELECT
                 p.id_pista,
                 p.id_acertijo,
                 p.contenido,
                 p.orden,
+                p.disponible_desde_inicio,
                 pp.desbloqueada_en,
                 pp.guardada,
                 pp.fecha_guardado
@@ -190,10 +191,15 @@ class PistaRepositorio {
             [idPartida, idPista]
         );
 
-        if (resultado.rowCount === 0) {
-            throw new Error(
+            if (resultado.rowCount === 0) {
+            const error = new Error(
                 'La pista no está desbloqueada en esta partida.'
             );
+
+            error.code = 'PISTA_NO_DISPONIBLE';
+            error.statusCode = 404;
+
+            throw error;
         }
 
         return resultado.rows[0];
@@ -213,17 +219,18 @@ class PistaRepositorio {
         }
 
         const consulta = `
-            SELECT
+                    SELECT
                 p.id_pista,
                 p.id_acertijo,
                 p.contenido,
                 p.orden,
+                p.disponible_desde_inicio,
                 pp.fecha_guardado
             FROM partida_pista pp
             INNER JOIN pista p
                 ON p.id_pista = pp.id_pista
             WHERE pp.id_partida = $1
-              AND pp.guardada = TRUE
+                AND pp.guardada = TRUE
             ORDER BY pp.fecha_guardado ASC
         `;
 

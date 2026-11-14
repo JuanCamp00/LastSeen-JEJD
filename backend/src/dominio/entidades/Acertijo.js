@@ -1,3 +1,4 @@
+const TipoValidacion = require('../enumeraciones/TipoValidacion');
 
 class Acertijo {
 
@@ -27,9 +28,9 @@ class Acertijo {
             );
         }
 
-        const tipo = String(tipoValidacion).toUpperCase();
+            const tipo = String(tipoValidacion).trim().toUpperCase();
 
-        if (!['TEXTO', 'SELECCION'].includes(tipo)) {
+        if (!Object.values(TipoValidacion).includes(tipo)) {
             throw new Error(
                 'El tipo de validación del acertijo no es válido.'
             );
