@@ -1,10 +1,6 @@
-/* ==============================================
-   LAST SEEN · PANTALLA 04 / INVESTIGACIÓN
-   Versión inicial de la interfaz, SIN backend.
-   La lectura de pruebas se registra solo en la
-   sesión del navegador, NO como acertijo resuelto.
-============================================== */
-
+/* LAST SEEN · INVESTIGACIÓN / EXPEDIENTE 001
+   Documentos narrativos oficiales. Lecturas locales de demostración, no PostgreSQL.
+*/
 document.addEventListener('DOMContentLoaded', () => {
     const nombre = sessionStorage.getItem('lastSeen.nombreInvestigador')?.trim();
     if (!nombre) {
@@ -13,71 +9,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('investigador-activo').textContent = nombre;
 
-    // Contenido provisional: se sustituirá por datos reales del backend.
+    // Vista local sin fetch: funciona también al abrir el HTML directamente en el navegador.
+    // Las versiones .txt originales están en recursos/documentos/expediente_001/.
     const documentos = {
+        presentacion: {
+            codigo: 'ARCHIVO RECUPERADO / EXPEDIENTE 001',
+            titulo: 'PRESENTACIÓN DEL EQUIPO',
+            parrafo1: 'El proyecto cuenta con tres integrantes responsables de las distintas áreas de producción.',
+            parrafo2: '01. Frontend · 02. Backend · 03. Dirección Artística.',
+            anotacion: '¿QUIÉNES FORMABAN EL EQUIPO?',
+            pie: 'PRESENTACIÓN DEL EQUIPO · EXPEDIENTE 001',
+            detalle: "ARCHIVO RECUPERADO · EXPEDIENTE 001\nDOCUMENTO\n\n\nPRESENTACIÓN DEL EQUIPO\nSecuela de un videojuego independiente de decisiones narrativas\n\nEQUIPO DE DESARROLLO\n\nEl proyecto cuenta con tres integrantes responsables de las distintas áreas de producción.\n\n01. Desarrollo Frontend\n\nResponsable de las interfaces, interacción visual y presentación de los elementos del videojuego.\n\n02. Desarrollo Backend\n\nResponsable de la lógica interna, los sistemas y el funcionamiento de los procesos del videojuego.\n\n03. Dirección Artística\n\nResponsable del diseño de personajes, ilustraciones, música y recursos visuales.",
+            observacion: 'Pista: cuenta a las personas que integraban el equipo, no a las tareas individuales.'
+        },
         comunicado: {
-            codigo: 'REGISTRO 001 / COMUNICADO',
-            titulo: 'COMUNICADO OFICIAL',
-            parrafo1: 'El equipo anunció la cancelación de la secuela del videojuego independiente.',
-            parrafo2: 'No se explicaron los motivos del cierre.',
-            anotacion: '¿QUIÉN AUTORIZÓ EL COMUNICADO?',
-            pie: 'ARCHIVO CONSERVADO · FUENTE PENDIENTE',
-            detalle: 'El comunicado confirma la cancelación, pero no explica qué sucedió dentro del equipo. Tampoco aclara quién redactó o aprobó el mensaje.',
-            observacion: 'Pregunta abierta: ¿todos los integrantes estuvieron de acuerdo con publicarlo?'
-        },
-        captura: {
-            codigo: 'REGISTRO 002 / CAPTURA',
-            titulo: 'CAPTURA ARCHIVADA',
-            parrafo1: 'Se conserva una captura de un espacio de trabajo asociado al proyecto.',
-            parrafo2: 'No se ha verificado cuándo fue tomada ni quién la conservó.',
-            anotacion: '¿QUÉ INFORMACIÓN FALTA EN LA IMAGEN?',
-            pie: 'MATERIAL VISUAL · ORIGEN POR VERIFICAR',
-            detalle: 'Una imagen del estudio aparece en los materiales recuperados. Por ahora, su procedencia y su fecha siguen siendo desconocidas.',
-            observacion: 'Esta ilustración es provisional; más adelante usaremos la evidencia visual definitiva.'
-        },
-        registro: {
-            codigo: 'REGISTRO 003 / ACTIVIDAD',
-            titulo: 'REGISTRO DE ACTIVIDAD',
-            parrafo1: 'Se encontraron referencias a modificaciones recientes del proyecto.',
-            parrafo2: 'No es posible reconstruir todavía quién realizó cada cambio.',
-            anotacion: '¿HUBO ACTIVIDAD DESPUÉS DEL ANUNCIO?',
-            pie: 'REGISTROS PARCIALES · SIN VALIDACIÓN',
-            detalle: 'Los registros técnicos que se recuperarán en el caso deberán ayudar a establecer una cronología de acontecimientos.',
-            observacion: 'Las fechas y entradas concretas están pendientes de definir con la historia y la base de datos.'
-        },
-        comunidad: {
-            codigo: 'REGISTRO 004 / COMUNIDAD',
-            titulo: 'NOTAS DE LA COMUNIDAD',
-            parrafo1: 'Algunos seguidores comenzaron a recopilar entrevistas y publicaciones antiguas.',
-            parrafo2: 'Sus hipótesis no constituyen pruebas por sí mismas.',
-            anotacion: '¿QUÉ RELATOS SE CONTRADICEN?',
-            pie: 'RECOPILACIÓN DE FANS · SIN CONFIRMAR',
-            detalle: 'La comunidad reunió fragmentos de entrevistas y publicaciones del estudio. Es importante diferenciar hechos comprobados de rumores.',
-            observacion: 'Una investigación rigurosa deberá contrastar cada afirmación con evidencias independientes.'
+            codigo: 'ARCHIVO 002 / COMUNICADO OFICIAL',
+            titulo: 'COMUNICADO OFICIAL DE CANCELACIÓN',
+            parrafo1: 'Hemos tomado la difícil decisión de cancelar definitivamente el desarrollo de la secuela de nuestro videojuego.',
+            parrafo2: 'Esta decisión responde a circunstancias internas y diferencias relacionadas con la dirección que estaba tomando el proyecto.',
+            anotacion: '¿QUÉ NO EXPLICA EL COMUNICADO?',
+            pie: 'COMUNICADO OFICIAL · EXPEDIENTE 001',
+            detalle: "COMUNICADO OFICIAL\nARCHIVO 002\n\n\nAnuncio sobre el futuro del proyecto\nEquipo de desarrollo · Comunicado público\n\nA nuestra comunidad:\n\nDespués de un largo periodo de desarrollo y tras numerosas consideraciones internas, hemos tomado la difícil decisión de cancelar definitivamente el desarrollo de la secuela de nuestro videojuego.\n\nEsta decisión responde a circunstancias internas y diferencias relacionadas con la dirección que estaba tomando el proyecto.\n\nSabemos que muchos de ustedes esperaban este lanzamiento y que han acompañado nuestro trabajo desde el comienzo. Por eso, lamentamos profundamente no poder continuar con algo que tantas personas esperaban.\n\nAgradecemos el apoyo, la paciencia y el cariño que nos han brindado durante este tiempo.\n\nPor respeto a las personas involucradas, hemos decidido no realizar más declaraciones sobre los motivos de esta decisión.\n\nGracias por haber formado parte de este proyecto.\n\nEquipo de desarrollo\n\nEl comunicado original no contiene información adicional sobre la situación interna del equipo.",
+            observacion: 'Este comunicado anuncia el cierre, pero no identifica individualmente a los integrantes del equipo.'
         }
     };
 
     const lista = [...document.querySelectorAll('[data-documento]')];
     const dialogo = document.getElementById('dialogo-prueba');
-    const botonExaminar = document.getElementById('examinar-pruebas');
     const mensaje = document.getElementById('mensaje-investigacion');
-    const claveVistas = 'lastSeen.expediente001.documentosExaminados';
-    let actual = 'comunicado';
+    const claveLecturas = `lastSeen.demo.expediente001.v2.${encodeURIComponent(nombre)}.lecturas`;
+    let actual = 'presentacion';
     let examinados = [];
 
     try {
-        const guardado = JSON.parse(sessionStorage.getItem(claveVistas) || '[]');
-        if (Array.isArray(guardado)) examinados = guardado.filter(id => Object.hasOwn(documentos, id));
+        const datos = JSON.parse(sessionStorage.getItem(claveLecturas) || '[]');
+        if (Array.isArray(datos)) examinados = datos.filter(id => Object.hasOwn(documentos, id));
     } catch {
         examinados = [];
     }
 
     function actualizarObjetivos() {
-        for (const id of ['comunicado', 'captura', 'registro']) {
-            const fila = document.querySelector(`[data-objetivo="${id}"]`);
-            fila.classList.toggle('objetivo-completado', examinados.includes(id));
+        for (const id of ['presentacion', 'comunicado']) {
+            document.querySelector(`[data-objetivo="${id}"]`)?.classList.toggle('objetivo-completado', examinados.includes(id));
         }
-        // Resolver acertijos y sumar confianza se conectarán después al backend.
     }
 
     function cambiarDocumento(id) {
@@ -95,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             boton.classList.toggle('seleccionado', seleccionado);
             boton.setAttribute('aria-pressed', String(seleccionado));
         }
-        mensaje.textContent = `Documento seleccionado: ${dato.titulo}. Pulsa «Examinar las pruebas» para leerlo.`;
+        mensaje.textContent = `Seleccionaste: ${dato.titulo}. Pulsa «Examinar las pruebas» para leerlo.`;
     }
 
     function examinar() {
@@ -105,18 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dialogo-observacion').textContent = dato.observacion;
         if (!examinados.includes(actual)) {
             examinados.push(actual);
-            sessionStorage.setItem(claveVistas, JSON.stringify(examinados));
+            sessionStorage.setItem(claveLecturas, JSON.stringify(examinados));
             actualizarObjetivos();
         }
+        // Un evento explícito evita depender del orden de ejecución entre scripts.
+        window.dispatchEvent(new CustomEvent('lastSeen:documentoExaminado', { detail: { id: actual } }));
         dialogo.showModal();
     }
 
     lista.forEach(boton => boton.addEventListener('click', () => cambiarDocumento(boton.dataset.documento)));
-    botonExaminar.addEventListener('click', examinar);
+    document.getElementById('examinar-pruebas').addEventListener('click', examinar);
     document.getElementById('ver-documentos').addEventListener('click', examinar);
-    document.getElementById('ver-expedientes').addEventListener('click', () => cambiarDocumento('comunicado'));
+    document.getElementById('ver-expedientes').addEventListener('click', () => cambiarDocumento('presentacion'));
     document.getElementById('cerrar-dialogo').addEventListener('click', () => dialogo.close());
     dialogo.addEventListener('click', evento => { if (evento.target === dialogo) dialogo.close(); });
-
     actualizarObjetivos();
 });

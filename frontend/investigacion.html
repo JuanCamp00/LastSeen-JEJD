@@ -11,7 +11,9 @@
 
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
     <script src="./investigacion.js" defer></script>
+    <script src="./acertijo01.js" defer></script>
 </head>
 <body class="pagina-investigacion">
     <main class="investigacion-app" aria-label="Mesa de investigación de Last Seen">
@@ -24,8 +26,8 @@
             <div class="avance-general" aria-label="Progreso de acertijos">
                 <span>PROGRESO GENERAL</span>
                 <div class="avance-general-fila">
-                    <progress value="0" max="6" aria-label="Acertijos resueltos">0 de 6</progress>
-                    <strong>0 / 6</strong>
+                    <progress value="0" max="7" aria-label="Acertijos resueltos">0 de 7</progress>
+                    <strong>0 / 7</strong>
                 </div>
             </div>
             <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
@@ -38,16 +40,15 @@
                     <strong>▤ &nbsp; EXPEDIENTE 001</strong>
                     <span>LA CANCELACIÓN</span>
                 </div>
-                <nav class="archivos-indice" aria-label="Documentos del expediente 001">
-                    <button type="button" class="archivo-indice seleccionado" data-documento="comunicado" aria-pressed="true"><span aria-hidden="true">▣</span> Comunicado oficial</button>
-                    <button type="button" class="archivo-indice" data-documento="captura" aria-pressed="false"><span aria-hidden="true">▧</span> Captura archivada</button>
-                    <button type="button" class="archivo-indice" data-documento="registro" aria-pressed="false"><span aria-hidden="true">◷</span> Registro de actividad</button>
-                    <button type="button" class="archivo-indice" data-documento="comunidad" aria-pressed="false"><span aria-hidden="true">▤</span> Notas de la comunidad</button>
-                    <button type="button" class="archivo-indice bloqueado" disabled title="Este archivo todavía está bloqueado"><span aria-hidden="true">◇</span> Archivo desconocido</button>
-                </nav>
+
+<nav class="archivos-indice" aria-label="Documentos del expediente 001">
+    <button type="button" class="archivo-indice seleccionado" data-documento="presentacion" aria-pressed="true"><span aria-hidden="true">▣</span> Presentación del equipo</button>
+    <button type="button" class="archivo-indice" data-documento="comunicado" aria-pressed="false"><span aria-hidden="true">▤</span> Comunicado oficial</button>
+    <button type="button" class="archivo-indice bloqueado" disabled title="Se incorporará en otros expedientes"><span aria-hidden="true">◇</span> Otros archivos · bloqueados</button>
+</nav>
                 <div class="indice-pie">
                     <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
-                    <p class="archivo-bloqueado">▧ &nbsp; 002 — 006 / BLOQUEADOS</p>
+                    <p class="archivo-bloqueado">▧ &nbsp; 002 — 007 / BLOQUEADOS</p>
                     <small>RECUPERADOS &nbsp; 01 / 07</small>
                 </div>
             </aside>
@@ -61,27 +62,27 @@
                 <div class="mesa-contenido">
                     <article class="hoja-comunicado" aria-labelledby="documento-titulo">
                         <div class="hoja-cabecera">
-                            <span id="documento-codigo">REGISTRO 001 / COMUNICADO</span>
+                            <span id="documento-codigo">ARCHIVO RECUPERADO / EXPEDIENTE 001</span>
                             <span class="sello-recuperado">RECUPERADO</span>
                         </div>
-                        <h2 id="documento-titulo">COMUNICADO OFICIAL</h2>
+                        <h2 id="documento-titulo">PRESENTACIÓN DEL EQUIPO</h2>
                         <div class="texto-documento" aria-live="polite">
-                            <p id="documento-parrafo-1">El equipo anunció la cancelación de la secuela del videojuego independiente.</p>
-                            <p id="documento-parrafo-2">No se explicaron los motivos del cierre.</p>
+                            <p id="documento-parrafo-1">El proyecto cuenta con tres integrantes responsables de las distintas áreas de producción.</p>
+                            <p id="documento-parrafo-2">01. Frontend · 02. Backend · 03. Dirección Artística.</p>
                         </div>
-                        <div class="anotacion-hoja" id="documento-anotacion">¿QUIÉN AUTORIZÓ EL COMUNICADO?</div>
-                        <div class="pie-hoja" id="documento-pie">ARCHIVO CONSERVADO · FUENTE PENDIENTE</div>
+                        <div class="anotacion-hoja" id="documento-anotacion">¿QUIÉNES FORMABAN EL EQUIPO?</div>
+                        <div class="pie-hoja" id="documento-pie">PRESENTACIÓN DEL EQUIPO · EXPEDIENTE 001</div>
                     </article>
 
                     <div class="elementos-adjuntos">
                         <figure class="fotografia-estudio">
-                            <div class="imagen-estudio" role="img" aria-label="Ilustración de una oficina vacía con una ventana y un ordenador antiguo">
+                            <div class="imagen-estudio" role="img" aria-label="Recreación decorativa de una oficina vacía; no constituye evidencia del caso">
                                 <span class="ventana-foto" aria-hidden="true"></span>
                                 <span class="monitor-foto" aria-hidden="true"></span>
                                 <span class="mesa-foto" aria-hidden="true"></span>
                                 <span class="silla-foto" aria-hidden="true"></span>
                             </div>
-                            <figcaption>CAPTURA · ESTUDIO VACÍO</figcaption>
+                            <figcaption>ILUSTRACIÓN · ESTUDIO (NO ES PRUEBA)</figcaption>
                         </figure>
                         <aside class="nota-papel" aria-label="Nota del investigador">
                             <h3>NOTA DEL INVESTIGADOR</h3>
@@ -92,33 +93,42 @@
                 </div>
 
                 <section class="zona-acertijo" aria-labelledby="titulo-acertijo">
-                    <p class="microtitulo-investigacion">ACERTIJO 01 / 06 — PROPUESTA NARRATIVA</p>
-                    <h2 id="titulo-acertijo">¿QUÉ OCULTA EL COMUNICADO?</h2>
-                    <p>Consulta los archivos y conecta las evidencias antes de responder.</p>
+                    <p class="microtitulo-investigacion">ACERTIJO 01 / 07 — LA CANCELACIÓN</p>
+                    <h2 id="titulo-acertijo">¿QUIÉNES DESARROLLABAN LA SECUELA?</h2>
+                    <p>Examina la presentación del equipo y el comunicado para identificar a sus integrantes.</p>
                     <button id="examinar-pruebas" class="boton-examinar" type="button">EXAMINAR LAS PRUEBAS <span aria-hidden="true">→</span></button>
                     <p id="mensaje-investigacion" class="mensaje-investigacion" role="status" aria-live="polite"></p>
+                    <div class="puerta-acertijo01" aria-labelledby="acertijo01-etiqueta">
+                        <p id="acertijo01-etiqueta" class="microtitulo-investigacion">PRUEBAS NECESARIAS</p>
+                        <p id="acertijo01-requisito" class="acertijo01-requisito" role="status" aria-live="polite">
+                            Examina la Presentación del equipo y el Comunicado oficial para responder.
+                        </p>
+                        <button id="abrir-acertijo01" class="boton-resolver-acertijo" type="button" disabled>
+                            RESOLVER ACERTIJO 01 <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
                 </section>
             </section>
 
             <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
                 <section class="objetivos-panel" aria-labelledby="titulo-objetivos">
                     <h2 id="titulo-objetivos" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
-                    <ul class="lista-objetivos">
-                        <li data-objetivo="comunicado"><span class="casilla-objetivo" aria-hidden="true"></span><span>Leer el comunicado</span></li>
-                        <li data-objetivo="captura"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar la captura</span></li>
-                        <li data-objetivo="registro"><span class="casilla-objetivo" aria-hidden="true"></span><span>Revisar los registros</span></li>
-                        <li data-objetivo="acertijo"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 01</span></li>
-                    </ul>
+
+<ul class="lista-objetivos">
+    <li data-objetivo="presentacion"><span class="casilla-objetivo" aria-hidden="true"></span><span>Leer presentación del equipo</span></li>
+    <li data-objetivo="comunicado"><span class="casilla-objetivo" aria-hidden="true"></span><span>Leer el comunicado oficial</span></li>
+    <li data-objetivo="acertijo"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 01</span></li>
+</ul>
                 </section>
                 <section class="progreso-panel" aria-labelledby="titulo-progreso">
                     <h2 id="titulo-progreso" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
-                    <p class="contador-progreso">0 / 6 ACERTIJOS</p>
-                    <progress value="0" max="6" aria-label="Progreso del caso">0 de 6</progress>
+                    <p class="contador-progreso">0 / 7 ACERTIJOS</p>
+                    <progress value="0" max="7" aria-label="Progreso del caso">0 de 7</progress>
                 </section>
                 <section class="confianza-panel" aria-labelledby="titulo-confianza">
                     <h2 id="titulo-confianza" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
                     <p>DISTANTE / AÚN NO CONFÍA</p>
-                    <progress value="0" max="6" aria-label="Confianza de la artista">0 de 6</progress>
+                    <progress value="0" max="7" aria-label="Confianza de la artista">0 de 7</progress>
                     <div class="testimonio-bloqueado">
                         <strong>▣ &nbsp; TESTIMONIO BLOQUEADO</strong>
                         <p>Resuelve acertijos para ganar su confianza y conocer su versión.</p>
@@ -146,7 +156,29 @@
         <h2 id="dialogo-titulo">COMUNICADO OFICIAL</h2>
         <p id="dialogo-descripcion" class="dialogo-descripcion"></p>
         <p id="dialogo-observacion" class="dialogo-observacion"></p>
-        <p class="dialogo-pie">Prototipo narrativo · Aún no se han implementado acertijos ni desbloqueos de base de datos.</p>
+        <p class="dialogo-pie">Documentos originales del expediente 001 · Progreso provisional (sin PostgreSQL).</p>
+    </dialog>
+
+    <!-- Acertijo 01: pregunta y opciones alineadas con datos_iniciales.sql; validación local hasta integrar API. -->
+    <dialog id="dialogo-acertijo01" class="dialogo-prueba dialogo-acertijo01" aria-labelledby="titulo-pregunta-01">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 01 / 07 · EXPEDIENTE 001</p>
+            <button type="button" id="cerrar-acertijo01" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta-01">¿QUIÉNES DESARROLLABAN LA SECUELA?</h2>
+        <p class="enunciado-acertijo01">En el material de presentación del equipo, ¿cuántas personas aparecen como integrantes responsables de desarrollar la secuela?</p>
+        <form id="form-acertijo01">
+            <fieldset class="respuestas-acertijo01">
+
+<legend>Selecciona una respuesta</legend>
+<label><input type="radio" name="respuesta01" value="2"> 2 integrantes</label>
+<label><input type="radio" name="respuesta01" value="3"> 3 integrantes</label>
+<label><input type="radio" name="respuesta01" value="4"> 4 integrantes</label>
+<label><input type="radio" name="respuesta01" value="5"> 5 integrantes</label>
+            </fieldset>
+            <p id="respuesta-acertijo01-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo01" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
     </dialog>
 </body>
 </html>

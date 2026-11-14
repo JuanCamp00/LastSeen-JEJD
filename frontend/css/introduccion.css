@@ -146,6 +146,7 @@
     letter-spacing: 0.05em;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
 }
 
 .boton-abrir-caso:hover {
