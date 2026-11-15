@@ -90,7 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
     lista.forEach(boton => boton.addEventListener('click', () => cambiarDocumento(boton.dataset.documento)));
     document.getElementById('examinar-pruebas').addEventListener('click', examinar);
     document.getElementById('ver-documentos').addEventListener('click', examinar);
-    document.getElementById('ver-expedientes').addEventListener('click', () => cambiarDocumento('presentacion'));
+    // La pestaña EXPEDIENTES dirige al índice de expedientes desbloqueados,
+    // en lugar de cambiar silenciosamente el documento de la mesa.
+    document.getElementById('ver-expedientes').addEventListener('click', () => {
+        const indice = document.querySelector('.indice-pie');
+        if (!indice) return;
+        indice.setAttribute('tabindex', '-1');
+        indice.scrollIntoView({ block: 'nearest' });
+        indice.focus({ preventScroll: true });
+    });
     document.getElementById('cerrar-dialogo').addEventListener('click', () => dialogo.close());
     dialogo.addEventListener('click', evento => { if (evento.target === dialogo) dialogo.close(); });
     actualizarObjetivos();

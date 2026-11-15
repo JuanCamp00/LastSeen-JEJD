@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 005</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente003.css">
+    <link rel="stylesheet" href="./css/expediente005.css">
+    <script src="./expediente005.js" defer></script>
+    <script src="./acceso-expediente006.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 005 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 005</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="4" max="7" aria-label="Acertijos resueltos">4 de 7</progress>
+                    <strong>4 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice05">
+                <h2 id="titulo-indice05" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp03-volver" href="./expediente004.html">← VOLVER AL EXPEDIENTE 004</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 005</strong>
+                    <span>LO QUE LOS UNÍA</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 005">
+                    <button type="button" id="ver-registro05" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Registro de colaboración creativa</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Otros documentos · bloqueados</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 006 — 007 / BLOQUEADOS</p>
+                    <small>RECUPERADOS &nbsp; 05 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa05">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa05" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 005</h1>
+                    <span id="estado-analisis05" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp05-documento">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento05">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 005-A</span>
+                            <span class="sello-recuperado">REGISTRO INTERNO</span>
+                        </div>
+                        <h2 id="titulo-documento05">REGISTRO DE COLABORACIÓN CREATIVA</h2>
+                        <p class="exp05-subtitulo">Fragmentos recuperados de la documentación del desarrollo.</p>
+                        <div class="exp05-roles">
+                            <div><strong>DESARROLLO FRONTEND</strong><p>Interfaces e implementación visual.</p></div>
+                            <div><strong>DIRECCIÓN ARTÍSTICA</strong><p>Personajes, ilustraciones, música y recursos gráficos.</p></div>
+                        </div>
+                        <div class="exp05-recorte">
+                            <span>FRAGMENTO DE UNA NOTA PERSONAL</span>
+                            <blockquote>«A veces siento que estamos mezclando demasiado las cosas. Me gusta trabajar contigo, pero últimamente no sé cómo separar lo que pasa entre nosotros de lo que está pasando con el proyecto».</blockquote>
+                        </div>
+                        <p class="exp03-pie-papel">DOCUMENTACIÓN RECUPERADA · EXAMINA EL ARCHIVO COMPLETO PARA ANALIZAR EL VÍNCULO.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp03-zona-acertijo" aria-labelledby="titulo-acertijo05">
+                    <p class="microtitulo-investigacion">ACERTIJO 05 / 07 — LO QUE LOS UNÍA</p>
+                    <h2 id="titulo-acertijo05">¿QUÉ LOS VINCULABA?</h2>
+                    <p>Lee el registro de colaboración y presta atención a la nota personal antes de elegir tu conclusión.</p>
+                    <button type="button" id="abrir-registro05" class="boton-examinar exp03-boton">EXAMINAR REGISTRO <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo05-requisito" class="exp03-requisito" role="status" aria-live="polite">Examina el registro de colaboración antes de responder.</p>
+                        <button type="button" id="abrir-acertijo05" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 05 →</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos05">
+                    <h2 id="titulo-objetivos05" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-registro05"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar registro de colaboración creativa</span></li>
+                        <li id="objetivo-acertijo05"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 05</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso05">
+                    <h2 id="titulo-progreso05" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">4 / 7 ACERTIJOS</p>
+                    <progress value="4" max="7" aria-label="Progreso del caso">4 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza05">
+                    <h2 id="titulo-confianza05" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>CONFIANZA EN DESARROLLO (DEMO)</p>
+                    <progress value="4" max="7" aria-label="Indicador provisional de confianza">4 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO PENDIENTE</strong>
+                        <p>El testimonio de la artista se incorporará cuando esté definido en los documentos oficiales del juego.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-registro05" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-registro05">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 005-A / REGISTRO INTERNO</p>
+            <button type="button" id="cerrar-registro05" class="cerrar-dialogo" aria-label="Cerrar registro">✕</button>
+        </div>
+        <h2 id="titulo-registro05">REGISTRO DE COLABORACIÓN CREATIVA</h2>
+        <pre class="exp03-transcripcion exp05-transcripcion">ARCHIVO RECUPERADO · 005-A
+REGISTRO INTERNO
+
+
+Registro de colaboración creativa
+Fragmentos recuperados de la documentación del desarrollo.
+
+PROYECTO: Secuela del videojuego original.
+
+ÁREAS INVOLUCRADAS:
+- Desarrollo frontend: interfaces e implementación visual.
+- Dirección artística: personajes, ilustraciones, música y recursos gráficos.
+NOTA DE SEGUIMIENTO
+
+Ambos integrantes trabajaban estrechamente durante las etapas de diseño e implementación. Gran parte de las decisiones visuales se realizaban conjuntamente y sus aportaciones aparecían frecuentemente relacionadas en los registros de versiones.
+
+FRAGMENTO DE UNA NOTA PERSONAL
+
+«A veces siento que estamos mezclando demasiado las cosas. Me gusta trabajar contigo, pero últimamente no sé cómo separar lo que pasa entre nosotros de lo que está pasando con el proyecto».
+
+OBSERVACIÓN
+
+Se encontraron numerosos archivos creados y modificados por ambos integrantes durante el mismo periodo.
+
+El documento no contiene información sobre el motivo por el que dejaron de trabajar juntos.</pre>
+        <p class="dialogo-pie">Fuente: registro_colaboracion.txt · Expediente 005.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo05" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-pregunta05">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 05 / 07 · EXPEDIENTE 005</p>
+            <button type="button" id="cerrar-acertijo05" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta05">LO QUE LOS UNÍA</h2>
+        <p class="exp03-pregunta">Según los registros encontrados, ¿qué vínculo existía entre la artista y el desarrollador frontend?</p>
+        <form id="form-acertijo05">
+            <fieldset class="exp03-respuestas" id="opciones-acertijo05">
+                <legend>Selecciona una respuesta</legend>
+                <label><input type="radio" name="respuesta05" value="1" required> Eran antiguos compañeros de universidad.</label>
+                <label><input type="radio" name="respuesta05" value="2" required> Mantenían una relación sentimental y trabajaban juntos.</label>
+                <label><input type="radio" name="respuesta05" value="3" required> Eran familiares.</label>
+                <label><input type="radio" name="respuesta05" value="4" required> Apenas tenían contacto profesional.</label>
+            </fieldset>
+            <p id="respuesta-acertijo05-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo05" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación provisional en el navegador. La integración definitiva corresponde al backend.</p>
+    </dialog>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 007</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente003.css">
+    <link rel="stylesheet" href="./css/expediente006.css">
+    <link rel="stylesheet" href="./css/expediente007.css">
+    <script src="./expediente007.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 007 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 007</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="6" max="7" aria-label="Acertijos resueltos">6 de 7</progress>
+                    <strong>6 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice07">
+                <h2 id="titulo-indice07" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp03-volver" href="./expediente006.html">← VOLVER AL EXPEDIENTE 006</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 007</strong>
+                    <span>LA ÚLTIMA PIEZA</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 007">
+                    <button type="button" id="ver-registro07" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Últimos registros del proyecto</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Recuperación adicional no disponible</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">ESTADO DEL ARCHIVO</h3>
+                    <p id="estado-indice07" class="archivo-bloqueado">▧ &nbsp; 007 / EN INVESTIGACIÓN</p>
+                    <small>RECUPERADOS &nbsp; 07 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa07">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa07" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 007</h1>
+                    <span id="estado-analisis07" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp07-documento">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento07">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 007-A</span>
+                            <span class="sello-recuperado">INFORMACIÓN INCOMPLETA</span>
+                        </div>
+                        <h2 id="titulo-documento07">ÚLTIMOS REGISTROS DEL PROYECTO</h2>
+                        <p class="exp06-subtitulo">Fragmentos recuperados de los registros de actividad y documentos internos.</p>
+                        <div class="exp07-linea-tiempo" aria-label="Comparación de los registros de actividad">
+                            <div class="exp07-registro"><span class="exp07-hora">21:14</span><span>ÚLTIMA ACTIVIDAD IDENTIFICADA<br><strong>DESARROLLADOR BACKEND</strong></span></div>
+                            <div class="exp07-registro"><span class="exp07-hora">22:03</span><span>ACTIVIDAD POSTERIOR<br><strong>CUENTA VINCULADA AL FRONTEND</strong></span></div>
+                            <div class="exp07-registro exp07-ausencia"><span class="exp07-hora">—:—</span><span>ESTADO POSTERIOR<br><strong>CUENTA BACKEND · SIN ACTIVIDAD VERIFICABLE</strong></span></div>
+                        </div>
+                        <p class="exp07-advertencia">NO SE ENCONTRARON EXPLICACIONES CONCLUYENTES SOBRE LA AUSENCIA DEL DESARROLLADOR BACKEND.</p>
+                        <p class="exp03-pie-papel">EL ARCHIVO TERMINA ABRUPTAMENTE · EXAMINA EL REGISTRO COMPLETO.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp03-zona-acertijo" aria-labelledby="titulo-acertijo07">
+                    <p class="microtitulo-investigacion">ACERTIJO 07 / 07 — LA ÚLTIMA PIEZA</p>
+                    <h2 id="titulo-acertijo07">¿QUÉ DICEN REALMENTE LOS REGISTROS?</h2>
+                    <p>Compara la última actividad registrada de ambas cuentas y distingue las pruebas de las suposiciones.</p>
+                    <button type="button" id="abrir-registro07" class="boton-examinar exp03-boton">EXAMINAR ÚLTIMO REGISTRO <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo07-requisito" class="exp03-requisito" role="status" aria-live="polite">Examina el último registro recuperado antes de responder.</p>
+                        <button type="button" id="abrir-acertijo07" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 07 →</button>
+                    </div>
+                    <section id="cierre-expediente07" class="exp07-cierre" hidden aria-labelledby="titulo-cierre07">
+                        <p class="microtitulo-investigacion">INVESTIGACIÓN / 07 DE 07 ACERTIJOS</p>
+                        <h3 id="titulo-cierre07">ARCHIVOS EXAMINADOS</h3>
+                        <p>Has completado los siete acertijos. Los últimos registros no permiten concluir qué ocurrió con el desarrollador backend: solo confirman que no se encontró actividad verificable posterior de su cuenta.</p>
+                        <p class="exp07-cierre-nota">«El archivo termina de forma abrupta. No se ha podido recuperar información adicional».</p>
+                        <a class="exp07-volver" href="./informe-final.html">▣ VER INFORME FINAL →</a>
+                        <a class="exp07-volver" href="./investigacion.html">← VOLVER A LA INVESTIGACIÓN</a>
+                    </section>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos07">
+                    <h2 id="titulo-objetivos07" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-registro07"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar los últimos registros del proyecto</span></li>
+                        <li id="objetivo-acertijo07"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 07</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso07">
+                    <h2 id="titulo-progreso07" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">6 / 7 ACERTIJOS</p>
+                    <progress value="6" max="7" aria-label="Progreso del caso">6 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza07">
+                    <h2 id="titulo-confianza07" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>CONFIANZA EN DESARROLLO (DEMO)</p>
+                    <progress value="6" max="7" aria-label="Indicador provisional de confianza">6 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; DECLARACIÓN RECUPERADA</strong>
+                        <p>La declaración de la artista forma parte del registro final. Puedes leerla al examinar el documento completo.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-registro07" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-registro07">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 007-A / INFORMACIÓN INCOMPLETA</p>
+            <button type="button" id="cerrar-registro07" class="cerrar-dialogo" aria-label="Cerrar registro">✕</button>
+        </div>
+        <h2 id="titulo-registro07">ÚLTIMOS REGISTROS DEL PROYECTO</h2>
+        <pre class="exp03-transcripcion exp06-transcripcion">ARCHIVO RECUPERADO · 007-A
+INFORMACIÓN INCOMPLETA
+
+
+Últimos registros del proyecto
+Fragmentos recuperados de los registros de actividad y documentos internos.
+
+REGISTRO DE ACTIVIDAD
+
+Última actividad identificada del desarrollador backend: 21:14.
+
+Actividad posterior registrada desde una cuenta vinculada al desarrollo frontend: 22:03.
+
+Estado posterior de la cuenta del backend: sin actividad verificable.
+
+FRAGMENTO DE UNA NOTA PERSONAL
+
+«No puedo seguir trabajando de esta manera. Cada día parece que algo se rompe un poco más. Ya no sé si tiene sentido intentar arreglarlo».
+
+DECLARACIÓN RECUPERADA DE LA ARTISTA
+
+«Después de aquella última reunión dejé de tener noticias de ambos.
+
+Pregunté qué había sucedido, pero recibí respuestas diferentes. Ninguna me convenció del todo.
+
+Durante mucho tiempo pensé que simplemente habíamos terminado mal. Ahora ni siquiera sé si alguna vez entendí lo que estaba ocurriendo».
+
+OBSERVACIONES DEL INVESTIGADOR
+- La última actividad verificable del backend coincide con el periodo de mayor conflicto interno.
+- Existen registros posteriores relacionados con la cuenta del frontend.
+- No se encontraron explicaciones concluyentes sobre la ausencia del backend.
+- El comunicado de cancelación no menciona los acontecimientos de aquellas últimas horas.
+
+El archivo termina de forma abrupta. No se ha podido recuperar información adicional.</pre>
+        <p class="dialogo-pie">Fuente original: ultimo_registro_recuperado.txt · Expediente 007.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo07" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-pregunta07">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 07 / 07 · EXPEDIENTE 007</p>
+            <button type="button" id="cerrar-acertijo07" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta07">LA ÚLTIMA PIEZA</h2>
+        <p class="exp03-pregunta">Según los registros recuperados, ¿qué ocurrió con la actividad verificable de la cuenta del desarrollador backend después de aquella última noche?</p>
+        <form id="form-acertijo07">
+            <label class="exp06-label" for="respuesta07">Escribe lo que permiten afirmar las pruebas</label>
+            <textarea id="respuesta07" name="respuesta07" class="exp06-respuesta" rows="3" maxlength="300" placeholder="¿Qué pasó con la actividad verificable de esa cuenta?" required></textarea>
+            <p id="respuesta-acertijo07-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo07" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación provisional en el navegador. Una ausencia de registros no demuestra qué ocurrió con la persona.</p>
+    </dialog>
+</body>
+</html>

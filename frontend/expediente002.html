@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 002</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente002.css">
+    <script src="./expediente002.js" defer></script>
+    <script src="./acceso-expediente003.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 002 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 002</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="1" max="7" aria-label="Acertijos resueltos">1 de 7</progress>
+                    <strong>1 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice">
+                <h2 id="titulo-indice" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp02-volver" href="./investigacion.html">← VOLVER AL EXPEDIENTE 001</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 002</strong>
+                    <span>LAS SEÑALES IGNORADAS</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 002">
+                    <button type="button" id="ver-entrevista" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Entrevista al desarrollador backend</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Otros documentos · bloqueados</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 003 — 007 / BLOQUEADOS</p>
+                    <small>RECUPERADOS &nbsp; 02 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 002</h1>
+                    <span id="estado-analisis02" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp02-entrevista">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento02">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 002-A</span>
+                            <span class="sello-recuperado">TRANSCRIPCIÓN</span>
+                        </div>
+                        <h2 id="titulo-documento02">ENTREVISTA AL EQUIPO DE DESARROLLO</h2>
+                        <p class="exp02-subtitulo">Fragmento de una entrevista promocional anterior a la cancelación.</p>
+                        <div class="exp02-fragmento">
+                            <div><strong>ENTREVISTADOR:</strong><p>¿Cómo hacen para resolver los desacuerdos cuando tienen opiniones diferentes sobre el desarrollo?</p></div>
+                            <div><strong>DESARROLLADOR BACKEND:</strong><p>Bueno, es normal que existan diferencias. Al final alguien tiene que tomar las decisiones...</p></div>
+                        </div>
+                        <p class="exp02-pista-archivo">TRANSCRIPCIÓN PARCIAL EN LA MESA · PULSA «EXAMINAR ENTREVISTA» PARA LEER EL DOCUMENTO COMPLETO.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp02-zona-acertijo" aria-labelledby="titulo-acertijo02">
+                    <p class="microtitulo-investigacion">ACERTIJO 02 / 07 — LAS SEÑALES IGNORADAS</p>
+                    <h2 id="titulo-acertijo02">¿QUIÉN DEBÍA TENER LA ÚLTIMA PALABRA?</h2>
+                    <p>Lee la transcripción recuperada y presta atención a cómo describía el desarrollador backend la toma de decisiones.</p>
+                    <button type="button" id="abrir-entrevista" class="boton-examinar exp02-boton">EXAMINAR ENTREVISTA <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo02-requisito" class="exp02-requisito" role="status" aria-live="polite">Examina la entrevista recuperada antes de responder.</p>
+                        <button type="button" id="abrir-acertijo02" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 02 →</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos">
+                    <h2 id="titulo-objetivos" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-entrevista"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar entrevista al backend</span></li>
+                        <li id="objetivo-acertijo02"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 02</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso">
+                    <h2 id="titulo-progreso" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">1 / 7 ACERTIJOS</p>
+                    <progress value="1" max="7" aria-label="Progreso del caso">1 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza">
+                    <h2 id="titulo-confianza" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>PRIMER ACERCAMIENTO (DEMO)</p>
+                    <progress value="1" max="7" aria-label="Confianza de la artista">1 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO PENDIENTE</strong>
+                        <p>El testimonio de la artista se incorporará cuando su contenido esté definido; no se inventan declaraciones para esta demostración.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-entrevista" class="dialogo-prueba" aria-labelledby="titulo-entrevista-completa">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 002-A / TRANSCRIPCIÓN</p>
+            <button type="button" id="cerrar-entrevista" class="cerrar-dialogo" aria-label="Cerrar entrevista">✕</button>
+        </div>
+        <h2 id="titulo-entrevista-completa">ENTREVISTA AL DESARROLLADOR BACKEND</h2>
+        <pre class="exp02-transcripcion">ARCHIVO RECUPERADO · 002-A
+TRANSCRIPCIÓN
+
+
+Entrevista al equipo de desarrollo
+Fragmento de una entrevista promocional anterior a la cancelación.
+
+ENTREVISTADOR:
+
+¿Cómo hacen para resolver los desacuerdos cuando tienen opiniones diferentes sobre el desarrollo?
+
+DESARROLLADOR BACKEND:
+
+Bueno, es normal que existan diferencias. Al final alguien tiene que tomar las decisiones. No todos tenemos la misma visión del proyecto y, si intentamos que todos opinen sobre absolutamente todo, terminaríamos retrasando el trabajo.
+
+ENTREVISTADOR:
+
+¿Entonces suelen tener una persona que toma la decisión definitiva?
+
+DESARROLLADOR BACKEND:
+
+Digamos que alguien tiene que hacerse responsable de que las cosas se hagan correctamente.
+
+ENTREVISTADOR:
+
+¿Y los demás están de acuerdo con esa dinámica?
+
+DESARROLLADOR BACKEND:
+
+Hasta ahora nos ha funcionado bastante bien.
+
+Nota de archivo: el entrevistador cambió de tema poco después. No se conserva el fragmento completo del encuentro.</pre>
+        <p class="dialogo-pie">Fuente: entrevista_backend.txt · Expediente 002. El fragmento original está incompleto.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo02" class="dialogo-prueba exp02-dialogo" aria-labelledby="titulo-pregunta02">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 02 / 07 · EXPEDIENTE 002</p>
+            <button type="button" id="cerrar-acertijo02" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta02">LAS SEÑALES IGNORADAS</h2>
+        <p class="exp02-modal-pregunta">Según la entrevista, ¿qué consideraba necesario el desarrollador backend para que el equipo pudiera tomar decisiones?</p>
+        <form id="form-acertijo02">
+            <label for="respuesta02" class="exp02-label">Escribe tu conclusión</label>
+            <textarea id="respuesta02" name="respuesta02" class="exp02-respuesta" rows="3" maxlength="300" placeholder="Tu respuesta..." required></textarea>
+            <p id="respuesta-acertijo02-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo02" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación de demostración en el navegador. No se conecta con PostgreSQL.</p>
+    </dialog>
+</body>
+</html>
