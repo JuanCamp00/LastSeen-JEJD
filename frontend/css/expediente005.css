@@ -1,0 +1,17 @@
+/* LAST SEEN · Estilos aislados del Expediente 005. */
+.exp05-documento { margin: 28px 3px 0; }
+.exp05-documento .hoja-comunicado { max-width: 800px; min-height: 392px; }
+.exp05-subtitulo { color: #5e4b3c; margin: 0 0 18px; font-size: 12px; line-height: 1.6; }
+.exp05-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: 1px solid rgba(73,59,50,.35); padding-top: 16px; }
+.exp05-roles > div { padding: 12px; background: rgba(90,67,48,.07); border-left: 2px solid #776658; }
+.exp05-roles strong { font-size: 10px; letter-spacing: .5px; color: #6f2732; }
+.exp05-roles p { margin: 6px 0 0; font-size: 12px; line-height: 1.55; color: #46372e; }
+.exp05-recorte { margin: 20px 0 18px; border-left: 3px solid #782d37; padding: 3px 0 3px 16px; }
+.exp05-recorte span { font-size: 10px; letter-spacing: .5px; font-weight: 700; color: #742b35; }
+.exp05-recorte blockquote { font-size: 12px; line-height: 1.75; margin: 8px 0 0; color: #453529; font-style: italic; }
+.exp05-transcripcion { max-height: min(56vh, 500px); overflow: auto; }
+@media (max-width: 760px) {
+    .exp05-documento { margin: 18px 0 0; }
+    .exp05-documento .hoja-comunicado { padding: 23px 18px 16px; }
+}
+@media (max-width: 480px) { .exp05-roles { grid-template-columns: 1fr; } }

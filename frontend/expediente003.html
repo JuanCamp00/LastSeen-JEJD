@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 003</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente003.css">
+    <script src="./expediente003.js" defer></script>
+    <script src="./acceso-expediente004.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 003 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 003</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="2" max="7" aria-label="Acertijos resueltos">2 de 7</progress>
+                    <strong>2 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice03">
+                <h2 id="titulo-indice03" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp03-volver" href="./expediente002.html">← VOLVER AL EXPEDIENTE 002</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 003</strong>
+                    <span>UN PASADO OLVIDADO</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 003">
+                    <button type="button" id="ver-registro03" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Registro del proyecto anterior</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Otros documentos · bloqueados</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 004 — 007 / BLOQUEADOS</p>
+                    <small>RECUPERADOS &nbsp; 03 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa03">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa03" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 003</h1>
+                    <span id="estado-analisis03" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp03-documento">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento03">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 003-A</span>
+                            <span class="sello-recuperado">PORTAFOLIO ANTIGUO</span>
+                        </div>
+                        <h2 id="titulo-documento03">REGISTRO DEL PROYECTO ANTERIOR</h2>
+                        <p class="exp03-subtitulo">Fragmento recuperado de un antiguo portafolio de desarrollo.</p>
+                        <dl class="exp03-metadatos">
+                            <div><dt>TIPO DE PROYECTO</dt><dd>Videojuego independiente</dd></div>
+                            <div><dt>ESTADO DEL EQUIPO</dt><dd>Disuelto</dd></div>
+                            <div><dt>PARTICIPACIÓN REGISTRADA</dt><dd>Programación backend y sistemas internos</dd></div>
+                        </dl>
+                        <div class="exp03-recorte">
+                            <strong>COMUNICADO DE CIERRE / FRAGMENTO</strong>
+                            <p>Tras varios meses de trabajo, el equipo ha decidido poner fin a sus actividades debido a diferencias internas relacionadas con la dirección que estaba tomando el proyecto.</p>
+                        </div>
+                        <p class="exp03-pie-papel">ARCHIVO INCOMPLETO · ABRE EL REGISTRO PARA LEER EL DOCUMENTO COMPLETO.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp03-zona-acertijo" aria-labelledby="titulo-acertijo03">
+                    <p class="microtitulo-investigacion">ACERTIJO 03 / 07 — UN PASADO OLVIDADO</p>
+                    <h2 id="titulo-acertijo03">¿POR QUÉ SE DISOLVIÓ EL EQUIPO?</h2>
+                    <p>Analiza el comunicado archivado del proyecto anterior. Busca el motivo que anunciaron sus propios integrantes.</p>
+                    <button type="button" id="abrir-registro03" class="boton-examinar exp03-boton">EXAMINAR REGISTRO <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo03-requisito" class="exp03-requisito" role="status" aria-live="polite">Examina el registro del proyecto anterior antes de responder.</p>
+                        <button type="button" id="abrir-acertijo03" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 03 →</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos03">
+                    <h2 id="titulo-objetivos03" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-registro03"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar registro del proyecto anterior</span></li>
+                        <li id="objetivo-acertijo03"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 03</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso03">
+                    <h2 id="titulo-progreso03" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">2 / 7 ACERTIJOS</p>
+                    <progress value="2" max="7" aria-label="Progreso del caso">2 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza03">
+                    <h2 id="titulo-confianza03" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>CONFIANZA EN DESARROLLO (DEMO)</p>
+                    <progress value="2" max="7" aria-label="Indicador provisional de confianza">2 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO PENDIENTE</strong>
+                        <p>El testimonio de la artista se añadirá cuando esté definido en los documentos oficiales del juego.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-registro03" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-registro-completo03">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 003-A / PORTAFOLIO</p>
+            <button type="button" id="cerrar-registro03" class="cerrar-dialogo" aria-label="Cerrar registro">✕</button>
+        </div>
+        <h2 id="titulo-registro-completo03">REGISTRO DEL PROYECTO ANTERIOR</h2>
+        <pre class="exp03-transcripcion">ARCHIVO RECUPERADO · 003-A
+PORTAFOLIO ANTIGUO
+
+
+Registro de un antiguo proyecto independiente
+Fragmento recuperado de un antiguo portafolio de desarrollo.
+
+REGISTRO DEL EQUIPO
+
+Tipo de proyecto: videojuego independiente.
+
+Estado del equipo: disuelto.
+
+Participación registrada: programación backend y sistemas internos.
+
+COMUNICADO DE CIERRE
+
+Tras varios meses de trabajo, el equipo ha decidido poner fin a sus actividades debido a diferencias internas relacionadas con la dirección que estaba tomando el proyecto.
+
+Los integrantes han decidido continuar sus caminos por separado.
+
+Por respeto a las personas involucradas, no se realizarán declaraciones adicionales sobre lo sucedido.
+
+OBSERVACIONES DEL ARCHIVO
+
+El perfil de uno de los integrantes dejó de estar disponible poco después de publicarse el comunicado.
+
+No se encontraron entrevistas posteriores ni explicaciones individuales sobre la separación.
+
+Última actualización registrada: información incompleta.</pre>
+        <p class="dialogo-pie">Fuente: registro_proyecto_anterior.txt · Expediente 003.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo03" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-pregunta03">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 03 / 07 · EXPEDIENTE 003</p>
+            <button type="button" id="cerrar-acertijo03" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta03">UN PASADO OLVIDADO</h2>
+        <p class="exp03-pregunta">Según el comunicado archivado, ¿cuál fue el motivo anunciado para la disolución del equipo anterior?</p>
+        <form id="form-acertijo03">
+            <fieldset class="exp03-respuestas" id="opciones-acertijo03">
+                <legend>Selecciona una respuesta</legend>
+                <label><input type="radio" name="respuesta03" value="1" required> Falta de financiación.</label>
+                <label><input type="radio" name="respuesta03" value="2" required> Diferencias internas sobre la dirección del proyecto.</label>
+                <label><input type="radio" name="respuesta03" value="3" required> El videojuego había sido completado.</label>
+                <label><input type="radio" name="respuesta03" value="4" required> El equipo fue adquirido por otra empresa.</label>
+            </fieldset>
+            <p id="respuesta-acertijo03-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo03" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación provisional en el navegador. La integración definitiva corresponde al backend.</p>
+    </dialog>
+</body>
+</html>

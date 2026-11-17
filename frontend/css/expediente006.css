@@ -1,0 +1,19 @@
+/* LAST SEEN · Estilos del Expediente 006. Aislados del resto del juego. */
+.exp06-documento { margin: 28px 3px 0; }
+.exp06-documento .hoja-comunicado { max-width: 800px; min-height: 410px; }
+.exp06-subtitulo { color: #5e4b3c; margin: 0 0 17px; font-size: 12px; line-height: 1.6; }
+.exp06-fragmentos { display: grid; gap: 14px; border-top: 1px solid rgba(73,59,50,.35); padding-top: 17px; }
+.exp06-intervencion { border-left: 3px solid #685d59; padding: 2px 0 2px 15px; }
+.exp06-intervencion.exp06-backend { border-left-color: #7a343d; }
+.exp06-intervencion span { display: block; color: #732d35; font-size: 10px; font-weight: 700; letter-spacing: .45px; line-height: 1.5; }
+.exp06-intervencion p { margin: 7px 0 0; color: #49382d; font-size: 12px; line-height: 1.7; font-style: italic; }
+.exp06-observacion { padding: 10px 12px; border: 1px dashed rgba(90,67,48,.35); background: rgba(90,67,48,.05); color: #49392e; font-size: 11px; line-height: 1.6; }
+.exp06-transcripcion { max-height: min(56vh, 500px); overflow: auto; }
+.exp06-label { display: block; color: var(--inv-sepia); font-size: 12px; margin: 3px 0 9px; }
+.exp06-respuesta { display: block; width: 100%; box-sizing: border-box; border: 1px solid var(--inv-line); background: #0b1822; color: #eee6da; border-radius: 6px; padding: 12px 14px; resize: vertical; font: 13px/1.7 'IBM Plex Mono', monospace; min-height: 100px; margin-bottom: 15px; }
+.exp06-respuesta:focus-visible { outline: 2px solid var(--inv-sepia); outline-offset: 2px; }
+.exp06-respuesta::placeholder { color: #a49e94; }
+@media (max-width: 760px) {
+    .exp06-documento { margin: 18px 0 0; }
+    .exp06-documento .hoja-comunicado { padding: 23px 18px 16px; }
+}

@@ -1,0 +1,44 @@
+/* LAST SEEN · EXPEDIENTE 003. Estilos aislados del expediente. */
+.exp03-volver { color: var(--inv-sepia); text-decoration: none; display: inline-block;
+    font-size: 12px; padding: 12px 4px; line-height: 1.6; }
+.exp03-volver:hover { text-decoration: underline; }
+.exp03-documento { margin: 28px 3px 0; }
+.exp03-documento .hoja-comunicado { max-width: 800px; min-height: 360px; }
+.exp03-subtitulo { color: #5e4b3c; margin: 0 0 18px; font-size: 12px; line-height: 1.6; }
+.exp03-metadatos { border-top: 1px solid rgba(73, 59, 50, .35); margin: 0; padding-top: 10px;
+    display: grid; gap: 10px; }
+.exp03-metadatos > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.exp03-metadatos dt { font-size: 10px; color: #6f2732; font-weight: 700; letter-spacing: .5px; }
+.exp03-metadatos dd { font-size: 12px; text-align: right; margin: 0; }
+.exp03-recorte { border-left: 3px solid #782d37; margin-top: 20px; padding-left: 16px; }
+.exp03-recorte strong { font-size: 11px; color: #742b35; }
+.exp03-recorte p { font-size: 12px; line-height: 1.7; margin: 8px 0 0; }
+.exp03-pie-papel { border-top: 1px solid #9a846e; margin-top: auto; padding-top: 15px;
+    font-size: 10px; line-height: 1.6; color: #61463d; }
+.exp03-zona-acertijo { padding-bottom: 22px; }
+.exp03-zona-acertijo > p:not(.microtitulo-investigacion) { max-width: 68ch; }
+.exp03-zona-acertijo .puerta-acertijo01 { max-width: 740px; }
+.exp03-requisito { color: var(--inv-muted); font-size: 12px; line-height: 1.6; margin: 5px 0 15px; }
+.exp03-dialogo { width: min(660px, calc(100vw - 30px)); }
+.exp03-transcripcion { white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.8 'IBM Plex Mono', monospace; }
+.exp03-pregunta { color: var(--inv-muted); line-height: 1.7; font-size: 13px; margin: 0 0 20px; }
+.exp03-respuestas { border: 0; padding: 0; margin: 0 0 20px; display: grid; gap: 11px; }
+.exp03-respuestas legend { color: var(--inv-sepia); font-size: 12px; margin-bottom: 14px; }
+.exp03-respuestas label { display: flex; align-items: flex-start; gap: 13px; cursor: pointer;
+    background: #0b1822; border: 1px solid var(--inv-line); border-radius: 6px;
+    padding: 13px 14px; font-size: 12px; line-height: 1.55; }
+.exp03-respuestas label:has(input:checked) { border-color: var(--inv-sepia); background: #1d2b34; }
+.exp03-respuestas input { flex: 0 0 auto; margin-top: 3px; accent-color: var(--inv-sepia); }
+.exp03-respuestas label:hover { background: #1a2b36; }
+.exp03-respuestas input:disabled { cursor: default; }
+.exp03-dialogo .estado-respuesta-acertijo01 { min-height: 18px; line-height: 1.65; }
+.exp03-boton { margin-top: 20px; }
+@media (max-width: 760px) {
+    .exp03-documento { margin: 18px 0 0; }
+    .exp03-documento .hoja-comunicado { padding: 23px 18px 16px; }
+    .exp03-boton { min-width: 0; width: 100%; }
+}
+@media (max-width: 460px) {
+    .exp03-metadatos > div { display: block; }
+    .exp03-metadatos dd { text-align: left; margin-top: 4px; }
+}

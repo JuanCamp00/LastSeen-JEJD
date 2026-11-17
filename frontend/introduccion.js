@@ -1,32 +1,9 @@
-
+/* LAST SEEN · Introducción al caso. Prototipo local: nombre en sessionStorage. */
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Recuperar el nombre del investigador
-    const nombre = sessionStorage.getItem(
-        'lastSeen.nombreInvestigador'
-    );
-
-    // Verificar que exista un investigador
-    if (!nombre || nombre.trim() === '') {
+    const nombre = sessionStorage.getItem('lastSeen.nombreInvestigador')?.trim();
+    if (!nombre) {
         window.location.replace('./index.html');
         return;
     }
-
-    // Mostrar el nombre del investigador
-    const elementoNombre = document.getElementById(
-        'nombre-investigador'
-    );
-
-    elementoNombre.textContent = nombre;
-
-    // Obtener el botón ABRIR CASO
-    const botonAbrirCaso = document.getElementById(
-        'boton-abrir-caso'
-    );
-
-    // Navegar hacia el panel principal
-    botonAbrirCaso.addEventListener('click', () => {
-        window.location.href = './inicio.html';
-    });
-
+    document.getElementById('nombre-investigador').textContent = nombre;
 });

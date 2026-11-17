@@ -1,0 +1,19 @@
+/* LAST SEEN · Pistas de los siete expedientes */
+.boton-pista-lastseen {
+    display: inline-flex; align-items: center; justify-content: center;
+    max-width: 100%; min-height: 43px; margin-top: 22px; padding: 11px 15px;
+    border: 1px solid #9b8266; border-radius: 5px;
+    background: #22303a; color: #e6d4bc;
+    font: 500 12px/1.45 'IBM Plex Mono', monospace;
+    letter-spacing: .35px; cursor: pointer;
+}
+.boton-pista-lastseen:hover { background: #30414c; border-color: #c5aa83; }
+.boton-pista-lastseen:focus-visible { outline: 2px solid #c5aa83; outline-offset: 3px; }
+.dialogo-pista-lastseen { width: min(590px, calc(100vw - 30px)); }
+.dialogo-pista-lastseen .texto-pista-lastseen {
+    background: rgba(178,145,100,.12); border-left: 3px solid #ad8d68;
+    padding: 18px; color: #ece0cf; line-height: 1.8; font-size: 14px;
+}
+.dialogo-pista-lastseen .texto-pista-lastseen[hidden] { display: none; }
+.dialogo-pista-lastseen .aviso-pista-lastseen { margin-top: 18px; color: #c5ac8b; font-size: 12px; line-height: 1.7; }
+@media(max-width: 560px) { .boton-pista-lastseen { width: 100%; } }

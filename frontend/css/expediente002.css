@@ -1,0 +1,34 @@
+/* LAST SEEN · EXPEDIENTE 002. Complementa investigacion.css, sin tocar otros estilos. */
+.exp02-volver {
+    color: var(--inv-sepia); text-decoration: none; display: inline-block;
+    font-size: 12px; padding: 12px 4px; line-height: 1.6;
+}
+.exp02-volver:hover { text-decoration: underline; }
+.exp02-entrevista { display: block; margin: 28px 3px 0; }
+.exp02-entrevista .hoja-comunicado { min-height: 340px; max-width: 790px; }
+.exp02-subtitulo { color: #59483b; margin: 0 0 18px; font-size: 12px; line-height: 1.6; }
+.exp02-fragmento { display: grid; gap: 13px; margin: 14px 0 22px; font-size: 13px; line-height: 1.8; }
+.exp02-fragmento strong { color: #622c35; display: block; letter-spacing: .3px; }
+.exp02-fragmento p { margin: 4px 0 0; }
+.exp02-pista-archivo { margin-top: auto; padding-top: 15px; border-top: 1px solid #9a846e; color: #61463d; font-size: 11px; line-height: 1.7; }
+.exp02-zona-acertijo { padding-bottom: 22px; }
+.exp02-zona-acertijo > p:not(.microtitulo-investigacion) { max-width: 66ch; }
+.exp02-zona-acertijo .puerta-acertijo01 { max-width: 740px; }
+.exp02-respuesta { width: 100%; box-sizing: border-box; display: block; min-height: 106px; resize: vertical;
+    border: 1px solid #637987; border-radius: 6px; background: #07151e; color: #e1e9ed;
+    font: 14px/1.6 'IBM Plex Mono', monospace; padding: 14px; }
+.exp02-respuesta:focus-visible { outline: 2px solid var(--inv-sepia); outline-offset: 3px; }
+.exp02-respuesta:read-only { opacity: .8; }
+.exp02-label { display: block; color: var(--inv-sepia); font-size: 12px; margin: 0 0 10px; }
+.exp02-transcripcion { white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.8 'IBM Plex Mono', monospace; }
+.exp02-modal-pregunta { color: var(--inv-muted); line-height: 1.7; font-size: 13px; margin: 0 0 22px; }
+.exp02-requisito { color: var(--inv-muted); font-size: 12px; line-height: 1.6; margin: 5px 0 15px; }
+.exp02-dialogo .boton-resolver-acertijo { margin-top: 8px; }
+.exp02-dialogo .estado-respuesta-acertijo01 { min-height: 18px; }
+.exp02-boton { margin-top: 20px; }
+[hidden] { display: none !important; }
+@media (max-width: 760px) {
+    .exp02-entrevista { margin: 18px 0 0; }
+    .exp02-entrevista .hoja-comunicado { padding: 23px 18px 16px; }
+    .exp02-boton { min-width: 0; width: 100%; }
+}

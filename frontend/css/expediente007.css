@@ -1,0 +1,19 @@
+/* LAST SEEN · EXPEDIENTE 007 / LA ÚLTIMA PIEZA */
+.exp07-documento { margin: 28px 3px 0; }
+.exp07-documento .hoja-comunicado { max-width: 800px; min-height: 440px; }
+.exp07-linea-tiempo { margin: 23px 0 18px; border-top: 1px solid rgba(78,63,51,.4); border-bottom: 1px solid rgba(78,63,51,.4); }
+.exp07-registro { display: grid; grid-template-columns: minmax(65px,105px) 1fr; gap: 15px; padding: 13px 7px; color: #594838; align-items: center; border-bottom: 1px solid rgba(86,64,54,.19); font-size: 11px; line-height: 1.7; letter-spacing: .3px; }
+.exp07-registro:last-child { border-bottom: 0; }
+.exp07-hora { color: #873b40; font-weight: 700; font-family: 'Orbitron', monospace; font-size: clamp(16px, 2.4vw, 22px); }
+.exp07-registro strong { color: #3e3026; font-size: 11px; }
+.exp07-ausencia { background: rgba(129,49,51,.075); }
+.exp07-ausencia .exp07-hora { color: #7b4542; }
+.exp07-advertencia { border: 1px dashed rgba(126,62,55,.55); color: #704139; background: rgba(125,59,55,.08); padding: 14px; font-size: 10px; font-weight: 700; line-height: 1.7; letter-spacing: .3px; }
+.exp07-cierre[hidden] { display: none !important; }
+.exp07-cierre { margin-top: 25px; border: 1px solid rgba(152,130,100,.65); border-left: 4px solid #bd976d; border-radius: 5px; padding: 22px 24px; background: rgba(189,151,109,.07); line-height: 1.8; }
+.exp07-cierre h3 { font-family: 'Orbitron', monospace; margin: 9px 0 15px; color: #e9ded0; font-size: clamp(17px, 2vw, 23px); }
+.exp07-cierre p { color: #d5ccc0; font-size: 12px; max-width: 65ch; }
+.exp07-cierre .exp07-cierre-nota { font-style: italic; color: #c4ae92; }
+.exp07-volver { display: inline-block; margin-top: 10px; padding: 9px 13px; color: #ebd8be; border: 1px solid #ac8e68; border-radius: 4px; text-decoration: none; font-size: 11px; letter-spacing: .2px; }
+.exp07-volver:hover, .exp07-volver:focus-visible { background: rgba(189,151,109,.14); }
+@media (max-width:760px) { .exp07-documento { margin: 18px 0 0; } .exp07-documento .hoja-comunicado { padding: 23px 18px 16px; } .exp07-cierre { padding: 18px; } }

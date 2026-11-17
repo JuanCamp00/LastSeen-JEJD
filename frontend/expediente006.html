@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 006</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente003.css">
+    <link rel="stylesheet" href="./css/expediente006.css">
+    <script src="./expediente006.js" defer></script>
+    <script src="./acceso-expediente007.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 006 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 006</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="5" max="7" aria-label="Acertijos resueltos">5 de 7</progress>
+                    <strong>5 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice06">
+                <h2 id="titulo-indice06" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp03-volver" href="./expediente005.html">← VOLVER AL EXPEDIENTE 005</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 006</strong>
+                    <span>DETRÁS DEL PROYECTO</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 006">
+                    <button type="button" id="ver-registro06" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Registro de conflictos del equipo</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Otros documentos · bloqueados</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 007 / BLOQUEADO</p>
+                    <small>RECUPERADOS &nbsp; 06 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa06">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa06" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 006</h1>
+                    <span id="estado-analisis06" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp06-documento">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento06">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 006-A</span>
+                            <span class="sello-recuperado">NOTAS INTERNAS</span>
+                        </div>
+                        <h2 id="titulo-documento06">REGISTRO DE REUNIONES Y DESACUERDOS</h2>
+                        <p class="exp06-subtitulo">Fragmentos recuperados de las notas internas del equipo.</p>
+                        <div class="exp06-fragmentos">
+                            <div class="exp06-intervencion">
+                                <span>DESARROLLADOR FRONTEND · FRAGMENTO 01</span>
+                                <p>«No podemos seguir modificando la estructura cada vez que algo no funciona. Cada cambio termina afectando las interfaces y tenemos que rehacer parte del trabajo».</p>
+                            </div>
+                            <div class="exp06-intervencion exp06-backend">
+                                <span>DESARROLLADOR BACKEND · FRAGMENTO 01</span>
+                                <p>«El sistema necesita ajustes. No podemos mantener decisiones técnicas solamente porque ya se haya trabajado sobre ellas».</p>
+                            </div>
+                        </div>
+                        <p class="exp06-observacion"><strong>OBSERVACIÓN:</strong> No se encontró un acuerdo definitivo sobre los cambios propuestos.</p>
+                        <p class="exp03-pie-papel">REGISTRO PARCIAL · EXAMINA EL ARCHIVO COMPLETO PARA LEER LAS DEMÁS NOTAS.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp03-zona-acertijo" aria-labelledby="titulo-acertijo06">
+                    <p class="microtitulo-investigacion">ACERTIJO 06 / 07 — DETRÁS DEL PROYECTO</p>
+                    <h2 id="titulo-acertijo06">¿QUÉ IMPEDÍA QUE AVANZARAN?</h2>
+                    <p>Contrasta las intervenciones de ambos desarrolladores y los registros de seguimiento antes de escribir tu conclusión.</p>
+                    <button type="button" id="abrir-registro06" class="boton-examinar exp03-boton">EXAMINAR REGISTRO <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo06-requisito" class="exp03-requisito" role="status" aria-live="polite">Examina el registro de conflictos antes de responder.</p>
+                        <button type="button" id="abrir-acertijo06" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 06 →</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos06">
+                    <h2 id="titulo-objetivos06" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-registro06"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar registro de conflictos del equipo</span></li>
+                        <li id="objetivo-acertijo06"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 06</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso06">
+                    <h2 id="titulo-progreso06" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">5 / 7 ACERTIJOS</p>
+                    <progress value="5" max="7" aria-label="Progreso del caso">5 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza06">
+                    <h2 id="titulo-confianza06" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>CONFIANZA EN DESARROLLO (DEMO)</p>
+                    <progress value="5" max="7" aria-label="Indicador provisional de confianza">5 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO PENDIENTE</strong>
+                        <p>El testimonio de la artista se incorporará cuando esté definido en los documentos oficiales del juego.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-registro06" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-registro06">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 006-A / NOTAS INTERNAS</p>
+            <button type="button" id="cerrar-registro06" class="cerrar-dialogo" aria-label="Cerrar registro">✕</button>
+        </div>
+        <h2 id="titulo-registro06">REGISTRO DE CONFLICTOS DEL EQUIPO</h2>
+        <pre class="exp03-transcripcion exp06-transcripcion">ARCHIVO RECUPERADO · 006-A
+NOTAS INTERNAS
+
+
+Registro de reuniones y desacuerdos
+Fragmentos recuperados de las notas internas del equipo.
+
+REUNIÓN DE DESARROLLO — FRAGMENTO 01
+
+Tema: Cambios en la estructura del proyecto.
+
+Desarrollador frontend:
+
+«No podemos seguir modificando la estructura cada vez que algo no funciona. Cada cambio termina afectando las interfaces y tenemos que rehacer parte del trabajo».
+
+Desarrollador backend:
+
+«El sistema necesita ajustes. No podemos mantener decisiones técnicas solamente porque ya se haya trabajado sobre ellas».
+
+Observación: No se encontró un acuerdo definitivo sobre los cambios propuestos.
+
+NOTA PERSONAL — FRAGMENTO 02
+
+«Últimamente siento que cualquier reunión termina igual. Intento mantener las cosas funcionando, pero cada decisión se convierte en una discusión. Antes al menos podíamos trabajar sin tener que justificarlo todo».
+
+REGISTRO DE SEGUIMIENTO — FRAGMENTO 03
+- Se registraron retrasos en la integración de algunos componentes.
+- Varias tareas tuvieron que repetirse debido a cambios técnicos.
+- Las reuniones de coordinación comenzaron a ser menos productivas.
+- La comunicación entre los dos desarrolladores disminuyó.
+
+OBSERVACIÓN FINAL
+
+El proyecto continuaba en desarrollo, pero los registros muestran dificultades crecientes para coordinar las distintas áreas de trabajo.
+
+No se encontró un documento que estableciera claramente las causas de la ruptura definitiva del equipo.
+
+Estado del archivo: recuperación parcial. No se conserva la totalidad de las reuniones.</pre>
+        <p class="dialogo-pie">Fuente original: registro_de_conflictos.txt · Expediente 006.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo06" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-pregunta06">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 06 / 07 · EXPEDIENTE 006</p>
+            <button type="button" id="cerrar-acertijo06" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta06">DETRÁS DEL PROYECTO</h2>
+        <p class="exp03-pregunta">Según los registros recuperados, ¿qué situación dificultaba constantemente la colaboración entre los dos desarrolladores?</p>
+        <form id="form-acertijo06">
+            <label class="exp06-label" for="respuesta06">Escribe tu conclusión</label>
+            <textarea id="respuesta06" name="respuesta06" class="exp06-respuesta" rows="3" maxlength="300" placeholder="¿Qué problema dificultaba la colaboración?" required></textarea>
+            <p id="respuesta-acertijo06-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo06" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación provisional en el navegador. La integración definitiva corresponde al backend.</p>
+    </dialog>
+</body>
+</html>

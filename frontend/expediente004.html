@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Seen | Expediente 004</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/investigacion.css">
+    <link rel="stylesheet" href="./css/acertijo01.css">
+    <link rel="stylesheet" href="./css/expediente003.css">
+    <link rel="stylesheet" href="./css/expediente004.css">
+    <script src="./expediente004.js" defer></script>
+    <script src="./acceso-expediente005.js" defer></script>
+    <link rel="stylesheet" href="./css/pistas.css">
+    <script src="./pistas.js" defer></script>
+    <!-- LAST SEEN · Archivo de la artista (interfaz local, sin backend) -->
+    <link rel="stylesheet" href="./css/testimonios.css">
+    <script src="./testimonios.js" defer></script>
+</head>
+<body class="pagina-investigacion">
+    <main class="investigacion-app" aria-label="Expediente 004 de Last Seen">
+        <header class="investigacion-topbar">
+            <div class="investigacion-marca">
+                <a href="./inicio.html" class="marca-titulo" aria-label="Volver al inicio de Last Seen">LAST SEEN</a>
+                <span class="marca-seccion">/ INVESTIGACIÓN ACTIVA</span>
+            </div>
+            <div class="chip-expediente">EXPEDIENTE 004</div>
+            <div class="avance-general" aria-label="Progreso de acertijos">
+                <span>PROGRESO GENERAL</span>
+                <div class="avance-general-fila">
+                    <progress value="3" max="7" aria-label="Acertijos resueltos">3 de 7</progress>
+                    <strong>3 / 7</strong>
+                </div>
+            </div>
+            <div class="nombre-activo"><span aria-hidden="true">◉</span> <span id="investigador-activo">INVESTIGADOR</span></div>
+        </header>
+
+        <div class="investigacion-cuerpo">
+            <aside class="indice-evidencias tarjeta-investigacion" aria-labelledby="titulo-indice04">
+                <h2 id="titulo-indice04" class="microtitulo-investigacion">ÍNDICE DE EVIDENCIAS</h2>
+                <a class="exp03-volver" href="./expediente003.html">← VOLVER AL EXPEDIENTE 003</a>
+                <div class="expediente-seleccionado">
+                    <strong>▤ &nbsp; EXPEDIENTE 004</strong>
+                    <span>LA ARTISTA DESAPARECIDA</span>
+                </div>
+                <nav class="archivos-indice" aria-label="Documentos del expediente 004">
+                    <button type="button" id="ver-publicaciones04" class="archivo-indice seleccionado"><span aria-hidden="true">▣</span> Archivo de publicaciones de la artista</button>
+                    <button type="button" class="archivo-indice" disabled><span aria-hidden="true">◇</span> Otros documentos · bloqueados</button>
+                </nav>
+                <div class="indice-pie">
+                    <h3 class="microtitulo-investigacion">PRÓXIMOS EXPEDIENTES</h3>
+                    <p class="archivo-bloqueado">▧ &nbsp; 005 — 007 / BLOQUEADOS</p>
+                    <small>RECUPERADOS &nbsp; 04 / 07</small>
+                </div>
+            </aside>
+
+            <section class="mesa-evidencias tarjeta-investigacion" aria-labelledby="titulo-mesa04">
+                <div class="mesa-encabezado">
+                    <h1 id="titulo-mesa04" class="microtitulo-investigacion">MESA DE EVIDENCIAS / CASO 004</h1>
+                    <span id="estado-analisis04" class="estado-analisis">● &nbsp; ANÁLISIS PENDIENTE</span>
+                </div>
+                <div class="exp04-documento">
+                    <article class="hoja-comunicado" aria-labelledby="titulo-documento04">
+                        <div class="hoja-cabecera">
+                            <span>ARCHIVO RECUPERADO · 004-A</span>
+                            <span class="sello-recuperado">REGISTRO PERSONAL</span>
+                        </div>
+                        <h2 id="titulo-documento04">ACTIVIDAD PÚBLICA DE LA ARTISTA</h2>
+                        <p class="exp04-subtitulo">Fragmentos recopilados de sus antiguas publicaciones.</p>
+                        <div class="exp04-linea-tiempo">
+                            <div class="exp04-publicacion">
+                                <span class="exp04-etapa">ANTES DE LA CANCELACIÓN</span>
+                                <p>«Llevo días trabajando en el diseño de un nuevo personaje. No puedo mostrar demasiado todavía, pero estoy muy emocionada con el resultado».</p>
+                                <p>«Hoy terminé una de las composiciones musicales que más ilusión me hacía compartir. Espero que puedan escucharla pronto».</p>
+                            </div>
+                            <div class="exp04-publicacion exp04-publicacion-final">
+                                <span class="exp04-etapa">DESPUÉS DE LA CANCELACIÓN · ÚLTIMA PUBLICACIÓN</span>
+                                <p>«Gracias a todos los que se han preocupado por mí. Por ahora prefiero mantener mis trabajos en privado. Espero que puedan entenderlo».</p>
+                            </div>
+                        </div>
+                        <p class="exp04-pie-papel">EXTRACTOS DEL ARCHIVO · ABRE EL DOCUMENTO PARA EXAMINAR TODAS LAS PUBLICACIONES.</p>
+                    </article>
+                </div>
+                <section class="zona-acertijo exp03-zona-acertijo" aria-labelledby="titulo-acertijo04">
+                    <p class="microtitulo-investigacion">ACERTIJO 04 / 07 — LA ARTISTA DESAPARECIDA</p>
+                    <h2 id="titulo-acertijo04">¿QUÉ DEJÓ DE COMPARTIR?</h2>
+                    <p>Compara los registros anteriores y posteriores a la cancelación para identificar qué trabajos dejó de publicar la artista.</p>
+                    <button type="button" id="abrir-publicaciones04" class="boton-examinar exp03-boton">EXAMINAR PUBLICACIONES <span aria-hidden="true">→</span></button>
+                    <div class="puerta-acertijo01">
+                        <p class="microtitulo-investigacion">PRUEBA NECESARIA</p>
+                        <p id="acertijo04-requisito" class="exp03-requisito" role="status" aria-live="polite">Examina el archivo de publicaciones antes de responder.</p>
+                        <button type="button" id="abrir-acertijo04" class="boton-resolver-acertijo" disabled>RESOLVER ACERTIJO 04 →</button>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="estado-investigacion tarjeta-investigacion" aria-label="Objetivos y progreso">
+                <section class="objetivos-panel" aria-labelledby="titulo-objetivos04">
+                    <h2 id="titulo-objetivos04" class="microtitulo-investigacion">LISTA DE OBJETIVOS</h2>
+                    <ul class="lista-objetivos">
+                        <li id="objetivo-publicaciones04"><span class="casilla-objetivo" aria-hidden="true"></span><span>Examinar publicaciones recuperadas</span></li>
+                        <li id="objetivo-acertijo04"><span class="casilla-objetivo" aria-hidden="true"></span><span>Resolver acertijo 04</span></li>
+                    </ul>
+                </section>
+                <section class="progreso-panel" aria-labelledby="titulo-progreso04">
+                    <h2 id="titulo-progreso04" class="microtitulo-investigacion">PROGRESO DEL CASO</h2>
+                    <p class="contador-progreso">3 / 7 ACERTIJOS</p>
+                    <progress value="3" max="7" aria-label="Progreso del caso">3 de 7</progress>
+                </section>
+                <section class="confianza-panel" aria-labelledby="titulo-confianza04">
+                    <h2 id="titulo-confianza04" class="microtitulo-investigacion">CONFIANZA · ARTISTA</h2>
+                    <p>CONFIANZA EN DESARROLLO (DEMO)</p>
+                    <progress value="3" max="7" aria-label="Indicador provisional de confianza">3 de 7</progress>
+                    <div class="testimonio-bloqueado">
+                        <strong>▣ &nbsp; TESTIMONIO PENDIENTE</strong>
+                        <p>El testimonio de la artista se incorporará cuando esté definido en los documentos oficiales del juego.</p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <dialog id="dialogo-publicaciones04" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-publicaciones04">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ARCHIVO RECUPERADO · 004-A / REGISTRO PERSONAL</p>
+            <button type="button" id="cerrar-publicaciones04" class="cerrar-dialogo" aria-label="Cerrar archivo">✕</button>
+        </div>
+        <h2 id="titulo-publicaciones04">ARCHIVO DE PUBLICACIONES DE LA ARTISTA</h2>
+        <pre class="exp03-transcripcion exp04-transcripcion">ARCHIVO RECUPERADO · 004-A
+REGISTRO PERSONAL
+
+
+Actividad pública de la artista
+Fragmentos recopilados de sus antiguas publicaciones.
+
+ANTES DE LA CANCELACIÓN
+
+Publicación 01
+
+«Llevo días trabajando en el diseño de un nuevo personaje. No puedo mostrar demasiado todavía, pero estoy muy emocionada con el resultado».
+
+Publicación 02
+
+«Hoy terminé una de las composiciones musicales que más ilusión me hacía compartir. Espero que puedan escucharla pronto».
+
+Publicación 03
+
+«Cada pequeño avance nos acerca más a lo que queremos construir. Gracias por acompañarnos durante este proceso».
+
+DESPUÉS DE LA CANCELACIÓN
+
+Última publicación localizada
+
+«Gracias a todos los que se han preocupado por mí. Por ahora prefiero mantener mis trabajos en privado. Espero que puedan entenderlo».
+
+OBSERVACIONES DEL ARCHIVO
+- Dejó de publicar ilustraciones y avances musicales.
+- Su actividad pública disminuyó considerablemente.
+- Evitaba responder preguntas relacionadas con sus antiguos compañeros.
+- No se encontraron nuevas muestras de su trabajo artístico durante el periodo posterior a la cancelación.
+
+Nota del investigador: el cambio de actividad parece coincidir con la cancelación del proyecto.</pre>
+        <p class="dialogo-pie">Fuente: archivo_publicaciones_artista.txt · Expediente 004.</p>
+    </dialog>
+
+    <dialog id="dialogo-acertijo04" class="dialogo-prueba exp03-dialogo" aria-labelledby="titulo-pregunta04">
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">ACERTIJO 04 / 07 · EXPEDIENTE 004</p>
+            <button type="button" id="cerrar-acertijo04" class="cerrar-dialogo" aria-label="Cerrar acertijo">✕</button>
+        </div>
+        <h2 id="titulo-pregunta04">LA ARTISTA DESAPARECIDA</h2>
+        <p class="exp03-pregunta">Según los registros encontrados, ¿qué tipo de trabajos dejó de compartir públicamente la artista después de la cancelación?</p>
+        <form id="form-acertijo04">
+            <label class="exp04-label" for="respuesta04">Escribe tu conclusión</label>
+            <textarea id="respuesta04" name="respuesta04" class="exp04-respuesta" rows="3" maxlength="300" placeholder="¿Qué trabajos dejó de publicar?" required></textarea>
+            <p id="respuesta-acertijo04-estado" class="estado-respuesta-acertijo01" role="status" aria-live="polite"></p>
+            <button type="submit" id="comprobar-acertijo04" class="boton-resolver-acertijo">COMPROBAR RESPUESTA</button>
+        </form>
+        <p class="dialogo-pie">Validación provisional en este navegador. No se conecta con PostgreSQL.</p>
+    </dialog>
+</body>
+</html>

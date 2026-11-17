@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Last Seen | Informe final de la investigación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/informe-final.css">
+    <script src="./informe-final.js" defer></script>
+</head>
+<body>
+    <div class="informe-textura" aria-hidden="true"></div>
+    <div class="informe-contenedor">
+        <header class="informe-cabecera">
+            <a class="informe-logo" href="./inicio.html" aria-label="Ir al inicio de Last Seen">LAST <span>SEEN</span></a>
+            <div class="informe-cabecera-derecha">
+                <span class="informe-marca-archivo">EXPEDIENTE GENERAL / ARCHIVO 007</span>
+                <span class="informe-investigador">◉ <span id="nombre-investigador-final">INVESTIGADOR</span></span>
+            </div>
+        </header>
+
+        <main>
+            <section class="informe-hero" aria-labelledby="informe-titulo">
+                <div class="informe-clasificacion"><span class="informe-clasificacion-punto" aria-hidden="true"></span> ARCHIVO RECUPERADO · INFORME DE CIERRE</div>
+                <p class="informe-sobretitulo">LAST SEEN / INVESTIGACIÓN FINALIZADA</p>
+                <h1 id="informe-titulo">EL CASO SE HA <em>COMPLETADO.</em><br>EL MISTERIO, NO.</h1>
+                <p class="informe-entradilla">Has examinado los siete expedientes. Las pruebas permiten reconstruir parte de lo ocurrido alrededor de la cancelación, pero no ofrecen una explicación concluyente sobre la ausencia del desarrollador backend.</p>
+                <div class="informe-resumen">
+                    <div class="informe-metrica"><strong>07 <span>/ 07</span></strong><small>ACERTIJOS RESUELTOS</small></div>
+                    <div class="informe-metrica"><strong>07</strong><small>EXPEDIENTES EXAMINADOS</small></div>
+                    <div class="informe-metrica informe-metrica-estado"><strong>ABIERTO</strong><small>MISTERIO SIN RESOLUCIÓN DEFINITIVA</small></div>
+                </div>
+            </section>
+
+            <div class="informe-grid">
+                <section class="informe-panel informe-pruebas" aria-labelledby="titulo-registro-final">
+                    <div class="informe-panel-cabecera"><span>01 / EVIDENCIA FINAL</span><span>ARCHIVO 007-A</span></div>
+                    <h2 id="titulo-registro-final">LO QUE LOS REGISTROS DEMUESTRAN</h2>
+                    <p class="informe-panel-intro">Se conserva una secuencia parcial de actividad. Los datos no explican por sí mismos lo que sucedió después.</p>
+                    <div class="informe-linea-tiempo" aria-label="Actividad documentada en las cuentas del equipo">
+                        <div class="informe-hito">
+                            <div class="informe-hora">21:14</div>
+                            <div><span class="informe-hito-etiqueta">ÚLTIMA ACTIVIDAD IDENTIFICADA</span><strong>Cuenta del desarrollador backend</strong></div>
+                        </div>
+                        <div class="informe-hito">
+                            <div class="informe-hora">22:03</div>
+                            <div><span class="informe-hito-etiqueta">ACTIVIDAD POSTERIOR</span><strong>Cuenta vinculada al desarrollo frontend</strong></div>
+                        </div>
+                        <div class="informe-hito informe-hito-vacio">
+                            <div class="informe-hora">—:—</div>
+                            <div><span class="informe-hito-etiqueta">DESPUÉS DE AQUELLA NOCHE</span><strong>Sin actividad verificable posterior de la cuenta backend</strong></div>
+                        </div>
+                    </div>
+                    <p class="informe-fuente">FUENTE: Últimos registros del proyecto · Expediente 007</p>
+                </section>
+                <section class="informe-panel informe-conclusion" aria-labelledby="titulo-conclusion-final">
+                    <div class="informe-panel-cabecera"><span>02 / LÍMITES DE LA EVIDENCIA</span><span>ANÁLISIS</span></div>
+                    <h2 id="titulo-conclusion-final">LO QUE NO PODEMOS AFIRMAR</h2>
+                    <p>La ausencia de nuevos registros <strong>no demuestra qué ocurrió con una persona</strong>. Tampoco permite atribuir responsabilidades a otro integrante del equipo.</p>
+                    <p>Los conflictos documentados y la actividad de otras cuentas forman parte del contexto, pero no constituyen una explicación definitiva.</p>
+                    <div class="informe-sello"><span aria-hidden="true">◇</span> CONCLUSIÓN INDETERMINADA</div>
+                </section>
+            </div>
+
+            <section class="informe-panel informe-casos" aria-labelledby="titulo-casos-final">
+                <div class="informe-panel-cabecera"><span>03 / RECORRIDO DEL CASO</span><span>07 ARCHIVOS</span></div>
+                <h2 id="titulo-casos-final">EXPEDIENTES EXAMINADOS</h2>
+                <p class="informe-panel-intro">Puedes volver a abrir cualquier expediente. Resolverlos no altera el contenido de las pruebas.</p>
+                <div class="informe-lista-casos">
+                    <a href="./investigacion.html" class="informe-caso"><span class="informe-caso-numero">001</span><span class="informe-caso-info"><strong>LA CANCELACIÓN</strong><small>Equipo de tres integrantes y comunicado oficial.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente002.html" class="informe-caso"><span class="informe-caso-numero">002</span><span class="informe-caso-info"><strong>LAS SEÑALES IGNORADAS</strong><small>Entrevista al desarrollador backend.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente003.html" class="informe-caso"><span class="informe-caso-numero">003</span><span class="informe-caso-info"><strong>UN PASADO OLVIDADO</strong><small>Registro del antiguo equipo disuelto.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente004.html" class="informe-caso"><span class="informe-caso-numero">004</span><span class="informe-caso-info"><strong>LA ARTISTA DESAPARECIDA</strong><small>Cambio en sus publicaciones tras la cancelación.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente005.html" class="informe-caso"><span class="informe-caso-numero">005</span><span class="informe-caso-info"><strong>LO QUE LOS UNÍA</strong><small>Registros de colaboración creativa.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente006.html" class="informe-caso"><span class="informe-caso-numero">006</span><span class="informe-caso-info"><strong>DETRÁS DEL PROYECTO</strong><small>Desacuerdos técnicos y reuniones internas.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                    <a href="./expediente007.html" class="informe-caso"><span class="informe-caso-numero">007</span><span class="informe-caso-info"><strong>LA ÚLTIMA PIEZA</strong><small>Últimos registros y declaración de la artista.</small></span><span class="informe-caso-estado">RESUELTO <span aria-hidden="true">↗</span></span></a>
+                </div>
+            </section>
+
+            <section class="informe-panel informe-declaracion" aria-labelledby="titulo-declaracion-final">
+                <div class="informe-panel-cabecera"><span>04 / TESTIMONIO</span><span>DECLARACIÓN RECUPERADA</span></div>
+                <h2 id="titulo-declaracion-final">LA VOZ DE LA ARTISTA</h2>
+                <p class="informe-panel-intro">El último expediente conserva una declaración. Se presenta como testimonio, no como explicación definitiva de los hechos.</p>
+                <details class="informe-detalles">
+                    <summary>LEER DECLARACIÓN ORIGINAL <span aria-hidden="true">+</span></summary>
+                    <blockquote>«Después de aquella última reunión dejé de tener noticias de ambos.
+
+Pregunté qué había sucedido, pero recibí respuestas diferentes. Ninguna me convenció del todo.
+
+Durante mucho tiempo pensé que simplemente habíamos terminado mal. Ahora ni siquiera sé si alguna vez entendí lo que estaba ocurriendo».</blockquote>
+                    <p class="informe-fuente">FUENTE: Últimos registros del proyecto · Expediente 007</p>
+                </details>
+            </section>
+
+            <section class="informe-salida" aria-labelledby="titulo-salida-final">
+                <p class="informe-sobretitulo">FIN DEL RECORRIDO / LAS PREGUNTAS PERMANECEN</p>
+                <h2 id="titulo-salida-final">AÚN QUEDAN <em>PIEZAS SIN ENCONTRAR.</em></h2>
+                <p>La investigación ha terminado. Los archivos siguen disponibles para revisarlos cuando quieras.</p>
+                <div class="informe-acciones">
+                    <a class="informe-boton informe-boton-principal" href="./expediente007.html">▣ REVISAR ÚLTIMO EXPEDIENTE <span aria-hidden="true">→</span></a>
+                    <a class="informe-boton" href="./investigacion.html">← VOLVER A LA INVESTIGACIÓN</a>
+                    <button type="button" id="imprimir-informe" class="informe-boton informe-boton-secundario">▤ IMPRIMIR INFORME</button>
+                </div>
+            </section>
+        </main>
+        <footer class="informe-pie"><span>LAST SEEN / ARCHIVO DE INVESTIGACIÓN</span><span>PROTOTIPO FRONTEND · PROGRESO LOCAL, SIN POSTGRESQL</span></footer>
+    </div>
+</body>
+</html>
