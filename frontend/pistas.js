@@ -1,6 +1,6 @@
 /* LAST SEEN · Pistas oficiales de los acertijos 001–007.
    Fuente: datos_iniciales.sql (tabla pista, orden 1).
-   Interfaz de demostración: las pistas 02–07 se habilitan tras el primer error;
+   Interfaz de demostración: las pistas se habilitan tras el primer error;
    la API final decidirá la disponibilidad definitiva.
 */
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const aviso = dialogo.querySelector('#aviso-pista-lastseen');
 
     const resuelto = () => sessionStorage.getItem(claveResuelto) === 'true';
-    const disponible = () => pista.desdeInicio || resuelto() || sessionStorage.getItem(claveError) === 'true';
+    const disponible = () => resuelto() || localStorage.getItem(claveError) === 'true' || sessionStorage.getItem(claveError) === 'true';
     function actualizar() {
         const habilitada = disponible();
         boton.textContent = habilitada ? '◇  CONSULTAR PISTA DEL EXPEDIENTE' : '◇  PISTA AÚN BLOQUEADA';
@@ -87,7 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (campo.type === 'radio' || campo.type === 'checkbox') return campo.checked;
                     return campo.type !== 'hidden' && typeof campo.value === 'string' && campo.value.trim() !== '';
                 });
-            if (respondido) sessionStorage.setItem(claveError, 'true');
+            if (respondido) {
+                sessionStorage.setItem(claveError, 'true');
+                localStorage.setItem(claveError, 'true');
+            }
         }
         actualizar();
     });
@@ -96,11 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const PISTAS_LASTSEEN = Object.freeze({
-    1: { contenido: "Revisa la presentación pública del equipo. Cuenta a las personas que lo integraban, no las áreas de trabajo.", desdeInicio: true },
-    2: { contenido: "Presta atención a quién considera que debe asumir las decisiones definitivas, en lugar de buscar un acuerdo entre todos.", desdeInicio: false },
-    3: { contenido: "Revisa el comunicado de cierre y presta atención a las razones que menciona el equipo para separarse.", desdeInicio: false },
-    4: { contenido: "Compara las publicaciones anteriores al anuncio con la última publicación que quedó archivada.", desdeInicio: false },
-    5: { contenido: "No te limites a revisar sus responsabilidades profesionales. Presta atención al fragmento de la nota personal.", desdeInicio: false },
-    6: { contenido: "Compara las intervenciones de ambos desarrolladores durante la reunión y observa qué problema nunca consiguieron resolver.", desdeInicio: false },
-    7: { contenido: "Compara la última actividad del backend con los registros posteriores. Recuerda que una ausencia de registros no demuestra por sí sola qué ocurrió.", desdeInicio: false }
+    1: { contenido: "Revisa la presentación pública del equipo. Cuenta a las personas que lo integraban, no las áreas de trabajo." },
+    2: { contenido: "Presta atención a quién considera que debe asumir las decisiones definitivas, en lugar de buscar un acuerdo entre todos." },
+    3: { contenido: "Revisa el comunicado de cierre y presta atención a las razones que menciona el equipo para separarse." },
+    4: { contenido: "Compara las publicaciones anteriores al anuncio con la última publicación que quedó archivada." },
+    5: { contenido: "No te limites a revisar sus responsabilidades profesionales. Presta atención al fragmento de la nota personal." },
+    6: { contenido: "Compara las intervenciones de ambos desarrolladores durante la reunión y observa qué problema nunca consiguieron resolver." },
+    7: { contenido: "Compara la última actividad del backend con los registros posteriores. Recuerda que una ausencia de registros no demuestra por sí sola qué ocurrió." }
 });

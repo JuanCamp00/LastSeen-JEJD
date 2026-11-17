@@ -33,7 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const estadoAnalisis = document.getElementById('estado-analisis03');
     let examinado = sessionStorage.getItem(claveLectura) === 'true';
     let resuelto = sessionStorage.getItem(claveResuelto) === 'true';
-    let intentos = 0;
+    // Intentos locales independientes para cada investigador y expediente.
+    const claveIntentos = `lastSeen.demo.intentos.expediente003.${encodeURIComponent(nombre)}`;
+    const contadorGuardado = Number(localStorage.getItem(claveIntentos));
+    let intentos = Number.isSafeInteger(contadorGuardado) && contadorGuardado >= 0 ? contadorGuardado : 0;
 
     document.getElementById('investigador-activo').textContent = nombre;
 
@@ -94,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         intentos++;
+        localStorage.setItem(claveIntentos, String(intentos));
         if (seleccionada.value !== '2') {
             estado.textContent = `Intento ${intentos}: revisa la sección «Comunicado de cierre» del registro.`;
             return;
