@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resueltos++;
     }
 
-    let pistasDisponibles = 1; // La primera pista está disponible desde el inicio.
-    for (let numero = 2; numero <= 7; numero++) {
+    let pistasDisponibles = 0;
+    for (let numero = 1; numero <= 7; numero++) {
         const codigo = String(numero).padStart(3, '0');
         const intento = `lastSeen.demo.pistas.expediente${codigo}.${id}.intentoIncorrecto`;
-        if (numero <= resueltos || sessionStorage.getItem(intento) === 'true') {
+        if (numero <= resueltos || localStorage.getItem(intento) === 'true' || sessionStorage.getItem(intento) === 'true') {
             pistasDisponibles++;
         }
     }
@@ -47,15 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         barra.max = 7;
         barra.value = resueltos;
         barra.textContent = `${resueltos} de 7 acertijos`;
-    }
-
-    const recientes = document.querySelector('.partidas-recientes');
-    const parrafos = recientes?.querySelectorAll('p');
-    if (parrafos?.length >= 2 && resueltos > 0) {
-        parrafos[0].textContent = terminado
-            ? 'Investigación completada · 7 / 7 acertijos.'
-            : `Investigación en curso · ${resueltos} / 7 acertijos.`;
-        parrafos[1].textContent = 'Progreso provisional guardado en esta pestaña del navegador.';
     }
 
     const portada = document.querySelector('.boton-investigacion');

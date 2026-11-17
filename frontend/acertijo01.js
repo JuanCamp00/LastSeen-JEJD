@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonComprobar = document.getElementById('comprobar-acertijo01');
     const opciones = [...formulario.querySelectorAll('input[name="respuesta01"]')];
     let resuelto = sessionStorage.getItem(claveResuelto) === 'true';
-    let intentosDemo = 0;
+    // Intentos locales independientes para cada investigador y expediente.
+    const claveIntentos = `lastSeen.demo.intentos.expediente001.${encodeURIComponent(nombre)}`;
+    const contadorGuardado = Number(localStorage.getItem(claveIntentos));
+    let intentosDemo = Number.isSafeInteger(contadorGuardado) && contadorGuardado >= 0 ? contadorGuardado : 0;
 
     function documentosExaminados() {
         try {
@@ -90,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         intentosDemo++;
+        localStorage.setItem(claveIntentos, String(intentosDemo));
         if (elegida.value !== '3') {
             mensaje.textContent = `Intento ${intentosDemo}: revisa la presentación. Cuenta a los integrantes, no las áreas ni las tareas.`;
             return;
