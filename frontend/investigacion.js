@@ -90,14 +90,69 @@ document.addEventListener('DOMContentLoaded', () => {
     lista.forEach(boton => boton.addEventListener('click', () => cambiarDocumento(boton.dataset.documento)));
     document.getElementById('examinar-pruebas').addEventListener('click', examinar);
     document.getElementById('ver-documentos').addEventListener('click', examinar);
-    // La pestaña EXPEDIENTES dirige al índice de expedientes desbloqueados,
-    // en lugar de cambiar silenciosamente el documento de la mesa.
-    document.getElementById('ver-expedientes').addEventListener('click', () => {
-        const indice = document.querySelector('.indice-pie');
-        if (!indice) return;
-        indice.setAttribute('tabindex', '-1');
-        indice.scrollIntoView({ block: 'nearest' });
-        indice.focus({ preventScroll: true });
+    // Índice interactivo de expedientes: funciona sin PostgreSQL durante el prototipo.
+    const botonExpedientes = document.getElementById('ver-expedientes');
+    const dialogoExpedientes = document.createElement('dialog');
+    dialogoExpedientes.className = 'dialogo-prueba dialogo-indice-expedientes';
+    dialogoExpedientes.setAttribute('aria-labelledby', 'titulo-indice-expedientes');
+    dialogoExpedientes.innerHTML = `
+        <div class="dialogo-cabecera">
+            <p class="microtitulo-investigacion">LAST SEEN / ARCHIVO DE LA INVESTIGACIÓN</p>
+            <button type="button" class="cerrar-dialogo" aria-label="Cerrar índice de expedientes">✕</button>
+        </div>
+        <h2 id="titulo-indice-expedientes">ÍNDICE DE EXPEDIENTES</h2>
+        <p class="indice-expedientes-progreso" role="status" aria-live="polite"></p>
+        <nav class="indice-expedientes-lista" aria-label="Seleccionar expediente"></nav>
+        <p class="dialogo-pie">Los expedientes pendientes se desbloquean al resolver los anteriores. Progreso provisional de esta sesión.</p>`;
+    document.body.appendChild(dialogoExpedientes);
+
+    const titulosExpedientes = [
+        'LA CANCELACIÓN', 'LAS SEÑALES IGNORADAS', 'UN PASADO OLVIDADO',
+        'LA ARTISTA DESAPARECIDA', 'LO QUE LOS UNÍA',
+        'DETRÁS DEL PROYECTO', 'LA ÚLTIMA PIEZA'
+    ];
+
+    function actualizarIndiceExpedientes() {
+        let resueltos = 0;
+        for (let numero = 1; numero <= 7; numero++) {
+            const codigo = String(numero).padStart(3, '0');
+            const version = numero === 1 ? 'v2' : 'v1';
+            const clave = `lastSeen.demo.expediente${codigo}.${version}.${encodeURIComponent(nombre)}.resuelto`;
+            if (sessionStorage.getItem(clave) !== 'true') break;
+            resueltos++;
+        }
+        dialogoExpedientes.querySelector('.indice-expedientes-progreso').textContent =
+            `ACERTIJOS RESUELTOS: ${resueltos} / 7 · EXPEDIENTES DISPONIBLES: ${Math.min(resueltos + 1, 7)} / 7`;
+        const listaExpedientes = dialogoExpedientes.querySelector('.indice-expedientes-lista');
+        listaExpedientes.replaceChildren();
+        for (let numero = 1; numero <= 7; numero++) {
+            const codigo = String(numero).padStart(3, '0');
+            const disponible = numero <= resueltos + 1;
+            const completado = numero <= resueltos;
+            const elemento = document.createElement(disponible ? 'a' : 'div');
+            elemento.className = `indice-expedientes-item ${disponible ? 'disponible' : 'bloqueado'}`;
+            if (disponible) {
+                elemento.href = numero === 1 ? './investigacion.html' : `./expediente${codigo}.html`;
+                elemento.setAttribute('aria-label', `Abrir expediente ${codigo}: ${titulosExpedientes[numero - 1]}`);
+            }
+            const texto = document.createElement('span');
+            texto.className = 'indice-expedientes-nombre';
+            texto.textContent = `${codigo} — ${titulosExpedientes[numero - 1]}`;
+            const estado = document.createElement('span');
+            estado.className = 'indice-expedientes-estado';
+            estado.textContent = completado ? '✓ COMPLETADO' : disponible ? 'ABIERTO →' : '◇ BLOQUEADO';
+            elemento.append(texto, estado);
+            listaExpedientes.appendChild(elemento);
+        }
+    }
+
+    botonExpedientes.addEventListener('click', () => {
+        actualizarIndiceExpedientes();
+        if (!dialogoExpedientes.open) dialogoExpedientes.showModal();
+    });
+    dialogoExpedientes.querySelector('.cerrar-dialogo').addEventListener('click', () => dialogoExpedientes.close());
+    dialogoExpedientes.addEventListener('click', evento => {
+        if (evento.target === dialogoExpedientes) dialogoExpedientes.close();
     });
     document.getElementById('cerrar-dialogo').addEventListener('click', () => dialogo.close());
     dialogo.addEventListener('click', evento => { if (evento.target === dialogo) dialogo.close(); });
