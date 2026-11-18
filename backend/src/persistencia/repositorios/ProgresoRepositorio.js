@@ -101,12 +101,18 @@ class ProgresoRepositorio {
 
         const consulta = `
             SELECT
-                id_progreso,
-                id_partida,
-                id_acertijo_actual,
-                fecha_actualizacion
+                progreso.id_progreso,
+                progreso.id_partida,
+                progreso.id_acertijo_actual,
+                progreso.fecha_actualizacion,
+                partida.fecha_inicio,
+                partida.fecha_fin,
+                partida.tiempo_total_segundos,
+                partida.estado AS estado_partida
             FROM progreso
-            WHERE id_partida = $1
+            INNER JOIN partida
+                ON partida.id_partida = progreso.id_partida
+            WHERE progreso.id_partida = $1
         `;
 
         const resultado = await this.pool.query(

@@ -17,3 +17,7 @@
 .dialogo-pista-lastseen .texto-pista-lastseen[hidden] { display: none; }
 .dialogo-pista-lastseen .aviso-pista-lastseen { margin-top: 18px; color: #c5ac8b; font-size: 12px; line-height: 1.7; }
 @media(max-width: 560px) { .boton-pista-lastseen { width: 100%; } }
+.boton-pista-lastseen:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}

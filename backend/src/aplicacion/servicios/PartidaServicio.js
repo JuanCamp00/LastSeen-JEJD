@@ -221,6 +221,22 @@ class PartidaServicio {
         }
     }
 
+
+
+    
+    // Consultar una partida existente por su identificador.
+    // PartidaRepositorio.buscarPorId devuelve tiempo_total_segundos.
+    async obtenerPorId(idPartida) {
+        if (!Number.isInteger(idPartida) || idPartida <= 0) {
+            throw new TypeError(
+                'El identificador de la partida debe ser un entero positivo.'
+            );
+        }
+
+        const partidaRepositorio = new this.PartidaRepositorio(this.pool);
+        return partidaRepositorio.buscarPorId(idPartida);
+    }
+
     // RECUPERAR LA PARTIDA ACTIVA MÁS RECIENTE DE UN USUARIO
     async obtenerPartidaActiva(idUsuario) {
         if (!Number.isInteger(idUsuario) || idUsuario <= 0) {

@@ -68,6 +68,13 @@ class PistaRepositorio {
             INNER JOIN pista p
                 ON p.id_pista = pp.id_pista
             WHERE pp.id_partida = $1
+              AND EXISTS (
+                  SELECT 1
+                  FROM intento i
+                  WHERE i.id_partida = pp.id_partida
+                    AND i.id_acertijo = p.id_acertijo
+                    AND i.resultado = 'INCORRECTO'
+              )
             ORDER BY p.id_acertijo ASC, p.orden ASC
         `;
 
@@ -141,7 +148,6 @@ class PistaRepositorio {
                 id_pista
             FROM pista
             WHERE id_acertijo = $2
-              AND disponible_desde_inicio = FALSE
             ON CONFLICT (id_partida, id_pista) DO NOTHING
             RETURNING *
         `;
@@ -174,16 +180,25 @@ class PistaRepositorio {
         }
 
         const consulta = `
-            UPDATE partida_pista
+            UPDATE partida_pista AS pp
             SET
                 guardada = TRUE,
                 fecha_guardado = COALESCE(
                     fecha_guardado,
                     CURRENT_TIMESTAMP
                 )
-            WHERE id_partida = $1
-              AND id_pista = $2
-            RETURNING *
+            WHERE pp.id_partida = $1
+              AND pp.id_pista = $2
+              AND EXISTS (
+                  SELECT 1
+                  FROM pista p
+                  INNER JOIN intento i
+                      ON i.id_acertijo = p.id_acertijo
+                  WHERE p.id_pista = pp.id_pista
+                    AND i.id_partida = pp.id_partida
+                    AND i.resultado = 'INCORRECTO'
+              )
+            RETURNING pp.*
         `;
 
         const resultado = await this.pool.query(

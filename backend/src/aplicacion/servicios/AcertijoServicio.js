@@ -523,13 +523,22 @@ async obtenerAcertijoActual(idPartida) {
 
             if (!esCorrecta) {
 
+                // La pista corresponde al acertijo que acaba de recibir un error.
+                // Se desbloquea dentro de la misma transacción que registra el intento.
+                const pistasDesbloqueadas =
+                    await pistaRepositorio.desbloquearPorAcertijo(
+                        idPartida,
+                        idAcertijo
+                    );
+
                 await cliente.query('COMMIT');
                 transaccionIniciada = false;
 
                 return {
                     correcto: false,
                     intento,
-                    mensaje: 'La respuesta no es correcta. Puedes volver a intentarlo.'
+                    pistasDesbloqueadas,
+                    mensaje: 'La respuesta no es correcta. Se ha desbloqueado una pista para este acertijo.'
                 };
             }
 

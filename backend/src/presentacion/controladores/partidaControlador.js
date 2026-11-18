@@ -4,6 +4,33 @@ class PartidaControlador {
         this.partidaServicio = partidaServicio;
     }
 
+
+
+    // Consultar los datos de una partida (incluido el tiempo total)
+    async obtenerPorId(req, res, next) {
+        try {
+            const idPartida = Number(req.params.idPartida);
+
+            if (!Number.isInteger(idPartida) || idPartida <= 0) {
+                return res.status(400).json({
+                    mensaje: 'El identificador de la partida no es válido.'
+                });
+            }
+
+            const partida = await this.partidaServicio.obtenerPorId(idPartida);
+
+            if (!partida) {
+                return res.status(404).json({
+                    mensaje: 'No se encontró la partida solicitada.'
+                });
+            }
+
+            return res.status(200).json({ partida });
+        } catch (error) {
+            next(error);
+        }
+    }
+
     // Iniciar una nueva partida
     async iniciar(req, res, next) {
 

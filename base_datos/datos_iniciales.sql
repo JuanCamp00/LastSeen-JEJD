@@ -1,3 +1,4 @@
+
 -- =========================================
 -- LAST SEEN
 -- DATOS INICIALES
@@ -545,3 +546,157 @@ AND NOT EXISTS (
 );
 
 COMMIT;
+
+
+
+SELECT 'acertijo' AS tabla, COUNT(*) AS registros
+FROM acertijo
+
+UNION ALL
+
+SELECT 'opcion_acertijo', COUNT(*)
+FROM opcion_acertijo
+
+UNION ALL
+
+SELECT 'pista', COUNT(*)
+FROM pista
+
+UNION ALL
+
+SELECT 'contenido', COUNT(*)
+FROM contenido
+
+UNION ALL
+
+SELECT 'usuario', COUNT(*)
+FROM usuario
+
+UNION ALL
+
+SELECT 'partida', COUNT(*)
+FROM partida;
+
+SELECT
+    orden,
+    pregunta,
+    tipo_validacion
+FROM acertijo
+ORDER BY orden;
+
+SELECT
+    id_usuario,
+    nombre_usuario
+FROM usuario
+WHERE nombre_usuario = 'Investigador_QA_01';
+
+SELECT
+    COUNT(*) AS total_usuarios,
+    MIN(id_usuario) AS primer_id
+FROM usuario
+WHERE nombre_usuario = 'Investigador_QA_01';
+
+
+-- Verificación de la partida número 1
+
+SELECT
+    '01 PARTIDA' AS registro,
+    p.id_partida::TEXT AS id,
+    'Usuario: ' || u.nombre_usuario AS detalle,
+    p.estado AS estado
+FROM partida p
+JOIN usuario u ON u.id_usuario = p.id_usuario
+WHERE p.id_partida = 1
+
+UNION ALL
+
+SELECT
+    '02 ACERTIJO',
+    a.orden::TEXT,
+    a.pregunta,
+    pa.estado
+FROM partida_acertijo pa
+JOIN acertijo a ON a.id_acertijo = pa.id_acertijo
+WHERE pa.id_partida = 1
+
+UNION ALL
+
+SELECT
+    '03 PROGRESO',
+    pr.id_progreso::TEXT,
+    'Acertijo actual: ' || LPAD(a.orden::TEXT, 3, '0'),
+    'ACTIVO'
+FROM progreso pr
+JOIN acertijo a ON a.id_acertijo = pr.id_acertijo_actual
+WHERE pr.id_partida = 1
+
+UNION ALL
+
+SELECT
+    '04 CONTENIDO',
+    c.id_contenido::TEXT,
+    c.titulo,
+    'DESBLOQUEADO'
+FROM partida_contenido pc
+JOIN contenido c ON c.id_contenido = pc.id_contenido
+WHERE pc.id_partida = 1
+
+UNION ALL
+
+SELECT
+    '05 PISTA',
+    pi.id_pista::TEXT,
+    'Expediente ' || LPAD(a.orden::TEXT, 3, '0'),
+    CASE
+        WHEN pp.guardada THEN 'GUARDADA'
+        ELSE 'DESBLOQUEADA, SIN GUARDAR'
+    END
+FROM partida_pista pp
+JOIN pista pi ON pi.id_pista = pp.id_pista
+JOIN acertijo a ON a.id_acertijo = pi.id_acertijo
+WHERE pp.id_partida = 1
+
+ORDER BY registro, id;
+
+SELECT
+    id_intento,
+    id_acertijo,
+    id_opcion_seleccionada,
+    resultado,
+    fecha_intento
+FROM intento
+WHERE id_partida = 1
+ORDER BY id_intento;
+
+
+SELECT
+    id_usuario,
+    nombre_usuario
+FROM usuario
+WHERE nombre_usuario = 'Juan';
+
+SELECT
+    u.id_usuario,
+    u.nombre_usuario,
+    p.id_partida,
+    p.estado,
+    p.fecha_inicio,
+    p.fecha_fin
+FROM usuario u
+LEFT JOIN partida p
+    ON p.id_usuario = u.id_usuario
+WHERE u.nombre_usuario = 'Juan'
+ORDER BY p.fecha_inicio DESC;
+
+
+SELECT
+    nombre_usuario,
+    COUNT(*) AS cantidad
+FROM usuario
+WHERE nombre_usuario = 'Juan'
+GROUP BY nombre_usuario;
+
+SELECT *
+FROM intento
+WHERE id_partida = (SELECT MAX(id_partida) FROM partida)
+ORDER BY id_intento;

@@ -102,27 +102,13 @@ class GestorDesbloqueos extends Observador {
         }
 
 
-        // 3. Identificar el siguiente acertijo.
-
+        // 3. Identificar el siguiente acertijo para conservar el resumen del evento.
+        // Su pista NO se desbloquea aquí: cada pista espera un intento incorrecto
+        // del propio acertijo, registrado por AcertijoServicio.
         const siguienteAcertijo = acertijos[indiceActual + 1];
+        const pistasDesbloqueadas = [];
 
-        let pistasDesbloqueadas = [];
-
-        if (siguienteAcertijo) {
-
-            // 4. Desbloquear las pistas del siguiente acertijo.
-
-            pistasDesbloqueadas =
-                await this.pistaRepositorio.desbloquearPorAcertijo(
-                    idPartida,
-                    siguienteAcertijo.id_acertijo
-                );
-        }
-        
-
-
-        // 5. Devolver un resumen de los desbloqueos.
-
+        // 4. Devolver un resumen de los desbloqueos.
         return {
             idPartida,
             idAcertijo,

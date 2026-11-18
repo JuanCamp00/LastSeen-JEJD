@@ -5,6 +5,11 @@ function crearPartidaRutas(partidaControlador) {
 
     const router = express.Router();
 
+    // Consultar una partida por ID (incluye tiempo_total_segundos).
+    router.get('/:idPartida', (req, res, next) => {
+        partidaControlador.obtenerPorId(req, res, next);
+    });
+
     // Recuperar la partida activa más reciente de un usuario
     router.get(
         '/usuario/:idUsuario/activa',
