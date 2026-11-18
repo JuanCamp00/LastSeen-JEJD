@@ -239,3 +239,15 @@
     color: #E5EDF5;
     outline: none;
 }
+
+/* Estados del formulario cuando el login se conecta con el backend. */
+.boton-expediente:disabled {
+    opacity: 0.72;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+.mensaje-confirmacion.error {
+    color: #F17882;
+}

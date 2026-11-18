@@ -94,6 +94,51 @@ const intentoControlador =
 const progresoControlador =
     new ProgresoControlador(progresoServicio);
 
+// Permitir llamadas desde el frontend local (por ejemplo, VS Code Live Server).
+// Para otros orígenes se puede definir FRONTEND_ORIGINS en el .env, separados por comas.
+const origenesConfigurados = (process.env.FRONTEND_ORIGINS || '')
+    .split(',')
+    .map((origen) => origen.trim())
+    .filter(Boolean);
+
+function esOrigenLocalPermitido(origen) {
+    try {
+        const url = new URL(origen);
+        return url.protocol === 'http:' &&
+            (url.hostname === 'localhost' || url.hostname === '127.0.0.1');
+    } catch {
+        return false;
+    }
+}
+
+app.use((req, res, next) => {
+    const origen = req.headers.origin;
+
+    if (origen) {
+        const permitido = origenesConfigurados.length > 0
+            ? origenesConfigurados.includes(origen)
+            : esOrigenLocalPermitido(origen);
+
+        if (!permitido) {
+            return res.status(403).json({
+                mensaje: 'El origen del frontend no está autorizado para acceder a la API.'
+            });
+        }
+
+        res.setHeader('Access-Control-Allow-Origin', origen);
+        res.setHeader('Vary', 'Origin');
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+
+    next();
+});
+
 // Recibir información en formato JSON
 app.use(express.json());
 

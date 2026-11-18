@@ -221,6 +221,17 @@ class PartidaServicio {
         }
     }
 
+    // RECUPERAR LA PARTIDA ACTIVA MÁS RECIENTE DE UN USUARIO
+    async obtenerPartidaActiva(idUsuario) {
+        if (!Number.isInteger(idUsuario) || idUsuario <= 0) {
+            throw new TypeError('El identificador del usuario debe ser un entero positivo.');
+        }
+
+        const partidaRepositorio = new this.PartidaRepositorio(this.pool);
+        const partidas = await partidaRepositorio.buscarPorUsuario(idUsuario);
+        return partidas.find(partida => partida.estado === EstadoPartida.EN_CURSO) || null;
+    }
+
 }
 
 
