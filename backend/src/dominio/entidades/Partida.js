@@ -1,7 +1,54 @@
 const EstadoPartida = require('../enumeraciones/EstadoPartida');
 
-class Partida {
 
+function validar(condicion, mensaje, TipoError = TypeError) {
+    if (!condicion) {
+        throw new TipoError(mensaje);
+    }
+}
+
+function validarIdentificador(id, mensaje) {
+    validar(
+        Number.isInteger(id) && id > 0,
+        mensaje
+    );
+}
+
+function validarFecha(fecha, nombre) {
+    if (fecha === null) {
+        return null;
+    }
+
+    const fechaNormalizada = new Date(fecha);
+
+    validar(
+        !Number.isNaN(fechaNormalizada.getTime()),
+        `La ${nombre} de la partida no es válida.`
+    );
+
+    return fechaNormalizada;
+}
+function validarEstado(estado) {
+    const estadoNormalizado = String(estado).trim().toUpperCase();
+
+    validar(
+        Object.values(EstadoPartida).includes(estadoNormalizado),
+        'El estado de la partida no es válido.',
+        Error
+    );
+
+    return estadoNormalizado;
+}
+
+function validarTiempoTotal(tiempo) {
+    validar(
+        tiempo === null ||
+        (Number.isInteger(tiempo) && tiempo >= 0),
+        'El tiempo total debe ser un entero mayor o igual a cero.'
+    );
+}
+
+class Partida {
     constructor({
         idPartida = null,
         idUsuario,
@@ -10,71 +57,31 @@ class Partida {
         tiempoTotalSegundos = null,
         estado = EstadoPartida.EN_CURSO
     }) {
+        validar(
+            idPartida === null ||
+            (Number.isInteger(idPartida) && idPartida > 0),
+            'El identificador de la partida debe ser positivo o NULL.'
+        );
 
-        // Validar identificador de partida
-        if (
-            idPartida !== null &&
-            (!Number.isInteger(idPartida) || idPartida <= 0)
-        ) {
-            throw new TypeError(
-                'El identificador de la partida debe ser positivo o NULL.'
-            );
-        }
+        validarIdentificador(
+            idUsuario,
+            'El identificador del usuario debe ser un entero positivo.'
+        );
 
-        // Validar usuario asociado
-        if (!Number.isInteger(idUsuario) || idUsuario <= 0) {
-            throw new TypeError(
-                'El identificador del usuario debe ser un entero positivo.'
-            );
-        }
+        const inicioNormalizado = validarFecha(
+            fechaInicio,
+            'fecha de inicio'
+        );
 
-        // Validar fechas
-        const validarFecha = (fecha, nombre) => {
+        const finNormalizado = validarFecha(
+            fechaFin,
+            'fecha de finalización'
+        );
 
-            if (fecha === null) {
-                return null;
-            }
+        validarTiempoTotal(tiempoTotalSegundos);
 
-            const fechaNormalizada = new Date(fecha);
+        const estadoNormalizado = validarEstado(estado);
 
-            if (Number.isNaN(fechaNormalizada.getTime())) {
-                throw new TypeError(
-                    `La ${nombre} de la partida no es válida.`
-                );
-            }
-
-            return fechaNormalizada;
-        };
-
-        const inicioNormalizado =
-            validarFecha(fechaInicio, 'fecha de inicio');
-
-        const finNormalizado =
-            validarFecha(fechaFin, 'fecha de finalización');
-
-        // Validar tiempo total
-        if (
-            tiempoTotalSegundos !== null &&
-            (
-                !Number.isInteger(tiempoTotalSegundos) ||
-                tiempoTotalSegundos < 0
-            )
-        ) {
-            throw new TypeError(
-                'El tiempo total debe ser un entero mayor o igual a cero.'
-            );
-        }
-
-        // Validar estado
-        const estadoNormalizado = String(estado).trim().toUpperCase();
-
-        if (!Object.values(EstadoPartida).includes(estadoNormalizado)) {
-            throw new Error(
-                'El estado de la partida no es válido.'
-            );
-        }
-
-        // Asignar atributos
         this.idPartida = idPartida;
         this.idUsuario = idUsuario;
         this.fechaInicio = inicioNormalizado;

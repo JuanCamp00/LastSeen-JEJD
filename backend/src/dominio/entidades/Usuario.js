@@ -1,39 +1,40 @@
-class Usuario {
 
+function validar(condicion, mensaje, TipoError = TypeError) {
+    if (!condicion) {
+        throw new TipoError(mensaje);
+    }
+}
+
+function validarIdOpcional(idUsuario) {
+    validar(
+        idUsuario === null ||
+        (Number.isInteger(idUsuario) && idUsuario > 0),
+        'El identificador del usuario debe ser un entero positivo o NULL.'
+    );
+}
+
+function validarNombre(nombreUsuario) {
+    validar(
+        typeof nombreUsuario === 'string' &&
+        nombreUsuario.trim().length > 0,
+        'El nombre del usuario es obligatorio.'
+    );
+
+    const nombreNormalizado = nombreUsuario.trim();
+    
+
+    return nombreNormalizado;
+}
+
+class Usuario {
     constructor({
         idUsuario = null,
         nombreUsuario
     }) {
+        validarIdOpcional(idUsuario);
 
-        // Validar identificador
-        if (
-            idUsuario !== null &&
-            (!Number.isInteger(idUsuario) || idUsuario <= 0)
-        ) {
-            throw new TypeError(
-                'El identificador del usuario debe ser un entero positivo o NULL.'
-            );
-        }
+        const nombreNormalizado = validarNombre(nombreUsuario);
 
-        // Validar nombre
-        if (
-            typeof nombreUsuario !== 'string' ||
-            nombreUsuario.trim().length === 0
-        ) {
-            throw new TypeError(
-                'El nombre del usuario es obligatorio.'
-            );
-        }
-
-        const nombreNormalizado = nombreUsuario.trim();
-
-        if (nombreNormalizado.length > 40) {
-            throw new Error(
-                'El nombre del usuario no puede superar los 40 caracteres.'
-            );
-        }
-
-        // Asignar atributos
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreNormalizado;
     }

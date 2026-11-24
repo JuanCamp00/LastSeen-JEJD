@@ -1,7 +1,40 @@
 const TipoValidacion = require('../enumeraciones/TipoValidacion');
 
-class Acertijo {
+function validar(condicion, mensaje, TipoError = TypeError) {
+    if (!condicion) {
+        throw new TipoError(mensaje);
+    }
+}
 
+function validarEnteroPositivo(valor, mensaje) {
+    validar(
+        Number.isInteger(valor) && valor > 0,
+        mensaje
+    );
+}
+
+function validarPregunta(pregunta) {
+    validar(
+        typeof pregunta === 'string' && pregunta.trim() !== '',
+        'La pregunta del acertijo es obligatoria.'
+    );
+
+    return pregunta.trim();
+}
+
+function validarTipoValidacion(tipoValidacion) {
+    const tipo = String(tipoValidacion).trim().toUpperCase();
+
+    validar(
+        Object.values(TipoValidacion).includes(tipo),
+        'El tipo de validación del acertijo no es válido.',
+        Error
+    );
+
+    return tipo;
+}
+
+class Acertijo {
     constructor({
         idAcertijo,
         pregunta,
@@ -9,76 +42,40 @@ class Acertijo {
         tipoValidacion,
         respuestaCorrectaTexto = null
     }) {
+        validarEnteroPositivo(
+            idAcertijo,
+            'El identificador del acertijo debe ser un entero positivo.'
+        );
 
-        if (!Number.isInteger(idAcertijo) || idAcertijo <= 0) {
-            throw new TypeError(
-                'El identificador del acertijo debe ser un entero positivo.'
-            );
-        }
-
-        if (typeof pregunta !== 'string' || pregunta.trim() === '') {
-            throw new TypeError(
-                'La pregunta del acertijo es obligatoria.'
-            );
-        }
-
-        if (!Number.isInteger(orden) || orden <= 0) {
-            throw new TypeError(
-                'El orden del acertijo debe ser un entero positivo.'
-            );
-        }
-
-            const tipo = String(tipoValidacion).trim().toUpperCase();
-
-        if (!Object.values(TipoValidacion).includes(tipo)) {
-            throw new Error(
-                'El tipo de validación del acertijo no es válido.'
-            );
-        }
+        validarEnteroPositivo(
+            orden,
+            'El orden del acertijo debe ser un entero positivo.'
+        );
 
         this.idAcertijo = idAcertijo;
-        this.pregunta = pregunta.trim();
+        this.pregunta = validarPregunta(pregunta);
         this.orden = orden;
-        this.tipoValidacion = tipo;
+        this.tipoValidacion = validarTipoValidacion(tipoValidacion);
         this.respuestaCorrectaTexto = respuestaCorrectaTexto;
 
-        // Colección de observadores interesados en la resolución.
         this.observadores = new Set();
     }
 
-
-    // 1. AGREGAR UN OBSERVADOR
-    
-
     agregarObservador(observador) {
-
-        if (
-            !observador ||
-            typeof observador.actualizar !== 'function'
-        ) {
-            throw new TypeError(
-                'El observador debe implementar el método actualizar().'
-            );
-        }
+        validar(
+            observador &&
+            typeof observador.actualizar === 'function',
+            'El observador debe implementar el método actualizar().'
+        );
 
         this.observadores.add(observador);
     }
 
-
-    // 2. ELIMINAR UN OBSERVADOR
-    
     eliminarObservador(observador) {
-
         this.observadores.delete(observador);
     }
 
-
-    
-    // 3. NOTIFICAR LA RESOLUCIÓN
-    
-
     async notificarResolucion(idPartida) {
-
         const evento = {
             idPartida,
             idAcertijo: this.idAcertijo,
@@ -90,10 +87,6 @@ class Acertijo {
             await observador.actualizar(evento);
         }
     }
-
 }
 
-
-// Exportar la entidad
 module.exports = Acertijo;
-

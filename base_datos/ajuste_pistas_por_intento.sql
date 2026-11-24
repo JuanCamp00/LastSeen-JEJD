@@ -393,8 +393,6 @@ SELECT
 FROM acertijo
 WHERE orden = 5
 ON CONFLICT (id_acertijo, orden) DO NOTHING;
-
-
 -- 4. Registrar el documento desbloqueable
 
 INSERT INTO contenido (

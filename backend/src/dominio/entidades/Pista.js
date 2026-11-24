@@ -1,5 +1,41 @@
-class Pista {
+function validar(condicion, mensaje, TipoError = TypeError) {
+    if (!condicion) {
+        throw new TipoError(mensaje);
+    }
+}
+function validarIdentificador(id, mensaje) {
+    validar(
+        Number.isInteger(id) && id > 0,
+        mensaje
+    );
+}
 
+function validarIdPista(idPista) {
+    validar(
+        idPista === null ||
+        (Number.isInteger(idPista) && idPista > 0),
+        'El identificador de la pista debe ser positivo o NULL.'
+    );
+}
+
+function validarContenido(contenido) {
+    validar(
+        typeof contenido === 'string' &&
+        contenido.trim().length > 0,
+        'El contenido de la pista es obligatorio.'
+    );
+
+    return contenido.trim();
+}
+
+function validarDisponibilidad(disponibleDesdeInicio) {
+    validar(
+        typeof disponibleDesdeInicio === 'boolean',
+        'La disponibilidad inicial debe ser verdadera o falsa.'
+    );
+}
+
+class Pista {
     constructor({
         idPista = null,
         idAcertijo,
@@ -7,52 +43,25 @@ class Pista {
         orden,
         disponibleDesdeInicio
     }) {
+        validarIdPista(idPista);
 
-        // Validar identificador de la pista
-        if (
-            idPista !== null &&
-            (!Number.isInteger(idPista) || idPista <= 0)
-        ) {
-            throw new TypeError(
-                'El identificador de la pista debe ser positivo o NULL.'
-            );
-        }
+        validarIdentificador(
+            idAcertijo,
+            'El identificador del acertijo debe ser positivo.'
+        );
 
-        // Validar acertijo asociado
-        if (!Number.isInteger(idAcertijo) || idAcertijo <= 0) {
-            throw new TypeError(
-                'El identificador del acertijo debe ser positivo.'
-            );
-        }
+        const contenidoNormalizado = validarContenido(contenido);
 
-        // Validar contenido
-        if (
-            typeof contenido !== 'string' ||
-            contenido.trim().length === 0
-        ) {
-            throw new TypeError(
-                'El contenido de la pista es obligatorio.'
-            );
-        }
+        validarIdentificador(
+            orden,
+            'El orden de la pista debe ser un entero positivo.'
+        );
 
-        // Validar orden
-        if (!Number.isInteger(orden) || orden <= 0) {
-            throw new TypeError(
-                'El orden de la pista debe ser un entero positivo.'
-            );
-        }
+        validarDisponibilidad(disponibleDesdeInicio);
 
-        // Validar disponibilidad inicial
-        if (typeof disponibleDesdeInicio !== 'boolean') {
-            throw new TypeError(
-                'La disponibilidad inicial debe ser verdadera o falsa.'
-            );
-        }
-
-        // Asignar atributos
         this.idPista = idPista;
         this.idAcertijo = idAcertijo;
-        this.contenido = contenido.trim();
+        this.contenido = contenidoNormalizado;
         this.orden = orden;
         this.disponibleDesdeInicio = disponibleDesdeInicio;
     }
